@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.array64'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly("net.md-5:bungeecord-chat:1.21-R0.3")
+}

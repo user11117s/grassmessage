@@ -1,0 +1,45 @@
+bold (XSD) (Java)
+click (XSD) (Java)
+color (XSD) (Java)
+child components (XSD) (Java)
+font (XSD) (Java)
+hover (XSD) (Java)
+insertion (XSD) (Java)
+italic (XSD) (Java)
+obfuscation (XSD) (Java)
+reset (XSD) (Java)
+shadow color (XSD)
+strikethrough (XSD) (Java)
+underline (XSD) (Java)
+gradient (XSD) [Create GradientComponent]
+lines (XSD) [Append "\n" to text]
+glue (XSD) [Set GLUE flag to TRUE]
+nbsp (XSD) [Append spaces depending on GLUE flag]
+embedded messages (XSD)
+embedded bungee components (XSD)
+removal of newlines and indent (excluding <glue> and <nbsp>)
+implement GLUE flag
+
+GLUE is initialized to TRUE
+
+for each non-blank piece of text:
+
+the string is stripped from the front.
+if that does anything and GLUE is DEFAULT, or if GLUE is FALSE, space is added before the text.
+the string is always stripped from the back.
+if that does anything, set GLUE to FALSE. otherwise, DEFAULT.
+
+Hello,<b>world:         Hello,world
+Hello, <b>world:        Hello, world
+Hello<b>,world:         Hello,world
+Hello<b> ,world:        Hello ,world
+Hello,<glue><b> world:  Hello,world
+Hello, <b><glue>world:  Hello,world
+
+when <glue> or <nbsp> is found, set GLUE to TRUE.
+
+KeybindComponent (XSD)
+ScoreComponent (XSD)
+TextComponent (XSD)
+TranslatableComponent (XSD)
+SelectorComponent (XSD)

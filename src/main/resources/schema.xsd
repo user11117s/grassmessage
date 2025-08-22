@@ -1,0 +1,85 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="components.xsd"/>
+
+    <!-- ChatGPT carried. I don't know much about XSD. -->
+
+    <xs:simpleType name="normalizedFloat">
+        <xs:restriction base="xs:float">
+            <xs:minExclusive value="0"/>
+            <xs:maxExclusive value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--
+    _______________
+    Top-level setup
+    _______________
+    -->
+
+    <!-- Types -->
+
+    <xs:complexType name="messageType">
+        <xs:complexContent>
+            <xs:extension base="componentHolder">
+                <xs:attribute name="name" type="xs:Name" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="messagesType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="message" type="messageType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="middleColorStopType">
+        <xs:simpleContent>
+            <xs:extension base="hexColor">
+                <xs:attribute name="position" type="normalizedFloat" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="gradientType">
+        <xs:sequence>
+            <xs:element name="start" type="hexColor"/>
+            <xs:element name="middle" minOccurs="0" maxOccurs="unbounded" type="middleColorStopType"/>
+            <xs:element name="end" type="hexColor"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:Name" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="gradientsType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="gradient" type="gradientType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Root -->
+
+    <xs:element name="grass">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="messages" type="messagesType"/>
+                <xs:element name="gradients" type="gradientsType" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+
+        <xs:key name="msgNames">
+            <xs:selector xpath="messages/message"/>
+            <xs:field xpath="@name"/>
+        </xs:key>
+        <xs:key name="gradientNames">
+            <xs:selector xpath="gradients/gradient"/>
+            <xs:field xpath="@name"/>
+        </xs:key>
+        <xs:keyref name="msgInstances" refer="msgNames">
+            <xs:selector xpath=".//embed_msg"/>
+            <xs:field xpath="@ref"/>
+        </xs:keyref>
+        <xs:keyref name="gradInstances" refer="gradientNames">
+            <xs:selector xpath="."/>
+            <xs:field xpath="@ref"/>
+        </xs:keyref>
+    </xs:element>
+</xs:schema>
