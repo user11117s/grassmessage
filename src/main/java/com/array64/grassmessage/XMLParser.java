@@ -7,8 +7,8 @@ import org.xml.sax.helpers.DefaultHandler;
 abstract class XMLParser extends DefaultHandler {
     private boolean isDoneParsing;
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        startTag(uri, attributes);
+    public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
+        startTag(uri, attrs);
     }
 
     @Override
@@ -29,7 +29,7 @@ abstract class XMLParser extends DefaultHandler {
         return isDoneParsing;
     }
 
-    protected abstract void startTag(String qName, Attributes attributes);
+    protected abstract void startTag(String qName, Attributes attrs);
     protected abstract void endTag(String qName);
     protected abstract void parseText(String text);
 }

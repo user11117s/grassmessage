@@ -15,24 +15,24 @@ class FileParser extends XMLParser {
     }
 
     @Override
-    protected void startTag(String qName, Attributes attributes) {
+    protected void startTag(String qName, Attributes attrs) {
         if(currentSubParser == null) {
             // Use respective parsers when they come.
             // XSD does the heavy lifting of validation for us.
             if(qName.equals("gradient")) {
 
                 GradientData gradientData = new GradientData();
-                fileData.addGradient(attributes.getValue("name"), gradientData);
+                fileData.addGradient(attrs.getValue("name"), gradientData);
                 currentSubParser = gradientParsers.apply(gradientData);
             }
             else if(qName.equals("message")) {
 
-                ComponentHolder message = new ComponentHolder(ComponentModifiers.NONE);
-                fileData.addMessage(attributes.getValue("name"), message);
+                ComponentHolder message = new ComponentHolder(null, ComponentModifiers.NONE);
+                fileData.addMessage(attrs.getValue("name"), message);
                 currentSubParser = messageParsers.apply(message);
             }
 
-        } else currentSubParser.startTag(qName, attributes);
+        } else currentSubParser.startTag(qName, attrs);
     }
 
     @Override

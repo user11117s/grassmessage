@@ -8,12 +8,15 @@ import java.util.List;
 class ComponentHolder implements Component {
     private final List<Component> heldComponents;
     private final ComponentModifier modifier;
+    private final Component parent;
 
-    public ComponentHolder(ComponentModifier modifier) {
+    public ComponentHolder(Component parent, ComponentModifier modifier) {
         this.heldComponents = new ArrayList<>();
         this.modifier = modifier;
+        this.parent = parent;
     }
 
+    @Override
     public void addComponent(Component component) {
         heldComponents.add(component);
     }
@@ -36,9 +39,19 @@ class ComponentHolder implements Component {
 
     @Override
     public void append(String text) {
-        if(heldComponents.isEmpty())
-            heldComponents.add(new ComponentOfText());
+        int top = heldComponents.size() - 1;
 
-        heldComponents.get(heldComponents.size() - 1).append(text);
+        // Add a text component if we aren't already on a text component.
+        // This is the only case where components are added without
+        // becoming the currentComponent of a MessageParser.
+        if(top < 0 || !(heldComponents.get(top++) instanceof ComponentOfText))
+            addComponent(new ComponentOfText(this));
+
+        heldComponents.get(top).append(text);
+    }
+
+    @Override
+    public Component getParent() {
+        return this.parent;
     }
 }

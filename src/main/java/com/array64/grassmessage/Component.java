@@ -1,8 +1,9 @@
 package com.array64.grassmessage;
 
-import net.md_5.bungee.api.chat.ComponentBuilder;
-
-interface Component {
-    void modify(ComponentBuilder builder);
+interface Component extends ComponentModifier {
+    default void addComponent(Component component) {
+        throw new UnsupportedOperationException("This component does not support child components.");
+    }
     void append(String text);
+    Component getParent();
 }

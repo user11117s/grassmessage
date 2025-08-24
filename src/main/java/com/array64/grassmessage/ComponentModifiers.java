@@ -19,6 +19,10 @@ class ComponentModifiers {
         return builder -> builder.color(color);
     }
 
+    public static ComponentModifier color(String hexCode) {
+        return color(ChatColor.of(hexCode));
+    }
+
     public static ComponentModifier click(ClickEvent event) {
         return builder -> builder.event(event);
     }

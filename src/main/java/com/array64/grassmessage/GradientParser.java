@@ -13,11 +13,11 @@ class GradientParser extends XMLParser {
     }
 
     @Override
-    protected void startTag(String qName, Attributes attributes) {
+    protected void startTag(String qName, Attributes attrs) {
         stopPosition = Optional.of(switch(qName) {
             case "start" -> 0f;
             case "end" -> 1f;
-            case "middle" -> Float.parseFloat(attributes.getValue("position"));
+            case "middle" -> Float.parseFloat(attrs.getValue("position"));
             default -> throw new IllegalStateException("Unexpected tag: " + qName);
         });
     }

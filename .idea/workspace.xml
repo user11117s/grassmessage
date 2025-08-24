@@ -4,35 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Component.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifiers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/FileData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/FileParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/GradientData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/GradientParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/MessageParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/XMLParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/components.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/example.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/schema.xsd" afterDir="false" />
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="forgot to initial commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ConstantNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifiers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentOfText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentOfText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/FileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/GradientParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/GradientParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/MessageParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/MessageParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/XMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/components.xsd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,13 +33,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.md-5/bungeecord-chat/1.21-R0.4-SNAPSHOT/e0da19182cb027b04b0e1249db8c0f066d34a8b/bungeecord-chat-1.21-R0.4-SNAPSHOT-sources.jar!/net/md_5/bungee/api/chat/ComponentBuilder.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -67,6 +56,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Download Sources.executor": "Run",
+    "Gradle.GrassMessage [dependencies].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -77,9 +67,41 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.array64.grassmessage" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GrassMessage [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.GrassMessage [dependencies]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -90,6 +112,19 @@
       <option name="presentableId" value="Default" />
       <updated>1755642866274</updated>
     </task>
+    <task id="LOCAL-00001" summary="forgot to initial commit">
+      <option name="closed" value="true" />
+      <created>1755902582594</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1755902582594</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="forgot to initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="forgot to initial commit" />
   </component>
 </project>
