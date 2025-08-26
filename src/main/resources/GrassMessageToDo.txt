@@ -9,7 +9,7 @@
         italic (XSD) (Reg)
         obfuscation (XSD) (Reg)
         reset (XSD) (Reg)
-shadow color (XSD)
+        shadow color (XSD) (Reg)
         strikethrough (XSD) (Reg)
         underline (XSD) (Reg)
 
@@ -19,7 +19,7 @@ glue (XSD) [Set GLUE flag to TRUE]
 nbsp (XSD) [Append spaces depending on GLUE flag]
 embedded messages (XSD)
 embedded bungee components (XSD)
-removal of newlines and indent (excluding <glue> and <nbsp>)
+
 implement GLUE flag
 
 GLUE is initialized to TRUE
@@ -30,7 +30,7 @@ if that does anything and GLUE is DEFAULT, or if GLUE is FALSE, space is added b
 the string is always stripped from the back.
 if that does anything, set GLUE to FALSE. otherwise, DEFAULT.
 
-when <glue> or <nbsp> is found, set GLUE to TRUE.
+when <glue/>, <nbsp/> or <ln/> is found, set GLUE to TRUE.
 
 KeybindComponent (XSD)
 ScoreComponent (XSD)

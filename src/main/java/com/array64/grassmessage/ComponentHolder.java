@@ -1,57 +1,111 @@
 package com.array64.grassmessage;
 
-import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.xml.sax.Attributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-class ComponentHolder implements Component {
+class ComponentHolder extends AbstractXMLParser implements Component {
     private final List<Component> heldComponents;
     private final ComponentModifier modifier;
-    private final Component parent;
+    private final ComponentRegistry registry;
+    private Glue glue = Glue.TRUE;
 
-    public ComponentHolder(Component parent, ComponentModifier modifier) {
+    public ComponentHolder(ComponentModifier modifier, ComponentRegistry registry) {
         this.heldComponents = new ArrayList<>();
         this.modifier = modifier;
-        this.parent = parent;
+        this.registry = registry;
     }
 
-    @Override
     public void addComponent(Component component) {
         heldComponents.add(component);
     }
 
     @Override
-    public void modify(ComponentBuilder builder) {
-        modifier.modify(builder);
-
-        // Add components to the builder based on children
+    public void modifyParent(BaseComponent parent) {
+        // Add components to the parent based on children
         if(heldComponents.isEmpty()) return;
-        if(heldComponents.size() == 1) heldComponents.get(0).modify(builder);
+
+        if(heldComponents.size() == 1) {
+            modifier.modify(parent);
+            heldComponents.get(0).modifyParent(parent);
+        }
         else {
-            heldComponents.forEach(child -> {
-                ComponentBuilder childBuilder = new ComponentBuilder();
-                child.modify(builder);
-                builder.append(childBuilder.build());
-            });
+            BaseComponent thisComponent = new TextComponent();
+            modifier.modify(thisComponent);
+
+            heldComponents.forEach(child -> child.modifyParent(thisComponent));
+            parent.addExtra(thisComponent);
         }
     }
 
     @Override
-    public void append(String text) {
-        int top = heldComponents.size() - 1;
+    public void startTag(String qName, Attributes attrs) {
+        if(parsingChild())
+            getLast().startTag(qName, attrs);
+        else {
+            Optional<String> whitespace = registry.getWhitespace(qName, attrs);
 
-        // Add a text component if we aren't already on a text component.
-        // This is the only case where components are added without
-        // becoming the currentComponent of a MessageParser.
-        if(top < 0 || !(heldComponents.get(top++) instanceof ComponentOfText))
-            addComponent(new ComponentOfText(this));
-
-        heldComponents.get(top).append(text);
+            if(whitespace.isPresent()) {
+                glue = Glue.TRUE;
+                appendText(whitespace.get());
+            }
+            else {
+                if(glue == Glue.FALSE) {
+                    appendText(" ");
+                    glue = Glue.DEFAULT;
+                }
+                heldComponents.add(registry.get(qName, attrs));
+            }
+        }
     }
 
     @Override
-    public Component getParent() {
-        return this.parent;
+    public void endTag(String qName) {
+        if(parsingChild())
+            getLast().endTag(qName);
+        else
+            setDoneParsing();
+    }
+
+    @Override
+    public void parseText(String text) {
+        if(glue != Glue.TRUE && parsingChild())
+            getLast().parseText(text);
+        else {
+            String frontStrippedText = text.stripLeading();
+            String strippedText = frontStrippedText.stripTrailing();
+
+            // Turn leading whitespace into a single space.
+            if((frontStrippedText.length() < text.length() && glue == Glue.DEFAULT)
+                || glue == Glue.FALSE) {
+
+                appendText(" ");
+            }
+
+            appendText(strippedText);
+
+            // Check if trailing whitespace exists.
+            glue = strippedText.length() == frontStrippedText.length() ? Glue.DEFAULT : Glue.FALSE;
+        }
+    }
+
+    private void appendText(String text) {
+        if(heldComponents.isEmpty() || !(getLast() instanceof LeafTextComponent))
+            addComponent(new LeafTextComponent());
+
+        getLast().parseText(text);
+    }
+
+    private Component getLast() {
+        return heldComponents.get(heldComponents.size() - 1);
+    }
+
+    private boolean parsingChild() {
+        if(heldComponents.isEmpty()) return true;
+        return !getLast().isDoneParsing();
     }
 }

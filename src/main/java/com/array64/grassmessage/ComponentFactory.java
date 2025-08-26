@@ -5,6 +5,6 @@ import org.xml.sax.Attributes;
 import java.util.function.Function;
 
 @FunctionalInterface
-interface ComponentFactory {
-    Component getComponent(Attributes attrs, Component parent);
+public interface ComponentFactory {
+    Component getComponent(Attributes attrs);
 }

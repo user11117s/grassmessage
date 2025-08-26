@@ -2,41 +2,39 @@ package com.array64.grassmessage;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.ComponentStyleBuilder;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
-class ComponentRegistry {
-    private static ComponentRegistry instance;
+public class ComponentRegistry {
     private final Map<String, ComponentFactory> componentFactories = new HashMap<>();
 
-    private ComponentRegistry() {
-        registerAll();
-    }
-
-    public static ComponentRegistry getInstance() {
-        if(instance == null)
-            instance = new ComponentRegistry();
-
-        return instance;
-    }
-
-    private void register(ComponentFactory factory, String... qNames) {
+    public void register(ComponentFactory factory, String... qNames) {
         for(String qName : qNames) {
             componentFactories.put(qName, factory);
         }
     }
 
-    public Component get(String qName, Attributes attrs, Component parent) {
-        return componentFactories.get(qName).getComponent(attrs, parent);
+    public Component get(String qName, Attributes attrs) {
+        return componentFactories.get(qName).getComponent(attrs);
     }
 
-    private void registerModifier(Function<Attributes, ComponentModifier> modifierFunction, String... qNames) {
-        register((attrs, parent) -> new ComponentHolder(parent, modifierFunction.apply(attrs)), qNames);
+    public Optional<String> getWhitespace(String qName, Attributes attrs) {
+        return switch(qName) {
+            case "glue" -> Optional.of("");
+            case "nbsp" -> Optional.of(" ".repeat(
+                Integer.parseInt(attrs.getValue("times"))
+            ));
+            case "ln" -> Optional.of("\n");
+            default -> Optional.empty();
+        };
+    }
+
+    public void registerModifier(Function<Attributes, ComponentModifier> modifierFunction, String... qNames) {
+        register(attrs -> new ComponentHolder(modifierFunction.apply(attrs), this), qNames);
     }
 
     private void registerAll() {
@@ -58,15 +56,15 @@ class ComponentRegistry {
         }
 
         // Modifiers with attributes
-        registerModifier(attrs -> ComponentModifiers.color(attrs.getValue("hex")), "color");
 
         registerModifier(attrs -> ComponentModifiers.click(new ClickEvent(
             ConstantNames.CLICK_EVENTS.get(attrs.getValue("action")),
             attrs.getValue("value")
         )), "click");
 
+        registerModifier(attrs -> ComponentModifiers.color(attrs.getValue("hex")), "color");
         registerModifier(attrs -> ComponentModifiers.insertion(attrs.getValue("text")), "insertion");
-
         registerModifier(attrs -> ComponentModifiers.font(attrs.getValue("font")), "font");
+        registerModifier(attrs -> ComponentModifiers.shadow(attrs.getValue("color")), "shadow");
     }
 }

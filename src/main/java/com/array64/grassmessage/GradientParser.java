@@ -4,7 +4,7 @@ import org.xml.sax.Attributes;
 
 import java.util.Optional;
 
-class GradientParser extends XMLParser {
+class GradientParser extends AbstractXMLParser {
     private final GradientData data;
     private Optional<Float> stopPosition = Optional.empty();
 
@@ -13,7 +13,7 @@ class GradientParser extends XMLParser {
     }
 
     @Override
-    protected void startTag(String qName, Attributes attrs) {
+    public void startTag(String qName, Attributes attrs) {
         stopPosition = Optional.of(switch(qName) {
             case "start" -> 0f;
             case "end" -> 1f;
@@ -23,13 +23,13 @@ class GradientParser extends XMLParser {
     }
 
     @Override
-    protected void endTag(String qName) {
+    public void endTag(String qName) {
         if(qName.equals("gradient"))
             setDoneParsing();
     }
 
     @Override
-    protected void parseText(String text) {
+    public void parseText(String text) {
         if(stopPosition.isPresent()) {
             data.addStop(stopPosition.get(), new Color(text));
             stopPosition = Optional.empty();
