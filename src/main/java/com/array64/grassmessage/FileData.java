@@ -3,20 +3,25 @@ package com.array64.grassmessage;
 import java.util.HashMap;
 import java.util.Map;
 
-class FileData {
-    private final Map<String, GradientData> gradients = new HashMap<>();
+public class FileData {
+    private final Map<String, MutableReference<GradientData>> gradients = new HashMap<>();
     private final Map<String, ComponentHolder> messages = new HashMap<>();
 
     public void addGradient(String name, GradientData gradientData) {
-        gradients.put(name, gradientData);
+        var gradientReference = gradients.get(name);
+
+        if(gradientReference == null)
+            gradients.put(name, new MutableReference<>(gradientData));
+        else
+            gradientReference.set(gradientData);
     }
 
     public void addMessage(String name, ComponentHolder messageData) {
         messages.put(name, messageData);
     }
 
-    public GradientData getGradient(String name) {
-        return gradients.get(name);
+    public MutableReference<GradientData> getGradientReference(String name) {
+        return gradients.computeIfAbsent(name, k -> new MutableReference<>());
     }
 
     public ComponentHolder getMessage(String message) {

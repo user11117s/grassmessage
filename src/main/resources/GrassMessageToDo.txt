@@ -14,26 +14,17 @@
         underline (XSD) (Reg)
 
 gradient (XSD) [Create GradientComponent]
-lines (XSD) [Append "\n" to text]
-glue (XSD) [Set GLUE flag to TRUE]
-nbsp (XSD) [Append spaces depending on GLUE flag]
+        lines (XSD) (Reg) [Append "\n" to text]
+        glue (XSD) (Reg) [Set GLUE flag to TRUE]
+        nbsp (XSD) (Reg) [Append spaces depending on GLUE flag]
+
 embedded messages (XSD)
 embedded bungee components (XSD)
 
-implement GLUE flag
+        implement GLUE flag (Java)
 
-GLUE is initialized to TRUE
-
-for each non-blank piece of text:
-the string is stripped from the front.
-if that does anything and GLUE is DEFAULT, or if GLUE is FALSE, space is added before the text.
-the string is always stripped from the back.
-if that does anything, set GLUE to FALSE. otherwise, DEFAULT.
-
-when <glue/>, <nbsp/> or <ln/> is found, set GLUE to TRUE.
-
-KeybindComponent (XSD)
-ScoreComponent (XSD)
+        KeybindComponent (XSD) (Reg)
+        ScoreComponent (XSD) (Reg)
         TextComponent (XSD) (Reg)
 TranslatableComponent (XSD)
-SelectorComponent (XSD)
+        SelectorComponent (XSD) (Reg)

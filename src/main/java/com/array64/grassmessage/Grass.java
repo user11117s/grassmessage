@@ -1,8 +1,6 @@
 package com.array64.grassmessage;
 
 import org.xml.sax.SAXException;
-import org.xml.sax.ext.Attributes2;
-import org.xml.sax.ext.Attributes2Impl;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -12,7 +10,8 @@ import java.io.InputStream;
 
 public class Grass {
     private static final String XSD_LOCATION = "schema.xsd";
-    private final ComponentRegistry componentRegistry = new ComponentRegistry();
+    private final FileData fileData = new FileData();
+    private final ComponentRegistry componentRegistry = new ComponentRegistry(fileData);
     /**
      * Initialize GrassMessage. Expects a file named <code>messages.xml</code> in your resources folder.
      */
@@ -26,7 +25,7 @@ public class Grass {
      */
     public Grass(String filename) {
         try(InputStream is = Grass.class.getClassLoader().getResourceAsStream(filename)) {
-            initialize(is);
+            parseXML(is);
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
@@ -37,10 +36,10 @@ public class Grass {
      * @param is The stream that GrassMessage should use to read the XML from
      */
     public Grass(InputStream is) {
-        initialize(is);
+        parseXML(is);
     }
 
-    private void initialize(InputStream is) {
+    private void parseXML(InputStream is) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setNamespaceAware(true);
@@ -50,7 +49,6 @@ public class Grass {
             SAXParser saxParser = factory.newSAXParser();
             saxParser.setProperty("http://apache.org/xml/properties/schema/external-noNamespaceSchemaLocation", XSD_LOCATION);
 
-            FileData fileData = new FileData();
             FileParser fileParser = new FileParser(fileData, componentRegistry);
             saxParser.parse(is, new XMLParserAdapter(fileParser));
 

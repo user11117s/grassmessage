@@ -2,11 +2,10 @@ package com.array64.grassmessage;
 
 import org.xml.sax.Attributes;
 
-import java.util.Optional;
-
-class GradientParser extends AbstractXMLParser {
+class GradientParser implements XMLParser {
     private final GradientData data;
-    private Optional<Float> stopPosition = Optional.empty();
+    private Float stopPosition = null;
+    private boolean doneParsing;
 
     GradientParser(GradientData data) {
         this.data = data;
@@ -14,25 +13,30 @@ class GradientParser extends AbstractXMLParser {
 
     @Override
     public void startTag(String qName, Attributes attrs) {
-        stopPosition = Optional.of(switch(qName) {
+        stopPosition = switch(qName) {
             case "start" -> 0f;
             case "end" -> 1f;
             case "middle" -> Float.parseFloat(attrs.getValue("position"));
             default -> throw new IllegalStateException("Unexpected tag: " + qName);
-        });
+        };
     }
 
     @Override
     public void endTag(String qName) {
         if(qName.equals("gradient"))
-            setDoneParsing();
+            this.doneParsing = true;
     }
 
     @Override
     public void parseText(String text) {
-        if(stopPosition.isPresent()) {
-            data.addStop(stopPosition.get(), new Color(text));
-            stopPosition = Optional.empty();
+        if(stopPosition != null) {
+            data.addStop(stopPosition, new Color(text));
+            stopPosition = null;
         }
+    }
+
+    @Override
+    public boolean isDoneParsing() {
+        return this.doneParsing;
     }
 }

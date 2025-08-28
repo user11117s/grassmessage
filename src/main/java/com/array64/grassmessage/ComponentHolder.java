@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class ComponentHolder extends AbstractXMLParser implements Component {
+public class ComponentHolder extends AbstractComponent {
     private final List<Component> heldComponents;
     private final ComponentModifier modifier;
     private final ComponentRegistry registry;
@@ -43,7 +43,7 @@ class ComponentHolder extends AbstractXMLParser implements Component {
     }
 
     @Override
-    public void startTag(String qName, Attributes attrs) {
+    public void enterTag(String qName, Attributes attrs) {
         if(parsingChild())
             getLast().startTag(qName, attrs);
         else {
@@ -64,11 +64,9 @@ class ComponentHolder extends AbstractXMLParser implements Component {
     }
 
     @Override
-    public void endTag(String qName) {
+    public void exitTag(String qName) {
         if(parsingChild())
             getLast().endTag(qName);
-        else
-            setDoneParsing();
     }
 
     @Override

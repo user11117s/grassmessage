@@ -4,22 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="ComponentRegistry, ComponentModifiers and additional changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/AbstractXMLParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Glue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/XMLParserAdapter.java" afterDir="false" />
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Changed the way Components work. Now they're all XMLParsers.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/AbstractComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/LeafGradientComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/LeafKeybindComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/LeafScoreComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/LeafSelectorComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/MutableReference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Component.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/AbstractXMLParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentModifiers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentOfText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/LeafTextComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/ComponentRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/FileParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/GradientParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/GradientParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/MessageParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/LeafTextComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/LeafTextComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/XMLParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
     </list>
@@ -37,8 +37,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -132,12 +132,21 @@
       <option name="project" value="LOCAL" />
       <updated>1755993849472</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changed the way Components work. Now they're all XMLParsers.">
+      <option name="closed" value="true" />
+      <created>1756222190695</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1756222190695</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="forgot to initial commit" />
     <MESSAGE value="ComponentRegistry, ComponentModifiers and additional changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="ComponentRegistry, ComponentModifiers and additional changes" />
+    <MESSAGE value="Changed the way Components work. Now they're all XMLParsers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the way Components work. Now they're all XMLParsers." />
   </component>
 </project>

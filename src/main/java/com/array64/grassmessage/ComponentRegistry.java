@@ -11,6 +11,11 @@ import java.util.function.Function;
 
 public class ComponentRegistry {
     private final Map<String, ComponentFactory> componentFactories = new HashMap<>();
+    private final FileData fileData;
+
+    public ComponentRegistry(FileData fileData) {
+        this.fileData = fileData;
+    }
 
     public void register(ComponentFactory factory, String... qNames) {
         for(String qName : qNames) {
@@ -66,5 +71,13 @@ public class ComponentRegistry {
         registerModifier(attrs -> ComponentModifiers.insertion(attrs.getValue("text")), "insertion");
         registerModifier(attrs -> ComponentModifiers.font(attrs.getValue("font")), "font");
         registerModifier(attrs -> ComponentModifiers.shadow(attrs.getValue("color")), "shadow");
+
+        // Other leaf components
+        register(attrs -> new LeafScoreComponent(), "score");
+        register(attrs -> new LeafSelectorComponent(), "selector");
+        register(attrs -> new LeafKeybindComponent(), "keybind");
+        register(attrs -> new LeafGradientComponent(
+            fileData.getGradientReference(attrs.getValue("ref"))
+        ));
     }
 }

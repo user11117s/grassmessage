@@ -1,6 +1,6 @@
 package com.array64.grassmessage;
 
-record Color(float red, float green, float blue) {
+public record Color(float red, float green, float blue) {
     public Color(String hexCode) {
         this(
             Integer.valueOf(hexCode.substring(1, 3), 16), // red

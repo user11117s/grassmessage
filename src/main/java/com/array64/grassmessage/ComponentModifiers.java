@@ -6,7 +6,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 
 import java.awt.Color;
 
-class ComponentModifiers {
+public class ComponentModifiers {
     public static final ComponentModifier
         NONE            = component -> {},
         BOLD            = component -> component.setBold(true),

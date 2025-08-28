@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-class GradientData {
+public class GradientData {
     private final SortedSet<ColorStop> colorStops = new TreeSet<>(Comparator.comparing(ColorStop::position));
 
     public void addStop(float position, Color color) {

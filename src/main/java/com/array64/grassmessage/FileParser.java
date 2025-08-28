@@ -2,9 +2,7 @@ package com.array64.grassmessage;
 
 import org.xml.sax.Attributes;
 
-import java.util.function.Function;
-
-class FileParser extends AbstractXMLParser {
+class FileParser implements XMLParser {
     private final FileData fileData;
     private final ComponentRegistry componentRegistry;
     private XMLParser currentSubParser = null;
@@ -12,6 +10,11 @@ class FileParser extends AbstractXMLParser {
     FileParser(FileData fileData, ComponentRegistry componentRegistry) {
         this.fileData = fileData;
         this.componentRegistry = componentRegistry;
+    }
+
+    @Override
+    public boolean isDoneParsing() {
+        return false;
     }
 
     @Override
@@ -29,7 +32,6 @@ class FileParser extends AbstractXMLParser {
                 fileData.addMessage(attrs.getValue("name"), message);
                 currentSubParser = message;
             }
-
         } else currentSubParser.startTag(qName, attrs);
     }
 

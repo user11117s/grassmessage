@@ -3,7 +3,7 @@ package com.array64.grassmessage;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.xml.sax.Attributes;
 
-class LeafTextComponent implements Component {
+public class LeafTextComponent implements Component {
     private String text = "";
 
     @Override
