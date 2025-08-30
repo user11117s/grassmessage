@@ -1,13 +1,16 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.xml.parsers;
 
+import com.array64.grassmessage.util.Color;
+import com.array64.grassmessage.data.GradientData;
+import com.array64.grassmessage.xml.XMLParser;
 import org.xml.sax.Attributes;
 
-class GradientParser implements XMLParser {
+public class GradientParser implements XMLParser {
     private final GradientData data;
     private Float stopPosition = null;
     private boolean doneParsing;
 
-    GradientParser(GradientData data) {
+    public GradientParser(GradientData data) {
         this.data = data;
     }
 

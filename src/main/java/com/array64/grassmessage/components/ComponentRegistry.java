@@ -1,9 +1,13 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.components;
 
+import com.array64.grassmessage.components.impl.*;
+import com.array64.grassmessage.util.ConstantNames;
+import com.array64.grassmessage.data.FileData;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import org.xml.sax.Attributes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -12,6 +16,8 @@ import java.util.function.Function;
 public class ComponentRegistry {
     private final Map<String, ComponentFactory> componentFactories = new HashMap<>();
     private final FileData fileData;
+
+    public static final String VAR_TAG_NAME = "var"; // Dedicated constant due to multiple uses
 
     public ComponentRegistry(FileData fileData) {
         this.fileData = fileData;
@@ -77,7 +83,17 @@ public class ComponentRegistry {
         register(attrs -> new LeafSelectorComponent(), "selector");
         register(attrs -> new LeafKeybindComponent(), "keybind");
         register(attrs -> new LeafGradientComponent(
-            fileData.getGradientReference(attrs.getValue("ref"))
-        ));
+            attrs.getValue("ref"),
+            new ArrayList<>(),
+                this
+            ), "grad");
+
+        register(this::createVarComponent, "var");
+        register(attrs -> new LeafBungeeComponent(attrs.getValue("name")), "bungee_component");
+        register(attrs -> new LeafEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
+    }
+
+    public LeafVariableComponent createVarComponent(Attributes attrs) {
+        return new LeafVariableComponent(attrs.getValue("name"));
     }
 }

@@ -1,30 +1,6 @@
-
-        bold (XSD) (Reg)
-        click (XSD) (Reg)
-        color (XSD) (Reg)
-        child components (XSD) (Reg)
-        font (XSD) (Reg)
     hover (XSD) (Java)
-        insertion (XSD) (Reg)
-        italic (XSD) (Reg)
-        obfuscation (XSD) (Reg)
-        reset (XSD) (Reg)
-        shadow color (XSD) (Reg)
-        strikethrough (XSD) (Reg)
-        underline (XSD) (Reg)
 
-gradient (XSD) [Create GradientComponent]
-        lines (XSD) (Reg) [Append "\n" to text]
-        glue (XSD) (Reg) [Set GLUE flag to TRUE]
-        nbsp (XSD) (Reg) [Append spaces depending on GLUE flag]
-
-embedded messages (XSD)
-embedded bungee components (XSD)
-
-        implement GLUE flag (Java)
-
-        KeybindComponent (XSD) (Reg)
-        ScoreComponent (XSD) (Reg)
-        TextComponent (XSD) (Reg)
 TranslatableComponent (XSD)
-        SelectorComponent (XSD) (Reg)
+
+Instantiation
+Add module-info.java

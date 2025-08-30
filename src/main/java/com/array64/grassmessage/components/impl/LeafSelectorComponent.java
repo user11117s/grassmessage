@@ -1,5 +1,7 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.components.impl;
 
+import com.array64.grassmessage.components.AbstractComponent;
+import com.array64.grassmessage.components.InstantiationContext;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.SelectorComponent;
 import org.xml.sax.Attributes;
@@ -9,16 +11,16 @@ public class LeafSelectorComponent extends AbstractComponent {
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
-        throw new UnsupportedOperationException("LeafSelectorComponent does not support enterTag.");
+        throwOnEnterTag();
     }
 
     @Override
     protected void exitTag(String qName) {
-        throw new UnsupportedOperationException("LeafSelectorComponent does not support exitTag.");
+        throwOnExitTag();
     }
 
     @Override
-    public void modifyParent(BaseComponent parent) {
+    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
         parent.addExtra(new SelectorComponent(selector));
     }
 

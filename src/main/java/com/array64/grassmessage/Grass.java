@@ -1,5 +1,9 @@
 package com.array64.grassmessage;
 
+import com.array64.grassmessage.components.ComponentRegistry;
+import com.array64.grassmessage.data.FileData;
+import com.array64.grassmessage.xml.parsers.FileParser;
+import com.array64.grassmessage.xml.XMLParserAdapter;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

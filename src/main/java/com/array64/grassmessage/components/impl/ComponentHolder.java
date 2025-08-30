@@ -1,5 +1,7 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.components.impl;
 
+import com.array64.grassmessage.components.*;
+import com.array64.grassmessage.util.Glue;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.xml.sax.Attributes;
@@ -25,19 +27,19 @@ public class ComponentHolder extends AbstractComponent {
     }
 
     @Override
-    public void modifyParent(BaseComponent parent) {
+    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
         // Add components to the parent based on children
         if(heldComponents.isEmpty()) return;
 
         if(heldComponents.size() == 1) {
             modifier.modify(parent);
-            heldComponents.get(0).modifyParent(parent);
+            heldComponents.get(0).instantiateInParent(parent, ctx);
         }
         else {
             BaseComponent thisComponent = new TextComponent();
             modifier.modify(thisComponent);
 
-            heldComponents.forEach(child -> child.modifyParent(thisComponent));
+            heldComponents.forEach(child -> child.instantiateInParent(thisComponent, ctx));
             parent.addExtra(thisComponent);
         }
     }

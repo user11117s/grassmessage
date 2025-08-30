@@ -1,13 +1,13 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.xml;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-class XMLParserAdapter extends DefaultHandler {
+public class XMLParserAdapter extends DefaultHandler {
     private final XMLParser parser;
 
-    XMLParserAdapter(XMLParser parser) {
+    public XMLParserAdapter(XMLParser parser) {
         this.parser = parser;
     }
 

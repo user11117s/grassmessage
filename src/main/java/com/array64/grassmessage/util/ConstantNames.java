@@ -1,5 +1,7 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.util;
 
+import com.array64.grassmessage.components.ComponentModifier;
+import com.array64.grassmessage.components.ComponentModifiers;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -11,7 +13,7 @@ import static net.md_5.bungee.api.ChatColor.*;
 import static net.md_5.bungee.api.chat.ClickEvent.Action.*;
 import static net.md_5.bungee.api.chat.HoverEvent.Action.*;
 
-class ConstantNames {
+public class ConstantNames {
     public static final ModifierMapping[] MODIFIERS = {
         mod(ComponentModifiers.BOLD, "bold", "b"),
         mod(ComponentModifiers.ITALIC, "italic", "i"),

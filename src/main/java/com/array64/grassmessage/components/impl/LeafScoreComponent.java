@@ -1,5 +1,7 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.components.impl;
 
+import com.array64.grassmessage.components.AbstractComponent;
+import com.array64.grassmessage.components.InstantiationContext;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ScoreComponent;
 import org.xml.sax.Attributes;
@@ -19,7 +21,7 @@ public class LeafScoreComponent extends AbstractComponent {
     }
 
     @Override
-    public void modifyParent(BaseComponent parent) {
+    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
         parent.addExtra(new ScoreComponent(target, objective));
     }
 

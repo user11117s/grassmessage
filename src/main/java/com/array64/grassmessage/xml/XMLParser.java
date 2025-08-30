@@ -1,4 +1,4 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.xml;
 
 import org.xml.sax.Attributes;
 

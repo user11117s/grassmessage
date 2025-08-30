@@ -1,4 +1,4 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.util;
 
 public enum Glue {
     /** If <code>&lt;glue/&gt;</code> has been encountered between two elements */ TRUE,

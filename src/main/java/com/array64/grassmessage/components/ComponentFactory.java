@@ -1,8 +1,6 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.components;
 
 import org.xml.sax.Attributes;
-
-import java.util.function.Function;
 
 @FunctionalInterface
 public interface ComponentFactory {

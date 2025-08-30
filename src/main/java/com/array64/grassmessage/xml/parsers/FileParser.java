@@ -1,13 +1,19 @@
-package com.array64.grassmessage;
+package com.array64.grassmessage.xml.parsers;
 
+import com.array64.grassmessage.components.impl.ComponentHolder;
+import com.array64.grassmessage.components.ComponentModifiers;
+import com.array64.grassmessage.components.ComponentRegistry;
+import com.array64.grassmessage.data.FileData;
+import com.array64.grassmessage.data.GradientData;
+import com.array64.grassmessage.xml.XMLParser;
 import org.xml.sax.Attributes;
 
-class FileParser implements XMLParser {
+public class FileParser implements XMLParser {
     private final FileData fileData;
     private final ComponentRegistry componentRegistry;
     private XMLParser currentSubParser = null;
 
-    FileParser(FileData fileData, ComponentRegistry componentRegistry) {
+    public FileParser(FileData fileData, ComponentRegistry componentRegistry) {
         this.fileData = fileData;
         this.componentRegistry = componentRegistry;
     }
