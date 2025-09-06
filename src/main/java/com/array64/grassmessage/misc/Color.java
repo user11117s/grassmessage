@@ -1,4 +1,4 @@
-package com.array64.grassmessage.util;
+package com.array64.grassmessage.misc;
 
 public record Color(float red, float green, float blue) {
     public Color(String hexCode) {

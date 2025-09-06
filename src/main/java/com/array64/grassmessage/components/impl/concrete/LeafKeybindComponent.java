@@ -1,6 +1,6 @@
-package com.array64.grassmessage.components.impl;
+package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.AbstractComponent;
+import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.KeybindComponent;
@@ -20,8 +20,8 @@ public class LeafKeybindComponent extends AbstractComponent {
     }
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        parent.addExtra(new KeybindComponent(keybind));
+    public BaseComponent instantiate(InstantiationContext ctx) {
+        return new KeybindComponent(keybind);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.array64.grassmessage.util;
+package com.array64.grassmessage.misc;
 
 import com.array64.grassmessage.components.ComponentModifier;
 import com.array64.grassmessage.components.ComponentModifiers;

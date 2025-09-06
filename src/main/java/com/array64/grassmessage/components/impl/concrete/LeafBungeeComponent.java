@@ -1,15 +1,15 @@
-package com.array64.grassmessage.components.impl;
+package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.AbstractComponent;
+import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.xml.sax.Attributes;
 
-public class LeafEmbeddedMessage extends AbstractComponent {
-    private final String ref;
+public class LeafBungeeComponent extends AbstractComponent {
+    private final String name;
 
-    public LeafEmbeddedMessage(String ref) {
-        this.ref = ref;
+    public LeafBungeeComponent(String name) {
+        this.name = name;
     }
 
     @Override
@@ -23,8 +23,8 @@ public class LeafEmbeddedMessage extends AbstractComponent {
     }
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        ctx.getMessage(ref).instantiateInParent(parent, ctx);
+    public BaseComponent instantiate(InstantiationContext ctx) {
+        return ctx.getBungeeComponent(name);
     }
 
     @Override

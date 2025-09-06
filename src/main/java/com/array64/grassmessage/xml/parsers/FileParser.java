@@ -1,6 +1,6 @@
 package com.array64.grassmessage.xml.parsers;
 
-import com.array64.grassmessage.components.impl.ComponentHolder;
+import com.array64.grassmessage.components.impl.concrete.CompositeComponent;
 import com.array64.grassmessage.components.ComponentModifiers;
 import com.array64.grassmessage.components.ComponentRegistry;
 import com.array64.grassmessage.data.FileData;
@@ -34,7 +34,7 @@ public class FileParser implements XMLParser {
                 currentSubParser = new GradientParser(gradientData);
             }
             else if(qName.equals("message")) {
-                ComponentHolder message = new ComponentHolder(ComponentModifiers.NONE, componentRegistry);
+                CompositeComponent message = new CompositeComponent(ComponentModifiers.NONE, componentRegistry);
                 fileData.addMessage(attrs.getValue("name"), message);
                 currentSubParser = message;
             }

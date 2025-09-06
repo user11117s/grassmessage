@@ -15,10 +15,27 @@
     <xs:complexType name="empty"/>
 
     <xs:element name="component" type="xs:anyType" abstract="true"/>
-    <xs:complexType name="componentHolder" mixed="true">
+
+    <xs:complexType name="compositeComponent" mixed="true">
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="component"/>
         </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="itemType">
+        <xs:all>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="count" type="xs:int" minOccurs="0"/>
+            <xs:element name="tag" type="xs:string" default="{}"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="entityType">
+        <xs:all>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="uuid" type="xs:string"/>
+            <xs:element name="name" type="compositeComponent" minOccurs="0"/>
+        </xs:all>
     </xs:complexType>
 
     <!-- Events -->
@@ -26,7 +43,7 @@
     <xs:element name="click" substitutionGroup="component">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="componentHolder">
+                <xs:extension base="compositeComponent">
                     <xs:attribute name="action" use="required">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
@@ -47,11 +64,11 @@
     <xs:element name="hover" substitutionGroup="component">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="content" type="componentHolder"/>
+                <xs:element name="content" type="compositeComponent"/>
                 <xs:choice>
-                    <xs:element name="show_text" type="componentHolder"/>
-                    <xs:element name="show_item" type="xs:string"/>
-                    <xs:element name="show_entity" type="xs:string"/>
+                    <xs:element name="show_text" type="compositeComponent"/>
+                    <xs:element name="show_item" type="itemType"/>
+                    <xs:element name="show_entity" type="entityType"/>
                 </xs:choice>
             </xs:sequence>
         </xs:complexType>
@@ -59,25 +76,25 @@
 
     <!-- Styling -->
 
-    <xs:element name="bold" substitutionGroup="component" type="componentHolder"/>
+    <xs:element name="bold" substitutionGroup="component" type="compositeComponent"/>
     <xs:element name="b" substitutionGroup="bold"/>
 
-    <xs:element name="italic" substitutionGroup="component" type="componentHolder"/>
+    <xs:element name="italic" substitutionGroup="component" type="compositeComponent"/>
     <xs:element name="i" substitutionGroup="italic"/>
 
-    <xs:element name="underlined" substitutionGroup="component" type="componentHolder"/>
+    <xs:element name="underlined" substitutionGroup="component" type="compositeComponent"/>
     <xs:element name="u" substitutionGroup="underlined"/>
 
-    <xs:element name="strikethrough" substitutionGroup="component" type="componentHolder"/>
+    <xs:element name="strikethrough" substitutionGroup="component" type="compositeComponent"/>
     <xs:element name="st" substitutionGroup="strikethrough"/>
 
-    <xs:element name="reset" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="obf" substitutionGroup="component" type="componentHolder"/>
+    <xs:element name="reset" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="obf" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="font" substitutionGroup="component">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="componentHolder">
+                <xs:extension base="compositeComponent">
                     <xs:attribute name="font" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:complexContent>
@@ -87,7 +104,7 @@
     <xs:element name="insertion" substitutionGroup="component">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="componentHolder">
+                <xs:extension base="compositeComponent">
                     <xs:attribute name="text" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:complexContent>
@@ -97,7 +114,7 @@
     <xs:element name="color" substitutionGroup="component">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="componentHolder">
+                <xs:extension base="compositeComponent">
                     <xs:attribute name="hex" type="hexColor" use="required"/>
                 </xs:extension>
             </xs:complexContent>
@@ -107,7 +124,7 @@
     <xs:element name="shadow" substitutionGroup="component">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="componentHolder">
+                <xs:extension base="compositeComponent">
                     <xs:attribute name="color" type="hexColor8" use="required"/>
                 </xs:extension>
             </xs:complexContent>
@@ -125,23 +142,23 @@
 
     <!-- Colors -->
 
-    <xs:element name="black" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="dark_blue" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="dark_green" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="dark_aqua" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="dark_red" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="dark_purple" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="gold" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="gray" substitutionGroup="component" type="componentHolder"/>
+    <xs:element name="black" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_blue" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_green" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_aqua" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_red" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_purple" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="gold" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="gray" substitutionGroup="component" type="compositeComponent"/>
 
-    <xs:element name="dark_gray" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="blue" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="green" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="aqua" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="red" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="light_purple" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="yellow" substitutionGroup="component" type="componentHolder"/>
-    <xs:element name="white" substitutionGroup="component" type="componentHolder"/>
+    <xs:element name="dark_gray" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="blue" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="green" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="aqua" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="red" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="light_purple" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="yellow" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="white" substitutionGroup="component" type="compositeComponent"/>
 
     <!-- Non-text components -->
 
@@ -149,7 +166,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="key" type="xs:string"/>
-                <xs:element name="with" type="componentHolder" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="with" type="compositeComponent" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="fallback" type="xs:string" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -161,6 +179,7 @@
             <xs:sequence>
                 <xs:element name="target" type="xs:string"/>
                 <xs:element name="objective" type="xs:string"/>
+                <xs:element name="default" type="xs:string" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

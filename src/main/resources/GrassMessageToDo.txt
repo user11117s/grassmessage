@@ -1,6 +1,4 @@
-    hover (XSD) (Java)
-
-TranslatableComponent (XSD)
-
+hover (XSD)
+Fix the parseText part of CompositeComponent
 Instantiation
 Add module-info.java

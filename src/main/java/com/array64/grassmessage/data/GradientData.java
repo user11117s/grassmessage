@@ -1,6 +1,6 @@
 package com.array64.grassmessage.data;
 
-import com.array64.grassmessage.util.Color;
+import com.array64.grassmessage.misc.Color;
 
 import java.util.Comparator;
 import java.util.Iterator;

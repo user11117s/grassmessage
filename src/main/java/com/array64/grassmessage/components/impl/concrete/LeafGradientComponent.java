@@ -1,9 +1,10 @@
-package com.array64.grassmessage.components.impl;
+package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.AbstractComponent;
+import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.ComponentRegistry;
 import com.array64.grassmessage.components.InstantiationContext;
-import com.array64.grassmessage.util.Color;
+import com.array64.grassmessage.components.impl.PlaintextInstantiatingComponent;
+import com.array64.grassmessage.misc.Color;
 import com.array64.grassmessage.data.GradientData;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -39,6 +40,12 @@ public class LeafGradientComponent extends AbstractComponent {
         StringBuilder sb = new StringBuilder();
         components.forEach(component -> sb.append(component.instantiateText(ctx)));
         instantiateTextInParent(parent, sb.toString(), ctx);
+    }
+
+    @Override
+    protected BaseComponent instantiate(InstantiationContext ctx) {
+        throwOnInstantiate();
+        return null;
     }
 
     private void instantiateTextInParent(BaseComponent parent, String text, InstantiationContext ctx) {

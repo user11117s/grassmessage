@@ -1,7 +1,8 @@
-package com.array64.grassmessage.components.impl;
+package com.array64.grassmessage.components.impl.concrete;
 
 import com.array64.grassmessage.components.*;
-import com.array64.grassmessage.util.Glue;
+import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.misc.Glue;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.xml.sax.Attributes;
@@ -10,13 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ComponentHolder extends AbstractComponent {
+public class CompositeComponent extends AbstractComponent implements ComponentHolder {
     private final List<Component> heldComponents;
     private final ComponentModifier modifier;
     private final ComponentRegistry registry;
     private Glue glue = Glue.TRUE;
 
-    public ComponentHolder(ComponentModifier modifier, ComponentRegistry registry) {
+    public CompositeComponent(ComponentRegistry registry) {
+        this(ComponentModifiers.NONE, registry);
+    }
+
+    public CompositeComponent(ComponentModifier modifier, ComponentRegistry registry) {
         this.heldComponents = new ArrayList<>();
         this.modifier = modifier;
         this.registry = registry;
@@ -36,16 +41,29 @@ public class ComponentHolder extends AbstractComponent {
             heldComponents.get(0).instantiateInParent(parent, ctx);
         }
         else {
-            BaseComponent thisComponent = new TextComponent();
-            modifier.modify(thisComponent);
-
-            heldComponents.forEach(child -> child.instantiateInParent(thisComponent, ctx));
-            parent.addExtra(thisComponent);
+            if(modifier == ComponentModifiers.NONE)
+                instantiateChildrenIn(parent, ctx);
+            else {
+                BaseComponent thisComponent = new TextComponent();
+                modifier.modify(thisComponent);
+                instantiateChildrenIn(thisComponent, ctx);
+                parent.addExtra(thisComponent);
+            }
         }
     }
 
+    private void instantiateChildrenIn(BaseComponent component, InstantiationContext ctx) {
+        heldComponents.forEach(child -> child.instantiateInParent(component, ctx));
+    }
+
     @Override
-    public void enterTag(String qName, Attributes attrs) {
+    protected BaseComponent instantiate(InstantiationContext ctx) {
+        throwOnInstantiate();
+        return null; // Just a formality for the compiler; throwOnInstantiate() will throw before this statement.
+    }
+
+    @Override
+    protected void enterTag(String qName, Attributes attrs) {
         if(parsingChild())
             getLast().startTag(qName, attrs);
         else {
@@ -66,14 +84,16 @@ public class ComponentHolder extends AbstractComponent {
     }
 
     @Override
-    public void exitTag(String qName) {
+    protected void exitTag(String qName) {
         if(parsingChild())
             getLast().endTag(qName);
+        else
+            getLast().onEnd();
     }
 
     @Override
     public void parseText(String text) {
-        if(glue != Glue.TRUE && parsingChild())
+        if(parsingChild())
             getLast().parseText(text);
         else {
             String frontStrippedText = text.stripLeading();
@@ -86,7 +106,7 @@ public class ComponentHolder extends AbstractComponent {
                 appendText(" ");
             }
 
-            appendText(strippedText);
+            appendText(strippedText.replaceAll("\\s+", " "));
 
             // Check if trailing whitespace exists.
             glue = strippedText.length() == frontStrippedText.length() ? Glue.DEFAULT : Glue.FALSE;
@@ -100,12 +120,8 @@ public class ComponentHolder extends AbstractComponent {
         getLast().parseText(text);
     }
 
-    private Component getLast() {
-        return heldComponents.get(heldComponents.size() - 1);
-    }
-
-    private boolean parsingChild() {
-        if(heldComponents.isEmpty()) return true;
-        return !getLast().isDoneParsing();
+    @Override
+    public List<Component> getComponents() {
+        return heldComponents;
     }
 }

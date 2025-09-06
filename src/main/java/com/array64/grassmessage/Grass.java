@@ -2,6 +2,7 @@ package com.array64.grassmessage;
 
 import com.array64.grassmessage.components.ComponentRegistry;
 import com.array64.grassmessage.data.FileData;
+import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.parsers.FileParser;
 import com.array64.grassmessage.xml.XMLParserAdapter;
 import org.xml.sax.SAXException;
@@ -15,7 +16,7 @@ import java.io.InputStream;
 public class Grass {
     private static final String XSD_LOCATION = "schema.xsd";
     private final FileData fileData = new FileData();
-    private final ComponentRegistry componentRegistry = new ComponentRegistry(fileData);
+    private final ComponentRegistry componentRegistry = new ComponentRegistry(new DepthTracker());
     /**
      * Initialize GrassMessage. Expects a file named <code>messages.xml</code> in your resources folder.
      */

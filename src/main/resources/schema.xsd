@@ -20,7 +20,7 @@
 
     <xs:complexType name="messageType">
         <xs:complexContent>
-            <xs:extension base="componentHolder">
+            <xs:extension base="compositeComponent">
                 <xs:attribute name="name" type="xs:Name" use="required"/>
             </xs:extension>
         </xs:complexContent>

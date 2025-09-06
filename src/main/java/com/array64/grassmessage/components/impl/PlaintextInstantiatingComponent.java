@@ -1,11 +1,15 @@
 package com.array64.grassmessage.components.impl;
 
-import com.array64.grassmessage.components.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.xml.sax.Attributes;
 
 public abstract class PlaintextInstantiatingComponent extends AbstractComponent {
+
+    public PlaintextInstantiatingComponent() {
+        super(, );
+    }
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
@@ -18,8 +22,8 @@ public abstract class PlaintextInstantiatingComponent extends AbstractComponent 
     }
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        parent.addExtra(instantiateText(ctx));
+    public BaseComponent instantiate(InstantiationContext ctx) {
+        return new TextComponent(instantiateText(ctx));
     }
 
     public abstract String instantiateText(InstantiationContext ctx);

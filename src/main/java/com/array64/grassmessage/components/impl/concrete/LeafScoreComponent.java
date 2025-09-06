@@ -1,6 +1,6 @@
-package com.array64.grassmessage.components.impl;
+package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.AbstractComponent;
+import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ScoreComponent;
@@ -9,6 +9,7 @@ import org.xml.sax.Attributes;
 public class LeafScoreComponent extends AbstractComponent {
     private String childElementName;
     private String target = "", objective = "";
+    private String defaultValue;
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
@@ -21,20 +22,19 @@ public class LeafScoreComponent extends AbstractComponent {
     }
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        parent.addExtra(new ScoreComponent(target, objective));
+    public BaseComponent instantiate(InstantiationContext ctx) {
+        return defaultValue == null ? new ScoreComponent(target, objective) : new ScoreComponent(target, objective, defaultValue);
     }
 
     @Override
     public void parseText(String text) {
         String strippedText = text.strip();
 
-        if("target".equals(childElementName)) {
-            target += strippedText;
+        switch(childElementName) {
+            case "target" -> target = strippedText;
+            case "objective" -> objective = strippedText;
+            case "default" -> defaultValue = strippedText;
+            default -> throw new IllegalStateException("Unexpected text: " + text);
         }
-        else if("objective".equals(childElementName)) {
-            objective += strippedText;
-        }
-        else throw new IllegalStateException("Unexpected text: " + text);
     }
 }

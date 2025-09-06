@@ -1,6 +1,6 @@
 package com.array64.grassmessage.xml.parsers;
 
-import com.array64.grassmessage.util.Color;
+import com.array64.grassmessage.misc.Color;
 import com.array64.grassmessage.data.GradientData;
 import com.array64.grassmessage.xml.XMLParser;
 import org.xml.sax.Attributes;

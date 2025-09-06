@@ -1,8 +1,8 @@
 package com.array64.grassmessage.components;
 
-import com.array64.grassmessage.components.impl.*;
-import com.array64.grassmessage.util.ConstantNames;
-import com.array64.grassmessage.data.FileData;
+import com.array64.grassmessage.components.impl.concrete.*;
+import com.array64.grassmessage.misc.ConstantNames;
+import com.array64.grassmessage.xml.DepthTracker;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import org.xml.sax.Attributes;
@@ -14,13 +14,15 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class ComponentRegistry {
-    private final Map<String, ComponentFactory> componentFactories = new HashMap<>();
-    private final FileData fileData;
+    private final Map<String, ComponentFactory> componentFactories;
+    private final DepthTracker depthTracker;
 
     public static final String VAR_TAG_NAME = "var"; // Dedicated constant due to multiple uses
 
-    public ComponentRegistry(FileData fileData) {
-        this.fileData = fileData;
+    public ComponentRegistry(DepthTracker depthTracker) {
+        this.depthTracker = depthTracker;
+        this.componentFactories = new HashMap<>();
+        registerAll();
     }
 
     public void register(ComponentFactory factory, String... qNames) {
@@ -29,8 +31,16 @@ public class ComponentRegistry {
         }
     }
 
+    public void register(ComponentFactory.Abstract factory, String... qNames) {
+        // Allows me to initialize parts of AbstractComponent here. Probably not the best design though,
+        // since it's not obvious which overload is used.
+        register((ComponentFactory) (attrs -> factory.getAbstractComponent(attrs).initialize(depthTracker)), qNames);
+    }
+
     public Component get(String qName, Attributes attrs) {
-        return componentFactories.get(qName).getComponent(attrs);
+        Component component = componentFactories.get(qName).getComponent(attrs);
+        component.onStart();
+        return component;
     }
 
     public Optional<String> getWhitespace(String qName, Attributes attrs) {
@@ -45,7 +55,7 @@ public class ComponentRegistry {
     }
 
     public void registerModifier(Function<Attributes, ComponentModifier> modifierFunction, String... qNames) {
-        register(attrs -> new ComponentHolder(modifierFunction.apply(attrs), this), qNames);
+        register(attrs -> new CompositeComponent(modifierFunction.apply(attrs), this), qNames);
     }
 
     private void registerAll() {
@@ -91,9 +101,18 @@ public class ComponentRegistry {
         register(this::createVarComponent, "var");
         register(attrs -> new LeafBungeeComponent(attrs.getValue("name")), "bungee_component");
         register(attrs -> new LeafEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
+        register(attrs -> new LeafTranslatableComponent(this), "translatable");
+        register(attrs -> new LeafHoverComponent(this), "hover");
     }
 
     public LeafVariableComponent createVarComponent(Attributes attrs) {
         return new LeafVariableComponent(attrs.getValue("name"));
+    }
+
+    public CompositeComponent createCompositeComponent() {
+        var compositeComponent = new CompositeComponent(this);
+        compositeComponent.initialize(depthTracker);
+        compositeComponent.onStart();
+        return compositeComponent;
     }
 }

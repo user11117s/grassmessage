@@ -1,6 +1,6 @@
-package com.array64.grassmessage.components.impl;
+package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.AbstractComponent;
+import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.SelectorComponent;
@@ -9,7 +9,6 @@ import org.xml.sax.Attributes;
 public class LeafSelectorComponent extends AbstractComponent {
     private String selector = "";
 
-    @Override
     protected void enterTag(String qName, Attributes attrs) {
         throwOnEnterTag();
     }
@@ -20,8 +19,8 @@ public class LeafSelectorComponent extends AbstractComponent {
     }
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        parent.addExtra(new SelectorComponent(selector));
+    public BaseComponent instantiate(InstantiationContext ctx) {
+        return new SelectorComponent(selector);
     }
 
     @Override

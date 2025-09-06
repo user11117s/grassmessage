@@ -1,6 +1,6 @@
 package com.array64.grassmessage.components;
 
-import com.array64.grassmessage.components.impl.ComponentHolder;
+import com.array64.grassmessage.components.impl.concrete.CompositeComponent;
 import com.array64.grassmessage.data.FileData;
 import com.array64.grassmessage.data.GradientData;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -23,7 +23,7 @@ public class InstantiationContext {
         return fileData.getGradient(ref);
     }
 
-    public ComponentHolder getMessage(String ref) {
+    public CompositeComponent getMessage(String ref) {
         return fileData.getMessage(ref);
     }
 
