@@ -20,7 +20,7 @@ public class LeafSelectorComponent extends AbstractComponent {
 
     @Override
     public BaseComponent instantiate(InstantiationContext ctx) {
-        return new SelectorComponent(selector);
+        return new SelectorComponent(ctx.substituteVars(selector));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class LeafEmbeddedMessage extends AbstractComponent {
 
     @Override
     public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        ctx.getMessage(ref).instantiateInParent(parent, ctx);
+        ctx.getMessage(ctx.substituteVars(ref)).instantiateInParent(parent, ctx);
     }
 
     @Override

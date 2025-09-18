@@ -21,7 +21,7 @@ public class LeafKeybindComponent extends AbstractComponent {
 
     @Override
     public BaseComponent instantiate(InstantiationContext ctx) {
-        return new KeybindComponent(keybind);
+        return new KeybindComponent(ctx.substituteVars(keybind));
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CompositeComponent extends AbstractComponent implements ComponentHolder {
+public class CompositeComponent extends AbstractComponent {
     private final List<Component> heldComponents;
     private final ComponentModifier modifier;
     private final ComponentRegistry registry;
@@ -64,9 +64,7 @@ public class CompositeComponent extends AbstractComponent implements ComponentHo
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
-        if(parsingChild())
-            getLast().startTag(qName, attrs);
-        else {
+        if(atRootDepth()) {
             Optional<String> whitespace = registry.getWhitespace(qName, attrs);
 
             if(whitespace.isPresent()) {
@@ -81,21 +79,21 @@ public class CompositeComponent extends AbstractComponent implements ComponentHo
                 heldComponents.add(registry.get(qName, attrs));
             }
         }
+        else
+            getLast().startTag(qName, attrs);
     }
 
     @Override
     protected void exitTag(String qName) {
-        if(parsingChild())
-            getLast().endTag(qName);
-        else
+        if(atRootDepth())
             getLast().onEnd();
+        else
+            getLast().endTag(qName);
     }
 
     @Override
     public void parseText(String text) {
-        if(parsingChild())
-            getLast().parseText(text);
-        else {
+        if(atRootDepth()) {
             String frontStrippedText = text.stripLeading();
             String strippedText = frontStrippedText.stripTrailing();
 
@@ -111,6 +109,7 @@ public class CompositeComponent extends AbstractComponent implements ComponentHo
             // Check if trailing whitespace exists.
             glue = strippedText.length() == frontStrippedText.length() ? Glue.DEFAULT : Glue.FALSE;
         }
+        else getLast().parseText(text);
     }
 
     private void appendText(String text) {
@@ -120,8 +119,7 @@ public class CompositeComponent extends AbstractComponent implements ComponentHo
         getLast().parseText(text);
     }
 
-    @Override
-    public List<Component> getComponents() {
-        return heldComponents;
+    private Component getLast() {
+        return heldComponents.get(heldComponents.size() - 1);
     }
 }

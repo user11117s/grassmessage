@@ -5,11 +5,7 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.xml.sax.Attributes;
 
-public abstract class PlaintextInstantiatingComponent extends AbstractComponent {
-
-    public PlaintextInstantiatingComponent() {
-        super(, );
-    }
+public abstract class TextInstantiator extends AbstractComponent {
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {

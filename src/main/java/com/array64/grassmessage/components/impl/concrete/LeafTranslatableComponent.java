@@ -1,10 +1,10 @@
 package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.ComponentHolder;
+import com.array64.grassmessage.components.Component;
 import com.array64.grassmessage.components.ComponentRegistry;
 import com.array64.grassmessage.components.impl.AbstractComponent;
-import com.array64.grassmessage.components.Component;
 import com.array64.grassmessage.components.InstantiationContext;
+import com.array64.grassmessage.xml.properties.PropertyHolder;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.TranslatableComponent;
@@ -12,67 +12,63 @@ import org.xml.sax.Attributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class LeafTranslatableComponent extends AbstractComponent implements ComponentHolder {
-    private String childElementName;
-    private String key = "";
+public class LeafTranslatableComponent extends AbstractComponent {
+    private String key;
     private String fallback = null;
-    private final List<Component> with;
-    private final ComponentRegistry registry;
+    private List<Component> with;
+    private final PropertyHolder propertyHolder;
 
     public LeafTranslatableComponent(ComponentRegistry registry) {
-        this.registry = registry;
         this.with = new ArrayList<>();
+        this.propertyHolder = new PropertyHolder(Map.of(
+            "key", com.array64.grassmessage.xml.properties.TextHolder::new,
+            "with", registry::createCompositeComponent
+        ), getDepthTracker());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
-        if(parsingChild())
-            getLast().startTag(qName, attrs);
-        else {
-            childElementName = qName;
-            if("with".equals(qName))
-                with.add(new CompositeComponent(registry));
-        }
+        propertyHolder.startTag(qName, attrs);
     }
 
     @Override
     protected void exitTag(String qName) {
-        if(parsingChild())
-            getLast().endTag(qName);
+        propertyHolder.endTag(qName);
+    }
+
+    @Override
+    public void parseText(String text) {
+        propertyHolder.parseText(text);
+    }
+
+    @Override
+    public void onEnd() {
+        propertyHolder.get().forEach(propertyMeta -> {
+            switch(propertyMeta.propertyName()) {
+                case "key" -> key = propertyMeta.getValue(String.class);
+                case "with" -> with.add(propertyMeta.getValue(Component.class));
+                case "fallback" -> fallback = propertyMeta.getValue(String.class);
+            }
+        });
     }
 
     @Override
     protected BaseComponent instantiate(InstantiationContext ctx) {
-        var translatable = new TranslatableComponent(key);
+        var translatable = new TranslatableComponent(ctx.substituteVars(key));
         translatable.setWith(with.stream().map(component -> {
             BaseComponent parentComponent = new TextComponent();
             component.instantiateInParent(parentComponent, ctx);
             return parentComponent;
         }).toList());
 
-        translatable.setFallback(fallback);
+        translatable.setFallback(ctx.substituteVars(fallback));
         return translatable;
-    }
-
-    @Override
-    public void parseText(String text) {
-        if(parsingChild())
-            getLast().parseText(text);
-
-        else if(with.isEmpty()) {
-            if("key".equals(childElementName))
-                this.key += text.strip();
-            else if("fallback".equals(childElementName))
-                this.fallback += text.strip();
-            else
-                throw new IllegalStateException("Unexpected tag: " + childElementName);
-        }
-        else throw new IllegalStateException("Unexpected text: " + text);
-    }
-
-    @Override
-    public List<Component> getComponents() {
-        return with;
     }
 }

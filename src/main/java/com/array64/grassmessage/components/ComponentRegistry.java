@@ -7,7 +7,6 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import org.xml.sax.Attributes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -92,21 +91,12 @@ public class ComponentRegistry {
         register(attrs -> new LeafScoreComponent(), "score");
         register(attrs -> new LeafSelectorComponent(), "selector");
         register(attrs -> new LeafKeybindComponent(), "keybind");
-        register(attrs -> new LeafGradientComponent(
-            attrs.getValue("ref"),
-            new ArrayList<>(),
-                this
-            ), "grad");
+        register(attrs -> new LeafGradientComponent(attrs.getValue("ref")), "grad");
 
-        register(this::createVarComponent, "var");
         register(attrs -> new LeafBungeeComponent(attrs.getValue("name")), "bungee_component");
         register(attrs -> new LeafEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
         register(attrs -> new LeafTranslatableComponent(this), "translatable");
         register(attrs -> new LeafHoverComponent(this), "hover");
-    }
-
-    public LeafVariableComponent createVarComponent(Attributes attrs) {
-        return new LeafVariableComponent(attrs.getValue("name"));
     }
 
     public CompositeComponent createCompositeComponent() {

@@ -17,8 +17,8 @@ public class TextHolder implements XMLProperty<String> {
 
     @Override
     public void parseText(String text) {
-        this.text += text;
-        // Despite what it looks like, no, I'm not using text as a StringBuilder.
+        this.text += text.strip();
+        // Despite what it looks like, no, I'm not using text as a makeshift StringBuilder.
         // There should only ever be one call to parseText per TextHolder instance.
     }
 

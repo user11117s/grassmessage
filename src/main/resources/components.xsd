@@ -26,7 +26,7 @@
         <xs:all>
             <xs:element name="id" type="xs:string"/>
             <xs:element name="count" type="xs:int" minOccurs="0"/>
-            <xs:element name="tag" type="xs:string" default="{}"/>
+            <xs:element name="tag" type="xs:string" minOccurs="0"/>
         </xs:all>
     </xs:complexType>
 
