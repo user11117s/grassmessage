@@ -25,8 +25,8 @@ public class InstantiationContext {
         return fileData.getGradient(ref);
     }
 
-    public CompositeComponent getMessage(String ref) {
-        return fileData.getMessage(ref);
+    public Component getMessage(String ref) {
+        return fileData.getMessageComponent(ref);
     }
 
     public String getVar(String name) {

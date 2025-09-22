@@ -1,5 +1,2 @@
-Fix the parseText part of CompositeComponent [Doesn't look like there are any issues after checking this]
-Change variable system. Use '$(var_name)' instead of '<var name="var_name"/>''.
-Combine char buffers between tags into one String in the XMLParserAdapter.
-Instantiation
 Add module-info.java
+Documentation

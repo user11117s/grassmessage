@@ -130,15 +130,7 @@
             </xs:complexContent>
         </xs:complexType>
     </xs:element>
-
-    <xs:element name="grad" substitutionGroup="component">
-        <xs:complexType mixed="true">
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="var"/>
-            </xs:sequence>
-            <xs:attribute name="ref" type="xs:Name" use="required"/>
-        </xs:complexType>
-    </xs:element>
+    <xs:element name="grad" substitutionGroup="component" type="xs:string"/>
 
     <!-- Colors -->
 
@@ -204,12 +196,6 @@
         </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:attribute name="spaces" type="xs:positiveInteger" default="1"/>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="var" substitutionGroup="component">
-        <xs:complexType>
-            <xs:attribute name="name" type="xs:Name" use="required"/>
         </xs:complexType>
     </xs:element>
 
