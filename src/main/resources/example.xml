@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<grass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+    <gradients>
+        <gradient name="cyan2white2cyan">
+            <start>#00FFFF</start>
+            <middle position="0.5">#FFFFFF</middle>
+            <end>#00FFFF</end>
+        </gradient>
+    </gradients>
+    <messages>
+        <message name="msg1">
+
+        </message>
+    </messages>
+</grass>

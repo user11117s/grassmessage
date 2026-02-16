@@ -1,0 +1,128 @@
+package com.array64.grassmessage.components.impl.concrete;
+
+import com.array64.grassmessage.components.Component;
+import com.array64.grassmessage.components.ComponentRegistry;
+import com.array64.grassmessage.components.InstantiationContext;
+import com.array64.grassmessage.components.hover.EntityHoveredContent;
+import com.array64.grassmessage.components.hover.HoveredContent;
+import com.array64.grassmessage.components.hover.ItemHoveredContent;
+import com.array64.grassmessage.components.hover.TextHoveredContent;
+import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.xml.DepthTracker;
+import com.array64.grassmessage.xml.properties.PropertyHolder;
+import com.array64.grassmessage.xml.properties.TextHolder;
+import com.array64.grassmessage.xml.properties.XMLPropertyMeta;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Content;
+import org.xml.sax.Attributes;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+
+public class LeafHoverComponent extends AbstractComponent {
+    private HoveredContent hoveredContent;
+    private Component mainContent;
+    private final ComponentRegistry componentRegistry;
+    private PropertyHolder propertyHolder;
+
+    public LeafHoverComponent(ComponentRegistry componentRegistry) {
+        this.componentRegistry = componentRegistry;
+    }
+
+    @Override
+    public void onStart() {
+        DepthTracker depthTracker = getDepthTracker();
+
+        propertyHolder = new PropertyHolder(Map.of(
+            "content", componentRegistry::createCompositeComponent,
+            "show_text", componentRegistry::createCompositeComponent,
+            "show_item", () -> new PropertyHolder(Map.of(
+                "id", TextHolder::new,
+                "count", TextHolder::new,
+                "tag", TextHolder::new
+            ), depthTracker),
+            "show_entity", () -> new PropertyHolder(Map.of(
+                "type", TextHolder::new,
+                "uuid", TextHolder::new,
+                "name", componentRegistry::createCompositeComponent
+            ), depthTracker)
+        ), depthTracker);
+    }
+
+    @Override
+    protected void enterTag(String qName, Attributes attrs) {
+        propertyHolder.startTag(qName, attrs);
+    }
+
+    @Override
+    protected void exitTag(String qName) {
+        propertyHolder.endTag(qName);
+    }
+
+    @Override
+    public void parseText(String text) {
+        propertyHolder.parseText(text);
+    }
+
+    @Override
+    public void onEnd() {
+        List<XMLPropertyMeta> properties = propertyHolder.get();
+        properties.forEach(propertyMeta -> {
+            switch(propertyMeta.propertyName()) {
+                case "content" -> mainContent = propertyMeta.getValue(Component.class);
+                case "show_text" -> hoveredContent = new TextHoveredContent(propertyMeta.getValue(Component.class));
+                case "show_item" -> parseItemProperties(propertyMeta.getValue(List.class));
+                case "show_entity" -> parseEntityProperties(propertyMeta.getValue(List.class));
+            }
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    private void parseItemProperties(List<?> properties) {
+        AtomicReference<String> id = new AtomicReference<>("");
+        AtomicReference<Integer> count = new AtomicReference<>(1);
+        AtomicReference<String> tag = new AtomicReference<>();
+
+        ((List<XMLPropertyMeta>) properties)
+            .forEach(propertyMeta -> {
+                switch(propertyMeta.propertyName()) {
+                    case "id" -> id.set(propertyMeta.getValue(String.class));
+                    case "count" -> count.set(Integer.parseInt(propertyMeta.getValue(String.class)));
+                    case "tag" -> tag.set(propertyMeta.getValue(String.class));
+                }
+            });
+
+        hoveredContent = new ItemHoveredContent(id.get(), count.get(), tag.get());
+    }
+
+    @SuppressWarnings("unchecked")
+    private void parseEntityProperties(List<?> properties) {
+        AtomicReference<String> type = new AtomicReference<>("");
+        AtomicReference<String> uuid = new AtomicReference<>("");
+        AtomicReference<Component> name = new AtomicReference<>();
+
+        ((List<XMLPropertyMeta>) properties)
+            .forEach(propertyMeta -> {
+                switch(propertyMeta.propertyName()) {
+                    case "type" -> type.set(propertyMeta.getValue(String.class));
+                    case "uuid" -> uuid.set(propertyMeta.getValue(String.class));
+                    case "name" -> name.set(propertyMeta.getValue(Component.class));
+                }
+            });
+
+        hoveredContent = new EntityHoveredContent(type.get(), uuid.get(), name.get());
+    }
+
+    @Override
+    protected BaseComponent instantiate(InstantiationContext ctx) {
+        BaseComponent parent = new TextComponent();
+        Content instantiatedContent = hoveredContent.instantiate(ctx);
+
+        mainContent.instantiateInParent(parent, ctx);
+        parent.setHoverEvent(new HoverEvent(instantiatedContent.requiredAction(), instantiatedContent));
+        return parent;
+    }
+}

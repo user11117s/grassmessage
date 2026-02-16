@@ -1,0 +1,213 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="hexColor">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="#[0-9a-fA-F]{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="hexColor8">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="empty"/>
+
+    <xs:element name="component" type="xs:anyType" abstract="true"/>
+
+    <xs:complexType name="compositeComponent" mixed="true">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="component"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="itemType">
+        <xs:all>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="count" type="xs:int" minOccurs="0"/>
+            <xs:element name="tag" type="xs:string" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="entityType">
+        <xs:all>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="uuid" type="xs:string"/>
+            <xs:element name="name" type="compositeComponent" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Events -->
+
+    <xs:element name="click" substitutionGroup="component">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="compositeComponent">
+                    <xs:attribute name="action" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="run_command"/>
+                                <xs:enumeration value="suggest_command"/>
+                                <xs:enumeration value="open_url"/>
+                                <xs:enumeration value="change_page"/>
+                                <xs:enumeration value="copy_to_clipboard"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="value" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="hover" substitutionGroup="component">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="content" type="compositeComponent"/>
+                <xs:choice>
+                    <xs:element name="show_text" type="compositeComponent"/>
+                    <xs:element name="show_item" type="itemType"/>
+                    <xs:element name="show_entity" type="entityType"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Styling -->
+
+    <xs:element name="bold" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="b" substitutionGroup="bold"/>
+
+    <xs:element name="italic" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="i" substitutionGroup="italic"/>
+
+    <xs:element name="underlined" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="u" substitutionGroup="underlined"/>
+
+    <xs:element name="strikethrough" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="st" substitutionGroup="strikethrough"/>
+
+    <xs:element name="reset" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="obf" substitutionGroup="component" type="compositeComponent"/>
+
+    <xs:element name="font" substitutionGroup="component">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="compositeComponent">
+                    <xs:attribute name="font" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="insertion" substitutionGroup="component">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="compositeComponent">
+                    <xs:attribute name="text" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="color" substitutionGroup="component">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="compositeComponent">
+                    <xs:attribute name="hex" type="hexColor" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="shadow" substitutionGroup="component">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="compositeComponent">
+                    <xs:attribute name="color" type="hexColor8" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="grad" substitutionGroup="component" type="xs:string"/>
+
+    <!-- Colors -->
+
+    <xs:element name="black" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_blue" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_green" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_aqua" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_red" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="dark_purple" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="gold" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="gray" substitutionGroup="component" type="compositeComponent"/>
+
+    <xs:element name="dark_gray" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="blue" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="green" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="aqua" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="red" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="light_purple" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="yellow" substitutionGroup="component" type="compositeComponent"/>
+    <xs:element name="white" substitutionGroup="component" type="compositeComponent"/>
+
+    <!-- Non-text components -->
+
+    <xs:element name="translatable" substitutionGroup="component">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="key" type="xs:string"/>
+                <xs:element name="with" type="compositeComponent" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="fallback" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="keybind" substitutionGroup="component" type="xs:string"/>
+    <xs:element name="selector" substitutionGroup="component" type="xs:string"/>
+    <xs:element name="score" substitutionGroup="component">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="target" type="xs:string"/>
+                <xs:element name="objective" type="xs:string"/>
+                <xs:element name="default" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Utility components -->
+
+    <xs:element name="ln" substitutionGroup="component" type="empty">
+        <xs:annotation><xs:documentation>
+            Creates a new line.
+        </xs:documentation></xs:annotation>
+    </xs:element>
+
+    <xs:element name="glue" substitutionGroup="component" type="empty">
+        <xs:annotation><xs:documentation>
+            Removes the space between two components (or text) if you insert this element between them.
+        </xs:documentation></xs:annotation>
+    </xs:element>
+
+    <xs:element name="nbsp" substitutionGroup="component">
+        <xs:annotation><xs:documentation>
+            Adds more than one space between two components (or text) if you insert this element between them.
+        </xs:documentation></xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="spaces" type="xs:positiveInteger" default="1"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="embed_msg" substitutionGroup="component">
+        <xs:complexType>
+            <xs:attribute name="ref" type="xs:Name" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="bungee_component" substitutionGroup="component">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:Name" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

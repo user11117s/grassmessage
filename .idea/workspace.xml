@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Revamped variable system">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/GrassConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/InstantiationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/InstantiationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/TextInstantiator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/LeafTextComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/LeafTextComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/FileData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/FileData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XMLParserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XMLParserAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/components.xsd" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="module-info" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.md-5/bungeecord-chat/1.21-R0.4-SNAPSHOT/e0da19182cb027b04b0e1249db8c0f066d34a8b/bungeecord-chat-1.21-R0.4-SNAPSHOT-sources.jar!/net/md_5/bungee/api/chat/ComponentBuilder.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="31WbdqysP3lqPTezsertUynuVbv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build GrassMessage.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GrassMessage [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.completions.CompletionsConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.array64.grassmessage.components.hover" />
+      <recent name="com.array64.grassmessage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GrassMessage [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.GrassMessage [dependencies]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="" />
+      <created>1755642866274</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755642866274</updated>
+    </task>
+    <task id="LOCAL-00001" summary="forgot to initial commit">
+      <option name="closed" value="true" />
+      <created>1755902582594</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1755902582594</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ComponentRegistry, ComponentModifiers and additional changes">
+      <option name="closed" value="true" />
+      <created>1755993849472</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1755993849472</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changed the way Components work. Now they're all XMLParsers.">
+      <option name="closed" value="true" />
+      <created>1756222190695</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1756222190695</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added some LeafComponents (LeafGradientComponent not complete)">
+      <option name="closed" value="true" />
+      <created>1756425584049</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1756425584049</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added more LeafComponents">
+      <option name="closed" value="true" />
+      <created>1756527511771</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1756527511771</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added property stuff">
+      <option name="closed" value="true" />
+      <created>1757135379224</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1757135379224</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Revamped variable system">
+      <option name="closed" value="true" />
+      <created>1758173538992</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1758173538992</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="forgot to initial commit" />
+    <MESSAGE value="ComponentRegistry, ComponentModifiers and additional changes" />
+    <MESSAGE value="Changed the way Components work. Now they're all XMLParsers." />
+    <MESSAGE value="Added some LeafComponents (LeafGradientComponent not complete)" />
+    <MESSAGE value="Added more LeafComponents" />
+    <MESSAGE value="Added property stuff" />
+    <MESSAGE value="Revamped variable system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revamped variable system" />
+  </component>
+</project>
