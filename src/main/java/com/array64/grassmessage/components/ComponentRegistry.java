@@ -14,9 +14,7 @@ import java.util.function.Function;
 
 public class ComponentRegistry {
     private final Map<String, ComponentFactory> componentFactories;
-    private final DepthTracker depthTracker;
-
-    public static final String VAR_TAG_NAME = "var"; // Dedicated constant due to multiple uses
+    public final DepthTracker depthTracker;
 
     public ComponentRegistry(DepthTracker depthTracker) {
         this.depthTracker = depthTracker;
@@ -46,7 +44,7 @@ public class ComponentRegistry {
         return switch(qName) {
             case "glue" -> Optional.of("");
             case "nbsp" -> Optional.of(" ".repeat(
-                Integer.parseInt(attrs.getValue("times"))
+                Integer.parseInt(attrs.getValue("spaces"))
             ));
             case "ln" -> Optional.of("\n");
             default -> Optional.empty();

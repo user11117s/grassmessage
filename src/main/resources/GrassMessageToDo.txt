@@ -1,2 +1,2 @@
-Add module-info.java
+Restrict access to classes like LeafGradientComponent for simple use while still allowing extension
 Documentation

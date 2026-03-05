@@ -37,9 +37,4 @@ public class GradientParser implements XMLParser {
             stopPosition = null;
         }
     }
-
-    @Override
-    public boolean isDoneParsing() {
-        return this.doneParsing;
-    }
 }

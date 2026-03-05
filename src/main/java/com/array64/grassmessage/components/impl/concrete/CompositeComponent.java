@@ -37,8 +37,10 @@ public class CompositeComponent extends AbstractComponent {
         if(heldComponents.isEmpty()) return;
 
         if(heldComponents.size() == 1) {
-            modifier.modify(parent);
-            heldComponents.get(0).instantiateInParent(parent, ctx);
+            BaseComponent thisComponent = new TextComponent();
+            modifier.modify(thisComponent);
+            heldComponents.get(0).instantiateInParent(thisComponent, ctx);
+            parent.addExtra(thisComponent);
         }
         else {
             if(modifier == ComponentModifiers.NONE)

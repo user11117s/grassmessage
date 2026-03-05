@@ -14,14 +14,14 @@ public abstract class AbstractComponent implements Component, DepthTrackable {
     @Override
     public final void startTag(String qName, Attributes attrs) {
         enterTag(qName, attrs);
-        depthTracker.enter();
+        // depthTracker.enter();
     }
 
     protected abstract void enterTag(String qName, Attributes attrs);
 
     @Override
     public final void endTag(String qName) {
-        depthTracker.exit();
+        // depthTracker.exit();
         if(depthTracker.getDepth() >= rootDepth) exitTag(qName);
     }
 
@@ -64,7 +64,7 @@ public abstract class AbstractComponent implements Component, DepthTrackable {
 
     public AbstractComponent initialize(DepthTracker depthTracker) {
         this.depthTracker = depthTracker;
-        this.rootDepth = depthTracker.getDepth();
+        this.rootDepth = depthTracker.getDepth() + 1;
         return this;
     }
 }

@@ -130,7 +130,16 @@
             </xs:complexContent>
         </xs:complexType>
     </xs:element>
-    <xs:element name="grad" substitutionGroup="component" type="xs:string"/>
+
+    <xs:element name="grad" substitutionGroup="component">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="ref" type="xs:Name" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
 
     <!-- Colors -->
 

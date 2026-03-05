@@ -22,7 +22,7 @@ public class PropertyHolder implements XMLProperty<List<XMLPropertyMeta>>, Depth
         this.propertyParsers = propertyParsers;
         this.properties = new ArrayList<>();
         this.depthTracker = depthTracker;
-        this.rootDepth = depthTracker.getDepth();
+        this.rootDepth = depthTracker.getDepth() + 1;
     }
 
     @Override
@@ -32,22 +32,29 @@ public class PropertyHolder implements XMLProperty<List<XMLPropertyMeta>>, Depth
         else
             this.currentProperty.parser().startTag(qName, attrs);
 
-        depthTracker.enter();
+        // depthTracker.enter();
+        //
+        // SEND
+        // HELP
+        //
     }
 
     @Override
     public void endTag(String qName) {
-        depthTracker.exit();
+        // depthTracker.exit();
 
-        if(atRootDepth())
+        if(atRootDepth()) {
             properties.add(currentProperty);
+            this.currentProperty = null;
+        }
         else
             this.currentProperty.parser().endTag(qName);
     }
 
     @Override
     public void parseText(String text) {
-        this.currentProperty.parser().parseText(text);
+        if(this.currentProperty != null)
+            this.currentProperty.parser().parseText(text);
     }
 
     @Override

@@ -18,12 +18,6 @@ public class FileParser implements XMLParser {
         this.componentRegistry = componentRegistry;
     }
 
-    @Override
-    public boolean isDoneParsing() {
-        return false;
-    }
-
-    @Override
     public void startTag(String qName, Attributes attrs) {
         if(currentSubParser == null) {
             // Use respective parsers when they come.
@@ -32,30 +26,36 @@ public class FileParser implements XMLParser {
                 GradientData gradientData = new GradientData();
                 fileData.addGradient(attrs.getValue("name"), gradientData);
                 currentSubParser = new GradientParser(gradientData);
+                componentRegistry.depthTracker.enter();
             }
             else if(qName.equals("message")) {
-                CompositeComponent message = new CompositeComponent(ComponentModifiers.NONE, componentRegistry);
+                CompositeComponent message = componentRegistry.createCompositeComponent();
                 fileData.addMessage(attrs.getValue("name"), message);
                 currentSubParser = message;
+                componentRegistry.depthTracker.enter();
             }
-        } else currentSubParser.startTag(qName, attrs);
+        } else {
+            currentSubParser.startTag(qName, attrs);
+            componentRegistry.depthTracker.enter();
+        }
     }
 
     @Override
     public void endTag(String qName) {
-        if(currentSubParser == null) {
+        if(qName.equals("gradient") || qName.equals("message")) {
+            currentSubParser = null;
+            componentRegistry.depthTracker.exit();
+        }
 
-        } else {
+        if(currentSubParser != null) {
+            componentRegistry.depthTracker.exit();
             currentSubParser.endTag(qName);
-            if(currentSubParser.isDoneParsing())
-                currentSubParser = null;
         }
     }
 
     @Override
     public void parseText(String text) {
-        if(currentSubParser == null) {
-
-        } else currentSubParser.parseText(text);
+        if(currentSubParser != null)
+            currentSubParser.parseText(text);
     }
 }

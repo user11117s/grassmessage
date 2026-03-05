@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<grass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+<grass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/user11117s/grassmessage-schemas/refs/heads/main/schema.xsd">
     <gradients>
         <gradient name="cyan2white2cyan">
             <start>#00FFFF</start>
@@ -8,8 +8,11 @@
         </gradient>
     </gradients>
     <messages>
-        <message name="msg1">
-
+        <message name="hello">
+            <b><green>Hello, World!</green></b>
+            <grad ref="cyan2white2cyan">
+                Hello, World but gradient!
+            </grad>
         </message>
     </messages>
 </grass>

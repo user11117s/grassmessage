@@ -15,7 +15,9 @@ public class XMLParserAdapter extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-        parser.startTag(uri, attrs);
+        parser.parseText(cumulativeText.toString());
+        parser.startTag(qName, attrs);
+        cumulativeText = new StringBuilder();
     }
 
     @Override

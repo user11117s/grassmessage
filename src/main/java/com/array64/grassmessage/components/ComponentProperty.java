@@ -11,11 +11,6 @@ public class ComponentProperty implements XMLProperty<Component> {
     }
 
     @Override
-    public boolean isDoneParsing() {
-        return component.isDoneParsing();
-    }
-
-    @Override
     public void startTag(String qName, Attributes attrs) {
         component.startTag(qName, attrs);
     }

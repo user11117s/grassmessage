@@ -1,5 +1,5 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:include schemaLocation="components.xsd"/>
+    <xs:include schemaLocation="https://raw.githubusercontent.com/user11117s/grassmessage-schemas/refs/heads/main/components.xsd"/>
 
     <!-- ChatGPT carried. I don't know much about XSD. -->
 
@@ -78,7 +78,7 @@
             <xs:field xpath="@ref"/>
         </xs:keyref>
         <xs:keyref name="gradInstances" refer="gradientNames">
-            <xs:selector xpath="."/>
+            <xs:selector xpath=".//grad"/>
             <xs:field xpath="@ref"/>
         </xs:keyref>
     </xs:element>

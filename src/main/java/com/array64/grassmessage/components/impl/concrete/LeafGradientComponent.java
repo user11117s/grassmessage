@@ -27,8 +27,7 @@ public class LeafGradientComponent extends AbstractComponent {
 
     @Override
     public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        StringBuilder sb = new StringBuilder();
-        instantiateTextInParent(parent, text, ctx);
+        instantiateTextInParent(parent, ctx.substituteVars(text), ctx);
     }
 
     @Override
@@ -39,7 +38,7 @@ public class LeafGradientComponent extends AbstractComponent {
 
     private void instantiateTextInParent(BaseComponent parent, String text, InstantiationContext ctx) {
         int length = text.length();
-        GradientData gradient = ctx.getGradient(ctx.substituteVars(ref));
+        GradientData gradient = ctx.getGradient(ref);
 
         for(int i = 0; i < length; i++) {
             TextComponent component = new TextComponent(Character.toString(text.charAt(i)));

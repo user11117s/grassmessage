@@ -5,6 +5,7 @@ import com.array64.grassmessage.components.ComponentRegistry;
 import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
+import com.array64.grassmessage.xml.properties.TextHolder;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.TranslatableComponent;
@@ -17,20 +18,22 @@ import java.util.Map;
 public class LeafTranslatableComponent extends AbstractComponent {
     private String key;
     private String fallback = null;
-    private List<Component> with;
-    private final PropertyHolder propertyHolder;
+    private final List<Component> with;
+    private PropertyHolder propertyHolder;
+    private final ComponentRegistry registry;
 
     public LeafTranslatableComponent(ComponentRegistry registry) {
         this.with = new ArrayList<>();
-        this.propertyHolder = new PropertyHolder(Map.of(
-            "key", com.array64.grassmessage.xml.properties.TextHolder::new,
-            "with", registry::createCompositeComponent
-        ), getDepthTracker());
+        this.registry = registry;
     }
 
     @Override
     public void onStart() {
-        super.onStart();
+        this.propertyHolder = new PropertyHolder(Map.of(
+                "key", TextHolder::new,
+                "with", registry::createCompositeComponent,
+                "fallback", TextHolder::new
+        ), getDepthTracker());
     }
 
     @Override
@@ -68,7 +71,7 @@ public class LeafTranslatableComponent extends AbstractComponent {
             return parentComponent;
         }).toList());
 
-        translatable.setFallback(ctx.substituteVars(fallback));
+        if(fallback != null) translatable.setFallback(ctx.substituteVars(fallback));
         return translatable;
     }
 }
