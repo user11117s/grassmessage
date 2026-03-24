@@ -15,14 +15,14 @@ public class XMLParserAdapter extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-        parser.parseText(cumulativeText.toString());
+        if(!cumulativeText.isEmpty()) parser.parseText(cumulativeText.toString());
         parser.startTag(qName, attrs);
         cumulativeText = new StringBuilder();
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        parser.parseText(cumulativeText.toString());
+        if(!cumulativeText.isEmpty()) parser.parseText(cumulativeText.toString());
         parser.endTag(qName);
         cumulativeText = new StringBuilder();
     }
