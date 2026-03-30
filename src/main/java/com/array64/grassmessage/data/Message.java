@@ -2,8 +2,6 @@ package com.array64.grassmessage.data;
 
 import com.array64.grassmessage.components.Component;
 import com.array64.grassmessage.components.InstantiationContext;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 
 import java.util.Map;
 
@@ -16,17 +14,19 @@ public class Message {
         this.fileData = fileData;
     }
 
-    public BaseComponent get() {
+    public net.kyori.adventure.text.Component get() {
         return this.get(Map.of(), Map.of());
     }
 
-    public BaseComponent get(Map<String, String> vars) {
+    public net.kyori.adventure.text.Component get(Map<String, String> vars) {
         return this.get(vars, Map.of());
     }
 
-    public BaseComponent get(Map<String, String> vars, Map<String, BaseComponent> bungeeComponents) {
-        BaseComponent parent = new TextComponent();
-        component.instantiateInParent(parent, new InstantiationContext(fileData, vars, bungeeComponents));
+    public net.kyori.adventure.text.Component get(
+            Map<String, String> vars, Map<String, net.kyori.adventure.text.Component> adventureComponents) {
+
+        net.kyori.adventure.text.Component parent = net.kyori.adventure.text.Component.empty();
+        component.instantiateInParent(parent, new InstantiationContext(fileData, vars, adventureComponents));
         return parent;
     }
 

@@ -3,8 +3,6 @@ package com.array64.grassmessage.components.impl.concrete;
 import com.array64.grassmessage.components.*;
 import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.misc.Glue;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.xml.sax.Attributes;
 
 import java.util.ArrayList;
@@ -32,34 +30,34 @@ public class CompositeComponent extends AbstractComponent {
     }
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
+    public void instantiateInParent(net.kyori.adventure.text.Component parent, InstantiationContext ctx) {
         // Add components to the parent based on children
         if(heldComponents.isEmpty()) return;
 
         if(heldComponents.size() == 1) {
-            BaseComponent thisComponent = new TextComponent();
+            net.kyori.adventure.text.Component thisComponent = net.kyori.adventure.text.Component.empty();
             modifier.modify(thisComponent);
             heldComponents.get(0).instantiateInParent(thisComponent, ctx);
-            parent.addExtra(thisComponent);
+            parent.append(thisComponent);
         }
         else {
             if(modifier == ComponentModifiers.NONE)
                 instantiateChildrenIn(parent, ctx);
             else {
-                BaseComponent thisComponent = new TextComponent();
+                net.kyori.adventure.text.Component thisComponent = net.kyori.adventure.text.Component.empty();
                 modifier.modify(thisComponent);
                 instantiateChildrenIn(thisComponent, ctx);
-                parent.addExtra(thisComponent);
+                parent.append(thisComponent);
             }
         }
     }
 
-    private void instantiateChildrenIn(BaseComponent component, InstantiationContext ctx) {
+    private void instantiateChildrenIn(net.kyori.adventure.text.Component component, InstantiationContext ctx) {
         heldComponents.forEach(child -> child.instantiateInParent(component, ctx));
     }
 
     @Override
-    protected BaseComponent instantiate(InstantiationContext ctx) {
+    protected net.kyori.adventure.text.Component instantiate(InstantiationContext ctx) {
         throwOnInstantiate();
         return null; // Just a formality for the compiler; throwOnInstantiate() will throw before this statement.
     }

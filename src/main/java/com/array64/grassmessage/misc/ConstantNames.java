@@ -2,16 +2,16 @@ package com.array64.grassmessage.misc;
 
 import com.array64.grassmessage.components.ComponentModifier;
 import com.array64.grassmessage.components.ComponentModifiers;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 
 import java.util.Map;
 
 import static java.util.Map.entry;
-import static net.md_5.bungee.api.ChatColor.*;
-import static net.md_5.bungee.api.chat.ClickEvent.Action.*;
-import static net.md_5.bungee.api.chat.HoverEvent.Action.*;
+import static net.kyori.adventure.text.format.NamedTextColor.*;
+import static net.kyori.adventure.text.event.ClickEvent.Action.*;
+import static net.kyori.adventure.text.event.HoverEvent.Action.*;
 
 public class ConstantNames {
     public static final ModifierMapping[] MODIFIERS = {
@@ -49,20 +49,20 @@ public class ConstantNames {
         entry("copy_to_clipboard", COPY_TO_CLIPBOARD)
     );
 
-    public static final Map<String, HoverEvent.Action> HOVER_EVENTS = Map.ofEntries(
+    public static final Map<String, HoverEvent.Action<?>> HOVER_EVENTS = Map.ofEntries(
         entry("show_text", SHOW_TEXT),
         entry("show_item", SHOW_ITEM),
         entry("show_entity", SHOW_ENTITY)
     );
 
     public record ModifierMapping(ComponentModifier modifier, String[] qNames) {}
-    public record ColorMapping(ChatColor color, String qName) {}
+    public record ColorMapping(NamedTextColor color, String qName) {}
 
     private static ModifierMapping mod(ComponentModifier modifier, String... qNames) {
         return new ModifierMapping(modifier, qNames);
     }
 
-    private static ColorMapping color(ChatColor color, String qName) {
+    private static ColorMapping color(NamedTextColor color, String qName) {
         return new ColorMapping(color, qName);
     }
 }

@@ -3,8 +3,8 @@ package com.array64.grassmessage.components;
 import com.array64.grassmessage.components.impl.concrete.*;
 import com.array64.grassmessage.misc.ConstantNames;
 import com.array64.grassmessage.xml.DepthTracker;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ClickEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.event.ClickEvent;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
@@ -67,7 +67,7 @@ public class ComponentRegistry {
 
         // 16 default chat colors
         for(ConstantNames.ColorMapping colorMapping : ConstantNames.CHAT_COLORS) {
-            final ChatColor chatColor = colorMapping.color();
+            final NamedTextColor chatColor = colorMapping.color();
             final String qName = colorMapping.qName();
 
             registerModifier(attrs -> ComponentModifiers.color(chatColor), qName);
@@ -75,7 +75,7 @@ public class ComponentRegistry {
 
         // Modifiers with attributes
 
-        registerModifier(attrs -> ComponentModifiers.click(new ClickEvent(
+        registerModifier(attrs -> ComponentModifiers.click(ClickEvent.clickEvent(
             ConstantNames.CLICK_EVENTS.get(attrs.getValue("action")),
             attrs.getValue("value")
         )), "click");

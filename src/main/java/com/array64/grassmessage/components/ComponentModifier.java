@@ -1,8 +1,8 @@
 package com.array64.grassmessage.components;
 
-import net.md_5.bungee.api.chat.BaseComponent;
+import net.kyori.adventure.text.Component;
 
 @FunctionalInterface
 public interface ComponentModifier {
-    void modify(BaseComponent component);
+    void modify(Component component);
 }

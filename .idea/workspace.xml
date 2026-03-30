@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="More bug fixing... it's actually kinda fun and relaxing... weird...">
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="last commit before switching to adventure api (not minimessage ofc)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XMLParserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XMLParserAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/ComponentModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/ComponentModifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/ComponentModifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/ComponentModifiers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/ComponentRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/ComponentRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/InstantiationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/InstantiationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/EntityHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/EntityHoveredContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/AbstractComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/AbstractComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/CompositeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/CompositeComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/ConstantNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/ConstantNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +130,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.grassmessage [publishToMavenLocal]">
+  <component name="RunManager" selected="Gradle.grassmessage [build]">
     <configuration name="GrassMessage [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -198,8 +208,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.grassmessage [publishToMavenLocal]" />
         <item itemvalue="Gradle.grassmessage [build]" />
+        <item itemvalue="Gradle.grassmessage [publishToMavenLocal]" />
         <item itemvalue="Gradle.GrassMessage [dependencies]" />
       </list>
     </recent_temporary>
@@ -292,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773464602028</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="last commit before switching to adventure api (not minimessage ofc)">
+      <option name="closed" value="true" />
+      <created>1774376057858</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1774376057860</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,6 +346,7 @@
     <MESSAGE value="Revamped variable system" />
     <MESSAGE value="Fixed a few issues with the XSD after coming back to the project after over half a year" />
     <MESSAGE value="More bug fixing... it's actually kinda fun and relaxing... weird..." />
-    <option name="LAST_COMMIT_MESSAGE" value="More bug fixing... it's actually kinda fun and relaxing... weird..." />
+    <MESSAGE value="last commit before switching to adventure api (not minimessage ofc)" />
+    <option name="LAST_COMMIT_MESSAGE" value="last commit before switching to adventure api (not minimessage ofc)" />
   </component>
 </project>

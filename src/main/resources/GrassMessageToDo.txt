@@ -1,2 +1,8 @@
-Restrict access to classes like LeafGradientComponent for simple use while still allowing extension
-Documentation
+Pivot to Adventure API
+Rename classes to prefix with a G (e.g. GComponent, GAbstractComponent, GTextComponent)
+Introduce templating features (e.g. placeholders in attributes, languages, CSS-like styles).
+Add horizontal and vertical spacing options
+(Maybe?) Restrict access to classes like LeafGradientComponent for simple use while still allowing extension
+Documentation (XML and Java)
+
+Get a life

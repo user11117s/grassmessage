@@ -4,7 +4,6 @@ import com.array64.grassmessage.components.Component;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.xml.DepthTrackable;
 import com.array64.grassmessage.xml.DepthTracker;
-import net.md_5.bungee.api.chat.BaseComponent;
 import org.xml.sax.Attributes;
 
 public abstract class AbstractComponent implements Component, DepthTrackable {
@@ -28,11 +27,11 @@ public abstract class AbstractComponent implements Component, DepthTrackable {
     protected abstract void exitTag(String qName);
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
-        parent.addExtra(this.instantiate(ctx));
+    public void instantiateInParent(net.kyori.adventure.text.Component parent, InstantiationContext ctx) {
+        parent.append(this.instantiate(ctx));
     }
 
-    protected abstract BaseComponent instantiate(InstantiationContext ctx);
+    protected abstract net.kyori.adventure.text.Component instantiate(InstantiationContext ctx);
 
     // Helper methods for subclasses
 
