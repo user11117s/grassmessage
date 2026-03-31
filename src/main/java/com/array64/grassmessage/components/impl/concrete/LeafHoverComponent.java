@@ -12,10 +12,7 @@ import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
 import com.array64.grassmessage.xml.properties.XMLPropertyMeta;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.hover.content.Content;
+import net.kyori.adventure.text.event.HoverEventSource;
 import org.xml.sax.Attributes;
 
 import java.util.List;
@@ -117,12 +114,12 @@ public class LeafHoverComponent extends AbstractComponent {
     }
 
     @Override
-    protected BaseComponent instantiate(InstantiationContext ctx) {
-        BaseComponent parent = new TextComponent();
-        Content instantiatedContent = hoveredContent.instantiate(ctx);
+    protected net.kyori.adventure.text.Component instantiate(InstantiationContext ctx) {
+        net.kyori.adventure.text.Component parent = net.kyori.adventure.text.Component.empty();
+        HoverEventSource<?> instantiatedEvent = hoveredContent.instantiate(ctx);
 
         mainContent.instantiateInParent(parent, ctx);
-        parent.setHoverEvent(new HoverEvent(instantiatedContent.requiredAction(), instantiatedContent));
+        parent.hoverEvent(instantiatedEvent);
         return parent;
     }
 }

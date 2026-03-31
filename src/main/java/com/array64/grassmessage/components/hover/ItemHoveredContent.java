@@ -1,9 +1,10 @@
 package com.array64.grassmessage.components.hover;
 
 import com.array64.grassmessage.components.InstantiationContext;
-import net.md_5.bungee.api.chat.ItemTag;
-import net.md_5.bungee.api.chat.hover.content.Content;
-import net.md_5.bungee.api.chat.hover.content.Item;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.nbt.api.BinaryTagHolder;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.event.HoverEventSource;
 
 public class ItemHoveredContent implements HoveredContent {
     private final String id;
@@ -17,7 +18,14 @@ public class ItemHoveredContent implements HoveredContent {
     }
 
     @Override
-    public Content instantiate(InstantiationContext ctx) {
-        return new Item(ctx.substituteVars(id), count, ItemTag.ofNbt(ctx.substituteVars(tag)));
+    public HoverEventSource<?> instantiate(InstantiationContext ctx) {
+        if(tag == null)
+            return HoverEvent.showItem(Key.key(ctx.substituteVars(id)), count);
+        else
+            return HoverEvent.showItem(
+                    Key.key(ctx.substituteVars(id)),
+                    count,
+                    BinaryTagHolder.binaryTagHolder(ctx.substituteVars(tag))
+            );
     }
 }

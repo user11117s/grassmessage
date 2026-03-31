@@ -11,7 +11,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly("net.md-5:bungeecord-chat:1.21-R0.4") // I will take this down later.
     compileOnly("net.kyori:adventure-api:4.26.1")
 }
 

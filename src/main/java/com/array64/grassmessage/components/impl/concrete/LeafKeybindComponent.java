@@ -2,8 +2,7 @@ package com.array64.grassmessage.components.impl.concrete;
 
 import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.KeybindComponent;
+import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
 public class LeafKeybindComponent extends AbstractComponent {
@@ -20,8 +19,8 @@ public class LeafKeybindComponent extends AbstractComponent {
     }
 
     @Override
-    public BaseComponent instantiate(InstantiationContext ctx) {
-        return new KeybindComponent(ctx.substituteVars(keybind));
+    public Component instantiate(InstantiationContext ctx) {
+        return Component.keybind(ctx.substituteVars(keybind));
     }
 
     @Override

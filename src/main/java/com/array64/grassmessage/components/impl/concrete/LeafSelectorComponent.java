@@ -2,8 +2,7 @@ package com.array64.grassmessage.components.impl.concrete;
 
 import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.SelectorComponent;
+import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
 public class LeafSelectorComponent extends AbstractComponent {
@@ -19,8 +18,8 @@ public class LeafSelectorComponent extends AbstractComponent {
     }
 
     @Override
-    public BaseComponent instantiate(InstantiationContext ctx) {
-        return new SelectorComponent(ctx.substituteVars(selector));
+    public Component instantiate(InstantiationContext ctx) {
+        return Component.selector(ctx.substituteVars(selector));
     }
 
     @Override

@@ -2,8 +2,11 @@ package com.array64.grassmessage.components.hover;
 
 import com.array64.grassmessage.components.Component;
 import com.array64.grassmessage.components.InstantiationContext;
-import net.md_5.bungee.api.chat.hover.content.Content;
-import net.md_5.bungee.api.chat.hover.content.Entity;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.event.HoverEventSource;
+
+import java.util.UUID;
 
 public class EntityHoveredContent implements HoveredContent {
     private final String type;
@@ -17,9 +20,9 @@ public class EntityHoveredContent implements HoveredContent {
     }
 
     @Override
-    public Content instantiate(InstantiationContext ctx) {
+    public HoverEventSource<?> instantiate(InstantiationContext ctx) {
         net.kyori.adventure.text.Component parent = net.kyori.adventure.text.Component.empty();
         name.instantiateInParent(parent, ctx);
-        return new Entity(ctx.substituteVars(type), ctx.substituteVars(uuid), parent);
+        return HoverEvent.showEntity(Key.key(ctx.substituteVars(type)), UUID.fromString(ctx.substituteVars(uuid)), parent);
     }
 }

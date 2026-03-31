@@ -2,7 +2,7 @@ package com.array64.grassmessage.components.impl.concrete;
 
 import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
-import net.md_5.bungee.api.chat.BaseComponent;
+import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
 public class LeafEmbeddedMessage extends AbstractComponent {
@@ -23,12 +23,12 @@ public class LeafEmbeddedMessage extends AbstractComponent {
     }
 
     @Override
-    public void instantiateInParent(BaseComponent parent, InstantiationContext ctx) {
+    public void instantiateInParent(Component parent, InstantiationContext ctx) {
         ctx.getMessage(ref).instantiateInParent(parent, ctx);
     }
 
     @Override
-    protected BaseComponent instantiate(InstantiationContext ctx) {
+    protected Component instantiate(InstantiationContext ctx) {
         throwOnInstantiate();
         return null;
     }

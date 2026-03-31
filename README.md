@@ -1,2 +1,2 @@
 # grassmessage
-A small XML-based message builder for users Bungee's Chat API
+A small XML-based message builder for constructing Adventure components

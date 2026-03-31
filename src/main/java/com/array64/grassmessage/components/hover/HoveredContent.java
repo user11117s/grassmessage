@@ -1,8 +1,8 @@
 package com.array64.grassmessage.components.hover;
 
 import com.array64.grassmessage.components.InstantiationContext;
-import net.md_5.bungee.api.chat.hover.content.Content;
+import net.kyori.adventure.text.event.HoverEventSource;
 
 public interface HoveredContent {
-    Content instantiate(InstantiationContext ctx);
+    HoverEventSource<?> instantiate(InstantiationContext ctx);
 }

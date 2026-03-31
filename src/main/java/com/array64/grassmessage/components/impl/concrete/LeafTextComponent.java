@@ -2,8 +2,7 @@ package com.array64.grassmessage.components.impl.concrete;
 
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.components.impl.AbstractComponent;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
 public class LeafTextComponent extends AbstractComponent {
@@ -25,7 +24,7 @@ public class LeafTextComponent extends AbstractComponent {
     }
 
     @Override
-    protected BaseComponent instantiate(InstantiationContext ctx) {
-        return new TextComponent(ctx.substituteVars(text));
+    protected Component instantiate(InstantiationContext ctx) {
+        return Component.text(ctx.substituteVars(text));
     }
 }

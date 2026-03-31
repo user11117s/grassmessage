@@ -6,9 +6,6 @@ import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.TranslatableComponent;
 import org.xml.sax.Attributes;
 
 import java.util.ArrayList;
@@ -63,15 +60,15 @@ public class LeafTranslatableComponent extends AbstractComponent {
     }
 
     @Override
-    protected BaseComponent instantiate(InstantiationContext ctx) {
-        var translatable = new TranslatableComponent(ctx.substituteVars(key));
-        translatable.setWith(with.stream().map(component -> {
-            BaseComponent parentComponent = new TextComponent();
+    protected net.kyori.adventure.text.Component instantiate(InstantiationContext ctx) {
+        var translatable = net.kyori.adventure.text.Component.translatable(ctx.substituteVars(key));
+        translatable = translatable.arguments(with.stream().map(component -> {
+            net.kyori.adventure.text.Component parentComponent = net.kyori.adventure.text.Component.empty();
             component.instantiateInParent(parentComponent, ctx);
             return parentComponent;
         }).toList());
 
-        if(fallback != null) translatable.setFallback(ctx.substituteVars(fallback));
+        if(fallback != null) translatable = translatable.fallback(ctx.substituteVars(fallback));
         return translatable;
     }
 }

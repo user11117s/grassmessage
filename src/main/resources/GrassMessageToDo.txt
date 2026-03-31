@@ -1,7 +1,10 @@
-Pivot to Adventure API
+Pivot to Adventure API (including adding return values because of Adventure's immutable nature)
 Rename classes to prefix with a G (e.g. GComponent, GAbstractComponent, GTextComponent)
 Introduce templating features (e.g. placeholders in attributes, languages, CSS-like styles).
 Add horizontal and vertical spacing options
+Take care of spacing of XMLProperties
+Turn on XInclude
+Catalog should be able to resolve URLs without internet
 (Maybe?) Restrict access to classes like LeafGradientComponent for simple use while still allowing extension
 Documentation (XML and Java)
 

@@ -91,7 +91,7 @@ public class ComponentRegistry {
         register(attrs -> new LeafKeybindComponent(), "keybind");
         register(attrs -> new LeafGradientComponent(attrs.getValue("ref")), "grad");
 
-        register(attrs -> new LeafBungeeComponent(attrs.getValue("name")), "bungee_component");
+        register(attrs -> new LeafAdventureComponent(attrs.getValue("name")), "bungee_component");
         register(attrs -> new LeafEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
         register(attrs -> new LeafTranslatableComponent(this), "translatable");
         register(attrs -> new LeafHoverComponent(this), "hover");
