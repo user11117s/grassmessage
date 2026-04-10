@@ -1,6 +1,6 @@
 package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.components.impl.GAbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.misc.Color;
 import com.array64.grassmessage.data.GradientData;
@@ -8,11 +8,11 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.xml.sax.Attributes;
 
-public class LeafGradientComponent extends AbstractComponent {
+public class GGradientComponent extends GAbstractComponent {
     private String text = "";
     private final String ref;
 
-    public LeafGradientComponent(String ref) {
+    public GGradientComponent(String ref) {
         this.ref = ref;
     }
 
@@ -25,8 +25,8 @@ public class LeafGradientComponent extends AbstractComponent {
     protected void exitTag(String qName) {}
 
     @Override
-    public void instantiateInParent(Component parent, InstantiationContext ctx) {
-        instantiateTextInParent(parent, ctx.substituteVars(text), ctx);
+    public Component instantiateInParent(Component parent, InstantiationContext ctx) {
+        return instantiateTextInParent(parent, ctx.substituteVars(text), ctx);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LeafGradientComponent extends AbstractComponent {
         return null;
     }
 
-    private void instantiateTextInParent(Component parent, String text, InstantiationContext ctx) {
+    private Component instantiateTextInParent(Component parent, String text, InstantiationContext ctx) {
         int length = text.length();
         GradientData gradient = ctx.getGradient(ref);
 
@@ -44,8 +44,9 @@ public class LeafGradientComponent extends AbstractComponent {
             Color color = gradient.evaluate((float) i / Math.max(1f, length - 1));
             component = component.color(TextColor.fromHexString(color.toString()));
 
-            parent.append(component);
+            parent = parent.append(component);
         }
+        return parent;
     }
 
     @Override

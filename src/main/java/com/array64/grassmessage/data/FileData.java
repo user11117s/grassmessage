@@ -1,6 +1,6 @@
 package com.array64.grassmessage.data;
 
-import com.array64.grassmessage.components.Component;
+import com.array64.grassmessage.components.GComponent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ public class FileData {
         gradients.put(name, gradientData);
     }
 
-    public void addMessage(String name, Component messageData) {
+    public void addMessage(String name, GComponent messageData) {
         messages.put(name, new Message(messageData, this));
     }
 
@@ -25,7 +25,7 @@ public class FileData {
         return messages.get(ref);
     }
 
-    public Component getMessageComponent(String ref) {
+    public GComponent getMessageComponent(String ref) {
         return messages.get(ref).getComponent();
     }
 }

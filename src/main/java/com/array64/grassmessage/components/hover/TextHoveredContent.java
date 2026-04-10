@@ -1,21 +1,22 @@
 package com.array64.grassmessage.components.hover;
 
-import com.array64.grassmessage.components.Component;
+import com.array64.grassmessage.components.GComponent;
 import com.array64.grassmessage.components.InstantiationContext;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.event.HoverEventSource;
 
 public class TextHoveredContent implements HoveredContent {
-    private final Component component;
+    private final GComponent component;
 
-    public TextHoveredContent(Component component) {
+    public TextHoveredContent(GComponent component) {
         this.component = component;
     }
 
     @Override
     public HoverEventSource<?> instantiate(InstantiationContext ctx) {
-        net.kyori.adventure.text.Component parent = net.kyori.adventure.text.Component.empty();
-        component.instantiateInParent(parent, ctx);
+        Component parent = Component.empty();
+        parent = component.instantiateInParent(parent, ctx);
         return HoverEvent.showText(parent);
     }
 }

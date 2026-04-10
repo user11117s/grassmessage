@@ -3,10 +3,10 @@ package com.array64.grassmessage.components;
 import com.array64.grassmessage.xml.properties.XMLProperty;
 import org.xml.sax.Attributes;
 
-public class ComponentProperty implements XMLProperty<Component> {
-    private final Component component;
+public class GComponentProperty implements XMLProperty<GComponent> {
+    private final GComponent component;
 
-    public ComponentProperty(Component component) {
+    public GComponentProperty(GComponent component) {
         this.component = component;
     }
 
@@ -26,7 +26,7 @@ public class ComponentProperty implements XMLProperty<Component> {
     }
 
     @Override
-    public Component get() {
+    public GComponent get() {
         return component;
     }
 }

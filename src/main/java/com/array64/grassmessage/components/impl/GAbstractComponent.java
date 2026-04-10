@@ -1,12 +1,13 @@
 package com.array64.grassmessage.components.impl;
 
-import com.array64.grassmessage.components.Component;
+import com.array64.grassmessage.components.GComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.xml.DepthTrackable;
 import com.array64.grassmessage.xml.DepthTracker;
+import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
-public abstract class AbstractComponent implements Component, DepthTrackable {
+public abstract class GAbstractComponent implements GComponent, DepthTrackable {
     private DepthTracker depthTracker;
     private int rootDepth;
 
@@ -27,11 +28,11 @@ public abstract class AbstractComponent implements Component, DepthTrackable {
     protected abstract void exitTag(String qName);
 
     @Override
-    public void instantiateInParent(net.kyori.adventure.text.Component parent, InstantiationContext ctx) {
-        parent.append(this.instantiate(ctx));
+    public Component instantiateInParent(Component parent, InstantiationContext ctx) {
+        return parent.append(this.instantiate(ctx));
     }
 
-    protected abstract net.kyori.adventure.text.Component instantiate(InstantiationContext ctx);
+    protected abstract Component instantiate(InstantiationContext ctx);
 
     // Helper methods for subclasses
 
@@ -61,7 +62,7 @@ public abstract class AbstractComponent implements Component, DepthTrackable {
         return depthTracker;
     }
 
-    public AbstractComponent initialize(DepthTracker depthTracker) {
+    public GAbstractComponent initialize(DepthTracker depthTracker) {
         this.depthTracker = depthTracker;
         this.rootDepth = depthTracker.getDepth() + 1;
         return this;

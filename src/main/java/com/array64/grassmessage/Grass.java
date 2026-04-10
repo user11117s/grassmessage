@@ -1,6 +1,6 @@
 package com.array64.grassmessage;
 
-import com.array64.grassmessage.components.ComponentRegistry;
+import com.array64.grassmessage.components.GComponentRegistry;
 import com.array64.grassmessage.data.FileData;
 import com.array64.grassmessage.data.Message;
 import com.array64.grassmessage.xml.DepthTracker;
@@ -26,7 +26,7 @@ import java.util.Objects;
 
 public class Grass {
     private final FileData fileData = new FileData();
-    private final ComponentRegistry componentRegistry = new ComponentRegistry(new DepthTracker());
+    private final GComponentRegistry componentRegistry = new GComponentRegistry(new DepthTracker());
 
     public Grass(InputStream messagesStream) throws IOException, SAXException {
         InputStream schemaStream = getClass().getClassLoader().getResourceAsStream("schema.xsd");
@@ -69,7 +69,7 @@ public class Grass {
         saxParser.parse(is, new XMLParserAdapter(fileParser));
     }
 
-    public ComponentRegistry getComponentRegistry() {
+    public GComponentRegistry getComponentRegistry() {
         return componentRegistry;
     }
 

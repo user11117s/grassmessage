@@ -1,8 +1,7 @@
 package com.array64.grassmessage.xml.parsers;
 
-import com.array64.grassmessage.components.impl.concrete.CompositeComponent;
-import com.array64.grassmessage.components.ComponentModifiers;
-import com.array64.grassmessage.components.ComponentRegistry;
+import com.array64.grassmessage.components.impl.concrete.GCompositeComponent;
+import com.array64.grassmessage.components.GComponentRegistry;
 import com.array64.grassmessage.data.FileData;
 import com.array64.grassmessage.data.GradientData;
 import com.array64.grassmessage.xml.XMLParser;
@@ -10,10 +9,10 @@ import org.xml.sax.Attributes;
 
 public class FileParser implements XMLParser {
     private final FileData fileData;
-    private final ComponentRegistry componentRegistry;
+    private final GComponentRegistry componentRegistry;
     private XMLParser currentSubParser = null;
 
-    public FileParser(FileData fileData, ComponentRegistry componentRegistry) {
+    public FileParser(FileData fileData, GComponentRegistry componentRegistry) {
         this.fileData = fileData;
         this.componentRegistry = componentRegistry;
     }
@@ -29,7 +28,7 @@ public class FileParser implements XMLParser {
                 componentRegistry.depthTracker.enter();
             }
             else if(qName.equals("message")) {
-                CompositeComponent message = componentRegistry.createCompositeComponent();
+                GCompositeComponent message = componentRegistry.createCompositeComponent();
                 fileData.addMessage(attrs.getValue("name"), message);
                 currentSubParser = message;
                 componentRegistry.depthTracker.enter();

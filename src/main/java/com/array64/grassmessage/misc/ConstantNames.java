@@ -1,7 +1,7 @@
 package com.array64.grassmessage.misc;
 
-import com.array64.grassmessage.components.ComponentModifier;
-import com.array64.grassmessage.components.ComponentModifiers;
+import com.array64.grassmessage.components.GComponentModifier;
+import com.array64.grassmessage.components.GComponentModifiers;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -15,12 +15,12 @@ import static net.kyori.adventure.text.event.HoverEvent.Action.*;
 
 public class ConstantNames {
     public static final ModifierMapping[] MODIFIERS = {
-        mod(ComponentModifiers.BOLD, "bold", "b"),
-        mod(ComponentModifiers.ITALIC, "italic", "i"),
-        mod(ComponentModifiers.UNDERLINED, "underlined", "u"),
-        mod(ComponentModifiers.STRIKETHROUGH, "strikethrough", "st"),
-        mod(ComponentModifiers.OBFUSCATED, "obfuscated", "obf"),
-        mod(ComponentModifiers.RESET, "reset"),
+        mod(GComponentModifiers.BOLD, "bold", "b"),
+        mod(GComponentModifiers.ITALIC, "italic", "i"),
+        mod(GComponentModifiers.UNDERLINED, "underlined", "u"),
+        mod(GComponentModifiers.STRIKETHROUGH, "strikethrough", "st"),
+        mod(GComponentModifiers.OBFUSCATED, "obfuscated", "obf"),
+        mod(GComponentModifiers.RESET, "reset"),
     };
     public static final ColorMapping[] CHAT_COLORS = {
         color(BLACK, "black"),
@@ -55,10 +55,10 @@ public class ConstantNames {
         entry("show_entity", SHOW_ENTITY)
     );
 
-    public record ModifierMapping(ComponentModifier modifier, String[] qNames) {}
+    public record ModifierMapping(GComponentModifier modifier, String[] qNames) {}
     public record ColorMapping(NamedTextColor color, String qName) {}
 
-    private static ModifierMapping mod(ComponentModifier modifier, String... qNames) {
+    private static ModifierMapping mod(GComponentModifier modifier, String... qNames) {
         return new ModifierMapping(modifier, qNames);
     }
 

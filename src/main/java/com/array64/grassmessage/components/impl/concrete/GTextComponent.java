@@ -1,12 +1,17 @@
 package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.impl.AbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
+import com.array64.grassmessage.components.impl.GAbstractComponent;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
-public class LeafKeybindComponent extends AbstractComponent {
-    private String keybind = "";
+public class GTextComponent extends GAbstractComponent {
+    private String text = "";
+
+    @Override
+    public void parseText(String text) {
+        this.text += text;
+    }
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
@@ -19,12 +24,7 @@ public class LeafKeybindComponent extends AbstractComponent {
     }
 
     @Override
-    public Component instantiate(InstantiationContext ctx) {
-        return Component.keybind(ctx.substituteVars(keybind));
-    }
-
-    @Override
-    public void parseText(String text) {
-        keybind += text.strip();
+    protected Component instantiate(InstantiationContext ctx) {
+        return Component.text(ctx.substituteVars(text));
     }
 }

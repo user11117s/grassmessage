@@ -1,63 +1,68 @@
 package com.array64.grassmessage.components.impl.concrete;
 
 import com.array64.grassmessage.components.*;
-import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.components.impl.GAbstractComponent;
 import com.array64.grassmessage.misc.Glue;
+import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CompositeComponent extends AbstractComponent {
-    private final List<Component> heldComponents;
-    private final ComponentModifier modifier;
-    private final ComponentRegistry registry;
+public class GCompositeComponent extends GAbstractComponent {
+    private final List<GComponent> heldComponents;
+    private final GComponentModifier modifier;
+    private final GComponentRegistry registry;
     private Glue glue = Glue.TRUE;
 
-    public CompositeComponent(ComponentRegistry registry) {
-        this(ComponentModifiers.NONE, registry);
+    public GCompositeComponent(GComponentRegistry registry) {
+        this(GComponentModifiers.NONE, registry);
     }
 
-    public CompositeComponent(ComponentModifier modifier, ComponentRegistry registry) {
+    public GCompositeComponent(GComponentModifier modifier, GComponentRegistry registry) {
         this.heldComponents = new ArrayList<>();
         this.modifier = modifier;
         this.registry = registry;
     }
 
-    public void addComponent(Component component) {
+    public void addComponent(GComponent component) {
         heldComponents.add(component);
     }
 
     @Override
-    public void instantiateInParent(net.kyori.adventure.text.Component parent, InstantiationContext ctx) {
+    public Component instantiateInParent(Component parent, InstantiationContext ctx) {
         // Add components to the parent based on children
-        if(heldComponents.isEmpty()) return;
+        if(heldComponents.isEmpty()) return parent;
 
         if(heldComponents.size() == 1) {
-            net.kyori.adventure.text.Component thisComponent = net.kyori.adventure.text.Component.empty();
-            modifier.modify(thisComponent);
-            heldComponents.get(0).instantiateInParent(thisComponent, ctx);
-            parent.append(thisComponent);
+            Component thisComponent = Component.empty();
+            thisComponent = modifier.modify(thisComponent);
+            thisComponent = heldComponents.get(0).instantiateInParent(thisComponent, ctx);
+            return parent.append(thisComponent);
         }
         else {
-            if(modifier == ComponentModifiers.NONE)
-                instantiateChildrenIn(parent, ctx);
+            if(modifier == GComponentModifiers.NONE)
+                return instantiateChildrenIn(parent, ctx);
             else {
-                net.kyori.adventure.text.Component thisComponent = net.kyori.adventure.text.Component.empty();
-                modifier.modify(thisComponent);
-                instantiateChildrenIn(thisComponent, ctx);
-                parent.append(thisComponent);
+                Component thisComponent = Component.empty();
+                thisComponent = modifier.modify(thisComponent);
+                thisComponent = instantiateChildrenIn(thisComponent, ctx);
+                return parent.append(thisComponent);
             }
         }
     }
 
-    private void instantiateChildrenIn(net.kyori.adventure.text.Component component, InstantiationContext ctx) {
-        heldComponents.forEach(child -> child.instantiateInParent(component, ctx));
+    private Component instantiateChildrenIn(Component component, InstantiationContext ctx) {
+        Component c = component;
+        for(GComponent child : heldComponents) {
+            c = child.instantiateInParent(c, ctx);
+        }
+        return c;
     }
 
     @Override
-    protected net.kyori.adventure.text.Component instantiate(InstantiationContext ctx) {
+    protected Component instantiate(InstantiationContext ctx) {
         throwOnInstantiate();
         return null; // Just a formality for the compiler; throwOnInstantiate() will throw before this statement.
     }
@@ -113,13 +118,13 @@ public class CompositeComponent extends AbstractComponent {
     }
 
     private void appendText(String text) {
-        if(heldComponents.isEmpty() || !(getLast() instanceof LeafTextComponent))
-            addComponent(new LeafTextComponent());
+        if(heldComponents.isEmpty() || !(getLast() instanceof GTextComponent))
+            addComponent(new GTextComponent());
 
         getLast().parseText(text);
     }
 
-    private Component getLast() {
+    private GComponent getLast() {
         return heldComponents.get(heldComponents.size() - 1);
     }
 }

@@ -1,25 +1,26 @@
 package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.Component;
-import com.array64.grassmessage.components.ComponentRegistry;
-import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.components.GComponent;
+import com.array64.grassmessage.components.GComponentRegistry;
+import com.array64.grassmessage.components.impl.GAbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
+import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class LeafTranslatableComponent extends AbstractComponent {
+public class GTranslatableComponent extends GAbstractComponent {
     private String key;
     private String fallback = null;
-    private final List<Component> with;
+    private final List<GComponent> with;
     private PropertyHolder propertyHolder;
-    private final ComponentRegistry registry;
+    private final GComponentRegistry registry;
 
-    public LeafTranslatableComponent(ComponentRegistry registry) {
+    public GTranslatableComponent(GComponentRegistry registry) {
         this.with = new ArrayList<>();
         this.registry = registry;
     }
@@ -53,17 +54,17 @@ public class LeafTranslatableComponent extends AbstractComponent {
         propertyHolder.get().forEach(propertyMeta -> {
             switch(propertyMeta.propertyName()) {
                 case "key" -> key = propertyMeta.getValue(String.class);
-                case "with" -> with.add(propertyMeta.getValue(Component.class));
+                case "with" -> with.add(propertyMeta.getValue(GComponent.class));
                 case "fallback" -> fallback = propertyMeta.getValue(String.class);
             }
         });
     }
 
     @Override
-    protected net.kyori.adventure.text.Component instantiate(InstantiationContext ctx) {
-        var translatable = net.kyori.adventure.text.Component.translatable(ctx.substituteVars(key));
+    protected Component instantiate(InstantiationContext ctx) {
+        var translatable = Component.translatable(ctx.substituteVars(key));
         translatable = translatable.arguments(with.stream().map(component -> {
-            net.kyori.adventure.text.Component parentComponent = net.kyori.adventure.text.Component.empty();
+            Component parentComponent = Component.empty();
             component.instantiateInParent(parentComponent, ctx);
             return parentComponent;
         }).toList());

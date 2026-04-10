@@ -1,6 +1,6 @@
 package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.components.impl.GAbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
@@ -9,7 +9,7 @@ import org.xml.sax.Attributes;
 
 import java.util.Map;
 
-public class LeafScoreComponent extends AbstractComponent {
+public class GScoreComponent extends GAbstractComponent {
     private String target = "", objective = "";
     private String defaultValue;
     private final PropertyHolder propertyHolder = new PropertyHolder(Map.of(

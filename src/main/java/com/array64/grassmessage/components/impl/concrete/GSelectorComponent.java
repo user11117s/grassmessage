@@ -1,18 +1,13 @@
 package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.components.impl.GAbstractComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
-public class LeafAdventureComponent extends AbstractComponent {
-    private final String name;
+public class GSelectorComponent extends GAbstractComponent {
+    private String selector = "";
 
-    public LeafAdventureComponent(String name) {
-        this.name = name;
-    }
-
-    @Override
     protected void enterTag(String qName, Attributes attrs) {
         throwOnEnterTag();
     }
@@ -24,11 +19,11 @@ public class LeafAdventureComponent extends AbstractComponent {
 
     @Override
     public Component instantiate(InstantiationContext ctx) {
-        return ctx.getAdventureComponent(name);
+        return Component.selector(ctx.substituteVars(selector));
     }
 
     @Override
     public void parseText(String text) {
-        throwOnParseText();
+        selector += text.strip();
     }
 }

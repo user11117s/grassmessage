@@ -214,7 +214,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="bungee_component" substitutionGroup="component">
+    <xs:element name="adventure" substitutionGroup="component">
         <xs:complexType>
             <xs:attribute name="name" type="xs:Name" use="required"/>
         </xs:complexType>

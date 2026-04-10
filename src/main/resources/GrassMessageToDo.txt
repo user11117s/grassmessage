@@ -1,11 +1,18 @@
-Pivot to Adventure API (including adding return values because of Adventure's immutable nature)
-Rename classes to prefix with a G (e.g. GComponent, GAbstractComponent, GTextComponent)
-Introduce templating features (e.g. placeholders in attributes, languages, CSS-like styles).
-Add horizontal and vertical spacing options
-Take care of spacing of XMLProperties
-Turn on XInclude
-Catalog should be able to resolve URLs without internet
-(Maybe?) Restrict access to classes like LeafGradientComponent for simple use while still allowing extension
-Documentation (XML and Java)
+[5] Add templating features (e.g. placeholders in attributes, languages, CSS-like styles).
+[3] Add horizontal and vertical spacing configurations
+[?] Add extra Adventure features (e.g. new styling, types of components, event types)
+[3] Review XSD component schemas in detail (maybe turn xs:Name into xs:string for placeholder attributes)
+[3] Take care of spacing of XMLProperties (i.e. trimming whitespace)
+[2] Turn on XInclude
+[1] Catalog should be able to resolve URLs without internet
+[1] Implement module-info.java
+[3] Remove warnings
+[5] Documentation (XML and Java)
 
-Get a life
+Number in square brackets represents how long it'll take:
+
+1: Quick task
+2: Quick-medium task
+3: Medium task
+4: Medium-long task
+5: Long task

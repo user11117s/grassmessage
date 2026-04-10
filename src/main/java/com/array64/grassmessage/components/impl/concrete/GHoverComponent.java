@@ -1,17 +1,18 @@
 package com.array64.grassmessage.components.impl.concrete;
 
-import com.array64.grassmessage.components.Component;
-import com.array64.grassmessage.components.ComponentRegistry;
+import com.array64.grassmessage.components.GComponent;
+import com.array64.grassmessage.components.GComponentRegistry;
 import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.components.hover.EntityHoveredContent;
 import com.array64.grassmessage.components.hover.HoveredContent;
 import com.array64.grassmessage.components.hover.ItemHoveredContent;
 import com.array64.grassmessage.components.hover.TextHoveredContent;
-import com.array64.grassmessage.components.impl.AbstractComponent;
+import com.array64.grassmessage.components.impl.GAbstractComponent;
 import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
 import com.array64.grassmessage.xml.properties.XMLPropertyMeta;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEventSource;
 import org.xml.sax.Attributes;
 
@@ -19,13 +20,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class LeafHoverComponent extends AbstractComponent {
+public class GHoverComponent extends GAbstractComponent {
     private HoveredContent hoveredContent;
-    private Component mainContent;
-    private final ComponentRegistry componentRegistry;
+    private GComponent mainContent;
+    private final GComponentRegistry componentRegistry;
     private PropertyHolder propertyHolder;
 
-    public LeafHoverComponent(ComponentRegistry componentRegistry) {
+    public GHoverComponent(GComponentRegistry componentRegistry) {
         this.componentRegistry = componentRegistry;
     }
 
@@ -69,8 +70,8 @@ public class LeafHoverComponent extends AbstractComponent {
         List<XMLPropertyMeta> properties = propertyHolder.get();
         properties.forEach(propertyMeta -> {
             switch(propertyMeta.propertyName()) {
-                case "content" -> mainContent = propertyMeta.getValue(Component.class);
-                case "show_text" -> hoveredContent = new TextHoveredContent(propertyMeta.getValue(Component.class));
+                case "content" -> mainContent = propertyMeta.getValue(GComponent.class);
+                case "show_text" -> hoveredContent = new TextHoveredContent(propertyMeta.getValue(GComponent.class));
                 case "show_item" -> parseItemProperties(propertyMeta.getValue(List.class));
                 case "show_entity" -> parseEntityProperties(propertyMeta.getValue(List.class));
             }
@@ -99,14 +100,14 @@ public class LeafHoverComponent extends AbstractComponent {
     private void parseEntityProperties(List<?> properties) {
         AtomicReference<String> type = new AtomicReference<>("");
         AtomicReference<String> uuid = new AtomicReference<>("");
-        AtomicReference<Component> name = new AtomicReference<>();
+        AtomicReference<GComponent> name = new AtomicReference<>();
 
         ((List<XMLPropertyMeta>) properties)
             .forEach(propertyMeta -> {
                 switch(propertyMeta.propertyName()) {
                     case "type" -> type.set(propertyMeta.getValue(String.class));
                     case "uuid" -> uuid.set(propertyMeta.getValue(String.class));
-                    case "name" -> name.set(propertyMeta.getValue(Component.class));
+                    case "name" -> name.set(propertyMeta.getValue(GComponent.class));
                 }
             });
 
@@ -114,12 +115,11 @@ public class LeafHoverComponent extends AbstractComponent {
     }
 
     @Override
-    protected net.kyori.adventure.text.Component instantiate(InstantiationContext ctx) {
-        net.kyori.adventure.text.Component parent = net.kyori.adventure.text.Component.empty();
+    protected Component instantiate(InstantiationContext ctx) {
+        Component parent = Component.empty();
         HoverEventSource<?> instantiatedEvent = hoveredContent.instantiate(ctx);
 
         mainContent.instantiateInParent(parent, ctx);
-        parent.hoverEvent(instantiatedEvent);
-        return parent;
+        return parent.hoverEvent(instantiatedEvent);
     }
 }

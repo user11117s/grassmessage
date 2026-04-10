@@ -12,30 +12,30 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class ComponentRegistry {
-    private final Map<String, ComponentFactory> componentFactories;
+public class GComponentRegistry {
+    private final Map<String, GComponentFactory> componentFactories;
     public final DepthTracker depthTracker;
 
-    public ComponentRegistry(DepthTracker depthTracker) {
+    public GComponentRegistry(DepthTracker depthTracker) {
         this.depthTracker = depthTracker;
         this.componentFactories = new HashMap<>();
         registerAll();
     }
 
-    public void register(ComponentFactory factory, String... qNames) {
+    public void register(GComponentFactory factory, String... qNames) {
         for(String qName : qNames) {
             componentFactories.put(qName, factory);
         }
     }
 
-    public void register(ComponentFactory.Abstract factory, String... qNames) {
+    public void register(GComponentFactory.Abstract factory, String... qNames) {
         // Allows me to initialize parts of AbstractComponent here. Probably not the best design though,
         // since it's not obvious which overload is used.
-        register((ComponentFactory) (attrs -> factory.getAbstractComponent(attrs).initialize(depthTracker)), qNames);
+        register((GComponentFactory) (attrs -> factory.getAbstractComponent(attrs).initialize(depthTracker)), qNames);
     }
 
-    public Component get(String qName, Attributes attrs) {
-        Component component = componentFactories.get(qName).getComponent(attrs);
+    public GComponent get(String qName, Attributes attrs) {
+        GComponent component = componentFactories.get(qName).getComponent(attrs);
         component.onStart();
         return component;
     }
@@ -51,15 +51,15 @@ public class ComponentRegistry {
         };
     }
 
-    public void registerModifier(Function<Attributes, ComponentModifier> modifierFunction, String... qNames) {
-        register(attrs -> new CompositeComponent(modifierFunction.apply(attrs), this), qNames);
+    public void registerModifier(Function<Attributes, GComponentModifier> modifierFunction, String... qNames) {
+        register(attrs -> new GCompositeComponent(modifierFunction.apply(attrs), this), qNames);
     }
 
     private void registerAll() {
 
         // Modifiers without attributes
         for(ConstantNames.ModifierMapping modifierMapping : ConstantNames.MODIFIERS) {
-            final ComponentModifier modifier = modifierMapping.modifier();
+            final GComponentModifier modifier = modifierMapping.modifier();
             final String[] qNames = modifierMapping.qNames();
 
             registerModifier(attrs -> modifier, qNames);
@@ -70,35 +70,35 @@ public class ComponentRegistry {
             final NamedTextColor chatColor = colorMapping.color();
             final String qName = colorMapping.qName();
 
-            registerModifier(attrs -> ComponentModifiers.color(chatColor), qName);
+            registerModifier(attrs -> GComponentModifiers.color(chatColor), qName);
         }
 
         // Modifiers with attributes
 
-        registerModifier(attrs -> ComponentModifiers.click(ClickEvent.clickEvent(
+        registerModifier(attrs -> GComponentModifiers.click(ClickEvent.clickEvent(
             ConstantNames.CLICK_EVENTS.get(attrs.getValue("action")),
-            attrs.getValue("value")
+            ClickEvent.Payload.string(attrs.getValue("value"))
         )), "click");
 
-        registerModifier(attrs -> ComponentModifiers.color(attrs.getValue("hex")), "color");
-        registerModifier(attrs -> ComponentModifiers.insertion(attrs.getValue("text")), "insertion");
-        registerModifier(attrs -> ComponentModifiers.font(attrs.getValue("font")), "font");
-        registerModifier(attrs -> ComponentModifiers.shadow(attrs.getValue("color")), "shadow");
+        registerModifier(attrs -> GComponentModifiers.color(attrs.getValue("hex")), "color");
+        registerModifier(attrs -> GComponentModifiers.insertion(attrs.getValue("text")), "insertion");
+        registerModifier(attrs -> GComponentModifiers.font(attrs.getValue("font")), "font");
+        registerModifier(attrs -> GComponentModifiers.shadow(attrs.getValue("color")), "shadow");
 
         // Other leaf components
-        register(attrs -> new LeafScoreComponent(), "score");
-        register(attrs -> new LeafSelectorComponent(), "selector");
-        register(attrs -> new LeafKeybindComponent(), "keybind");
-        register(attrs -> new LeafGradientComponent(attrs.getValue("ref")), "grad");
+        register(attrs -> new GScoreComponent(), "score");
+        register(attrs -> new GSelectorComponent(), "selector");
+        register(attrs -> new GKeybindComponent(), "keybind");
+        register(attrs -> new GGradientComponent(attrs.getValue("ref")), "grad");
 
-        register(attrs -> new LeafAdventureComponent(attrs.getValue("name")), "bungee_component");
-        register(attrs -> new LeafEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
-        register(attrs -> new LeafTranslatableComponent(this), "translatable");
-        register(attrs -> new LeafHoverComponent(this), "hover");
+        register(attrs -> new GAdventureComponent(attrs.getValue("name")), "adventure");
+        register(attrs -> new GEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
+        register(attrs -> new GTranslatableComponent(this), "translatable");
+        register(attrs -> new GHoverComponent(this), "hover");
     }
 
-    public CompositeComponent createCompositeComponent() {
-        var compositeComponent = new CompositeComponent(this);
+    public GCompositeComponent createCompositeComponent() {
+        var compositeComponent = new GCompositeComponent(this);
         compositeComponent.initialize(depthTracker);
         compositeComponent.onStart();
         return compositeComponent;
