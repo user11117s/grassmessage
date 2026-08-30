@@ -2,7 +2,7 @@ package com.array64.grassmessage.xml.properties;
 
 import org.xml.sax.Attributes;
 
-public class TextHolder implements XMLProperty<String> {
+public class TextHolder implements XmlProperty<String> {
     private String text = "";
 
     @Override

@@ -10,35 +10,37 @@ import net.kyori.adventure.text.format.TextDecoration;
 
 public class GComponentModifiers {
     public static final GComponentModifier
-        NONE            = component -> component,
-        BOLD            = component -> component.decorate(TextDecoration.BOLD),
-        ITALIC          = component -> component.decorate(TextDecoration.ITALIC),
-        UNDERLINED      = component -> component.decorate(TextDecoration.UNDERLINED),
-        STRIKETHROUGH   = component -> component.decorate(TextDecoration.STRIKETHROUGH),
-        OBFUSCATED      = component -> component.decorate(TextDecoration.OBFUSCATED),
-        RESET           = component -> component.style(Style.empty());
+        NONE            = (component, ctx) -> component,
+        BOLD            = (component, ctx) -> component.decorate(TextDecoration.BOLD),
+        ITALIC          = (component, ctx) -> component.decorate(TextDecoration.ITALIC),
+        UNDERLINED      = (component, ctx) -> component.decorate(TextDecoration.UNDERLINED),
+        STRIKETHROUGH   = (component, ctx) -> component.decorate(TextDecoration.STRIKETHROUGH),
+        OBFUSCATED      = (component, ctx) -> component.decorate(TextDecoration.OBFUSCATED),
+        RESET           = (component, ctx) -> component.style(Style.empty());
 
     public static GComponentModifier color(TextColor color) {
-        return component -> component.color(color);
+        return (component, ctx) -> component.color(color);
     }
 
     public static GComponentModifier color(String hexCode) {
-        return color(TextColor.fromHexString(hexCode));
+        return (component, ctx) -> component.color(TextColor.fromHexString(ctx.substituteVars(hexCode)));
     }
 
     public static GComponentModifier shadow(String shadowColor) {
-        return component -> component.shadowColor(ShadowColor.fromHexString(shadowColor));
+        return (component, ctx) -> component.shadowColor(ShadowColor.fromHexString(ctx.substituteVars(shadowColor)));
     }
 
-    public static GComponentModifier click(ClickEvent event) {
-        return component -> component.clickEvent(event);
+    public static GComponentModifier click(ClickEvent.Action action, String value) {
+        return (component, ctx) -> component.clickEvent(
+                ClickEvent.clickEvent(action, ClickEvent.Payload.string(ctx.substituteVars(value)))
+        );
     }
 
     public static GComponentModifier font(String font) {
-        return component -> component.font(Key.key(font));
+        return (component, ctx) -> component.font(Key.key(ctx.substituteVars(font)));
     }
 
     public static GComponentModifier insertion(String text) {
-        return component -> component.insertion(text);
+        return (component, ctx) -> component.insertion(ctx.substituteVars(text));
     }
 }

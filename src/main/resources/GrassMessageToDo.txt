@@ -1,4 +1,3 @@
-[5] Add templating features (e.g. placeholders in attributes, languages, CSS-like styles).
 [3] Add horizontal and vertical spacing configurations
 [?] Add extra Adventure features (e.g. new styling, types of components, event types)
 [3] Review XSD component schemas in detail (maybe turn xs:Name into xs:string for placeholder attributes)

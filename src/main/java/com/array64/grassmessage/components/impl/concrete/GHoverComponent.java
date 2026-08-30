@@ -11,11 +11,13 @@ import com.array64.grassmessage.components.impl.GAbstractComponent;
 import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
-import com.array64.grassmessage.xml.properties.XMLPropertyMeta;
+import com.array64.grassmessage.xml.properties.XmlPropertyMeta;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.DataComponentValue;
 import net.kyori.adventure.text.event.HoverEventSource;
 import org.xml.sax.Attributes;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
@@ -40,7 +42,8 @@ public class GHoverComponent extends GAbstractComponent {
             "show_item", () -> new PropertyHolder(Map.of(
                 "id", TextHolder::new,
                 "count", TextHolder::new,
-                "tag", TextHolder::new
+                "sdata", TextHolder::new,
+                "vdata", TextHolder::new
             ), depthTracker),
             "show_entity", () -> new PropertyHolder(Map.of(
                 "type", TextHolder::new,
@@ -67,7 +70,7 @@ public class GHoverComponent extends GAbstractComponent {
 
     @Override
     public void onEnd() {
-        List<XMLPropertyMeta> properties = propertyHolder.get();
+        List<XmlPropertyMeta> properties = propertyHolder.get();
         properties.forEach(propertyMeta -> {
             switch(propertyMeta.propertyName()) {
                 case "content" -> mainContent = propertyMeta.getValue(GComponent.class);
@@ -81,19 +84,21 @@ public class GHoverComponent extends GAbstractComponent {
     @SuppressWarnings("unchecked")
     private void parseItemProperties(List<?> properties) {
         AtomicReference<String> id = new AtomicReference<>("");
-        AtomicReference<Integer> count = new AtomicReference<>(1);
-        AtomicReference<String> tag = new AtomicReference<>();
+        AtomicReference<String> count = new AtomicReference<>("1");
+        Map<String, String> sdata = new HashMap<>();
+        Map<String, String> vdata = new HashMap<>();
 
-        ((List<XMLPropertyMeta>) properties)
+        ((List<XmlPropertyMeta>) properties)
             .forEach(propertyMeta -> {
                 switch(propertyMeta.propertyName()) {
                     case "id" -> id.set(propertyMeta.getValue(String.class));
-                    case "count" -> count.set(Integer.parseInt(propertyMeta.getValue(String.class)));
-                    case "tag" -> tag.set(propertyMeta.getValue(String.class));
+                    case "count" -> count.set(propertyMeta.getValue(String.class));
+                    case "sdata" -> sdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.getValue(String.class));
+                    case "vdata" -> vdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.attrs().getValue("var"));
                 }
             });
 
-        hoveredContent = new ItemHoveredContent(id.get(), count.get(), tag.get());
+        hoveredContent = new ItemHoveredContent(id.get(), count.get(), sdata, vdata);
     }
 
     @SuppressWarnings("unchecked")
@@ -102,7 +107,7 @@ public class GHoverComponent extends GAbstractComponent {
         AtomicReference<String> uuid = new AtomicReference<>("");
         AtomicReference<GComponent> name = new AtomicReference<>();
 
-        ((List<XMLPropertyMeta>) properties)
+        ((List<XmlPropertyMeta>) properties)
             .forEach(propertyMeta -> {
                 switch(propertyMeta.propertyName()) {
                     case "type" -> type.set(propertyMeta.getValue(String.class));
@@ -119,7 +124,7 @@ public class GHoverComponent extends GAbstractComponent {
         Component parent = Component.empty();
         HoverEventSource<?> instantiatedEvent = hoveredContent.instantiate(ctx);
 
-        mainContent.instantiateInParent(parent, ctx);
+        parent = mainContent.instantiateInParent(parent, ctx);
         return parent.hoverEvent(instantiatedEvent);
     }
 }

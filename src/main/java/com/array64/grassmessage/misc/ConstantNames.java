@@ -56,7 +56,7 @@ public class ConstantNames {
     );
 
     public record ModifierMapping(GComponentModifier modifier, String[] qNames) {}
-    public record ColorMapping(NamedTextColor color, String qName) {}
+    public record ColorMapping(NamedTextColor color, String name) {}
 
     private static ModifierMapping mod(GComponentModifier modifier, String... qNames) {
         return new ModifierMapping(modifier, qNames);

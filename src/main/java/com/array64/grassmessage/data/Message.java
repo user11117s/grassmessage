@@ -4,6 +4,7 @@ import com.array64.grassmessage.components.GComponent;
 import com.array64.grassmessage.components.InstantiationContext;
 import net.kyori.adventure.text.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Message {
@@ -16,18 +17,13 @@ public class Message {
     }
 
     public Component get() {
-        return this.get(Map.of(), Map.of());
+        return this.get(Map.of());
     }
 
-    public Component get(Map<String, String> vars) {
-        return this.get(vars, Map.of());
-    }
-
-    public Component get(
-            Map<String, String> vars, Map<String, Component> adventureComponents) {
+    public Component get(Map<String, Object> vars) {
 
         Component parent = Component.empty();
-        component.instantiateInParent(parent, new InstantiationContext(fileData, vars, adventureComponents));
+        parent = component.instantiateInParent(parent, new InstantiationContext(fileData, vars));
         return parent;
     }
 

@@ -5,7 +5,7 @@ import com.array64.grassmessage.data.FileData;
 import com.array64.grassmessage.data.Message;
 import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.parsers.FileParser;
-import com.array64.grassmessage.xml.XMLParserAdapter;
+import com.array64.grassmessage.xml.XmlParserAdapter;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -66,7 +66,7 @@ public class Grass {
         saxParser.getXMLReader().setEntityResolver(resolver);
 
         FileParser fileParser = new FileParser(fileData, componentRegistry);
-        saxParser.parse(is, new XMLParserAdapter(fileParser));
+        saxParser.parse(is, new XmlParserAdapter(fileParser));
     }
 
     public GComponentRegistry getComponentRegistry() {

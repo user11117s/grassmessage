@@ -37,7 +37,7 @@ public class GCompositeComponent extends GAbstractComponent {
 
         if(heldComponents.size() == 1) {
             Component thisComponent = Component.empty();
-            thisComponent = modifier.modify(thisComponent);
+            thisComponent = modifier.modify(thisComponent, ctx);
             thisComponent = heldComponents.get(0).instantiateInParent(thisComponent, ctx);
             return parent.append(thisComponent);
         }
@@ -46,7 +46,7 @@ public class GCompositeComponent extends GAbstractComponent {
                 return instantiateChildrenIn(parent, ctx);
             else {
                 Component thisComponent = Component.empty();
-                thisComponent = modifier.modify(thisComponent);
+                thisComponent = modifier.modify(thisComponent, ctx);
                 thisComponent = instantiateChildrenIn(thisComponent, ctx);
                 return parent.append(thisComponent);
             }

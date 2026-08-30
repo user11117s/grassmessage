@@ -11,10 +11,29 @@
             <xs:pattern value="#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}"/>
         </xs:restriction>
     </xs:simpleType>
+    
+    <xs:simpleType name="varAttr">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\$\([^$()]*\)"/>
+        </xs:restriction>
+    </xs:simpleType>
 
     <xs:complexType name="empty"/>
 
     <xs:element name="component" type="xs:anyType" abstract="true"/>
+
+    <xs:complexType name="stringDataComponent">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="key" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="valuedDataComponent">
+        <xs:attribute name="key" type="xs:string" use="required"/>
+        <xs:attribute name="var" type="xs:string" use="required"/>
+    </xs:complexType>
 
     <xs:complexType name="compositeComponent" mixed="true">
         <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -22,13 +41,24 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="itemType">
-        <xs:all>
-            <xs:element name="id" type="xs:string"/>
-            <xs:element name="count" type="xs:int" minOccurs="0"/>
-            <xs:element name="tag" type="xs:string" minOccurs="0"/>
-        </xs:all>
-    </xs:complexType>
+    <xs:element name="show_item">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+                <xs:element name="count" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:union memberTypes="xs:int varAttr"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="sdata" type="stringDataComponent" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="vdata" type="valuedDataComponent" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="uniqueKey">
+            <xs:selector xpath="sdata|vdata"/>
+            <xs:field xpath="@key"/>
+        </xs:unique>
+    </xs:element>
 
     <xs:complexType name="entityType">
         <xs:all>
@@ -67,7 +97,7 @@
                 <xs:element name="content" type="compositeComponent"/>
                 <xs:choice>
                     <xs:element name="show_text" type="compositeComponent"/>
-                    <xs:element name="show_item" type="itemType"/>
+                    <xs:element ref="show_item"/>
                     <xs:element name="show_entity" type="entityType"/>
                 </xs:choice>
             </xs:sequence>
@@ -77,16 +107,16 @@
     <!-- Styling -->
 
     <xs:element name="bold" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="b" substitutionGroup="bold"/>
+    <xs:element name="b" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="italic" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="i" substitutionGroup="italic"/>
+    <xs:element name="i" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="underlined" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="u" substitutionGroup="underlined"/>
+    <xs:element name="u" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="strikethrough" substitutionGroup="component" type="compositeComponent"/>
-    <xs:element name="st" substitutionGroup="strikethrough"/>
+    <xs:element name="st" substitutionGroup="component" type="compositeComponent"/>
 
     <xs:element name="reset" substitutionGroup="component" type="compositeComponent"/>
     <xs:element name="obf" substitutionGroup="component" type="compositeComponent"/>
@@ -115,7 +145,11 @@
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
-                    <xs:attribute name="hex" type="hexColor" use="required"/>
+                    <xs:attribute name="hex" use="required">
+                        <xs:simpleType>
+                            <xs:union memberTypes="hexColor varAttr"/>
+                        </xs:simpleType>
+                    </xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
@@ -125,13 +159,27 @@
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
-                    <xs:attribute name="color" type="hexColor8" use="required"/>
+                    <xs:attribute name="color" use="required">
+                        <xs:simpleType>
+                            <xs:union memberTypes="hexColor8 varAttr"/>
+                        </xs:simpleType>
+                    </xs:attribute>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="grad" substitutionGroup="component">
+    <xs:element name="gradref" substitutionGroup="component">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="ref" type="xs:Name" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="styleref" substitutionGroup="component">
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">

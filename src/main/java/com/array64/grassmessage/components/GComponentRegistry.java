@@ -68,17 +68,17 @@ public class GComponentRegistry {
         // 16 default chat colors
         for(ConstantNames.ColorMapping colorMapping : ConstantNames.CHAT_COLORS) {
             final NamedTextColor chatColor = colorMapping.color();
-            final String qName = colorMapping.qName();
+            final String qName = colorMapping.name();
 
             registerModifier(attrs -> GComponentModifiers.color(chatColor), qName);
         }
 
         // Modifiers with attributes
 
-        registerModifier(attrs -> GComponentModifiers.click(ClickEvent.clickEvent(
+        registerModifier(attrs -> GComponentModifiers.click(
             ConstantNames.CLICK_EVENTS.get(attrs.getValue("action")),
-            ClickEvent.Payload.string(attrs.getValue("value"))
-        )), "click");
+            attrs.getValue("value")
+        ), "click");
 
         registerModifier(attrs -> GComponentModifiers.color(attrs.getValue("hex")), "color");
         registerModifier(attrs -> GComponentModifiers.insertion(attrs.getValue("text")), "insertion");
@@ -89,7 +89,8 @@ public class GComponentRegistry {
         register(attrs -> new GScoreComponent(), "score");
         register(attrs -> new GSelectorComponent(), "selector");
         register(attrs -> new GKeybindComponent(), "keybind");
-        register(attrs -> new GGradientComponent(attrs.getValue("ref")), "grad");
+        register(attrs -> new GGradientComponent(attrs.getValue("ref")), "gradref");
+        register(attrs -> new GStyleComponent(attrs.getValue("ref"), this), "styleref");
 
         register(attrs -> new GAdventureComponent(attrs.getValue("name")), "adventure");
         register(attrs -> new GEmbeddedMessage(attrs.getValue("ref")), "embed_msg");

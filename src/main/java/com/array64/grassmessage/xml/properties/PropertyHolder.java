@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class PropertyHolder implements XMLProperty<List<XMLPropertyMeta>>, DepthTrackable {
+public class PropertyHolder implements XmlProperty<List<XmlPropertyMeta>>, DepthTrackable {
 
-    protected final Map<String, Supplier<XMLProperty<?>>> propertyParsers;
-    private final List<XMLPropertyMeta> properties;
+    protected final Map<String, Supplier<XmlProperty<?>>> propertyParsers;
+    private final List<XmlPropertyMeta> properties;
     private final DepthTracker depthTracker;
     private final int rootDepth;
 
-    private XMLPropertyMeta currentProperty;
+    private XmlPropertyMeta currentProperty;
 
-    public PropertyHolder(Map<String, Supplier<XMLProperty<?>>> propertyParsers, DepthTracker depthTracker) {
+    public PropertyHolder(Map<String, Supplier<XmlProperty<?>>> propertyParsers, DepthTracker depthTracker) {
         this.propertyParsers = propertyParsers;
         this.properties = new ArrayList<>();
         this.depthTracker = depthTracker;
@@ -28,7 +28,7 @@ public class PropertyHolder implements XMLProperty<List<XMLPropertyMeta>>, Depth
     @Override
     public void startTag(String qName, Attributes attrs) {
         if(atRootDepth())
-            this.currentProperty = new XMLPropertyMeta(qName, attrs, propertyParsers.get(qName).get());
+            this.currentProperty = new XmlPropertyMeta(qName, attrs, propertyParsers.get(qName).get());
         else
             this.currentProperty.parser().startTag(qName, attrs);
 
@@ -58,7 +58,7 @@ public class PropertyHolder implements XMLProperty<List<XMLPropertyMeta>>, Depth
     }
 
     @Override
-    public List<XMLPropertyMeta> get() {
+    public List<XmlPropertyMeta> get() {
         return properties;
     }
 

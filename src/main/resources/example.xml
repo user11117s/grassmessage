@@ -7,12 +7,20 @@
             <end>#00FFFF</end>
         </gradient>
     </gradients>
+    <styles>
+        <style name="lightred" color="#FFE0E0"/>
+    </styles>
     <messages>
         <message name="hello">
-            <b><green>Hello, World!</green></b>
-            <grad ref="cyan2white2cyan">
-                Hello, World but gradient!
-            </grad>
+            <hover>
+                <content>hhh</content>
+                <show_item>
+                    <id>aaa</id>
+                    <count>5</count>
+                    <sdata key="minecraft:a">b</sdata>
+                    <vdata key="minecraft:b" var="B"/>
+                </show_item>
+            </hover>
         </message>
     </messages>
 </grass>

@@ -3,21 +3,20 @@ package com.array64.grassmessage.components;
 import com.array64.grassmessage.data.FileData;
 import com.array64.grassmessage.data.GradientData;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.Style;
 
 import java.util.Map;
 import java.util.Objects;
 
 public class InstantiationContext {
     private final FileData fileData;
-    private final Map<String, String> vars;
-    private final Map<String, Component> adventureComponents;
+    private final Map<String, Object> vars;
     private final VariableSubstitutor variableSubstitutor;
 
     public InstantiationContext(
-            FileData fileData, Map<String, String> vars, Map<String, Component> adventureComponents) {
+            FileData fileData, Map<String, Object> vars) {
         this.fileData = fileData;
         this.vars = vars;
-        this.adventureComponents = adventureComponents;
         this.variableSubstitutor = new VariableSubstitutor(this);
     }
 
@@ -29,12 +28,16 @@ public class InstantiationContext {
         return fileData.getMessageComponent(ref);
     }
 
-    public String getVar(String name) {
-        return Objects.requireNonNull(vars.get(name), "Variable of name " + name + " was not provided.");
+    public Style getStyle(String ref) {
+        return fileData.getStyle(ref);
     }
 
-    public Component getAdventureComponent(String name) {
-        return Objects.requireNonNull(adventureComponents.get(name), "Adventure component of name " + name + " was not provided.");
+    public String getVar(String name) {
+        return getVarRaw(name).toString();
+    }
+
+    public Object getVarRaw(String name) {
+        return Objects.requireNonNull(vars.get(name), "Variable of name " + name + " was not provided.");
     }
 
     // Convert a string like "Hello, $(name)!" into "Hello, Tom!" during component instantiation

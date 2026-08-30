@@ -4,11 +4,11 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class XMLParserAdapter extends DefaultHandler {
-    private final XMLParser parser;
+public class XmlParserAdapter extends DefaultHandler {
+    private final XmlParser parser;
     private StringBuilder cumulativeText;
 
-    public XMLParserAdapter(XMLParser parser) {
+    public XmlParserAdapter(XmlParser parser) {
         this.parser = parser;
         this.cumulativeText = new StringBuilder();
     }

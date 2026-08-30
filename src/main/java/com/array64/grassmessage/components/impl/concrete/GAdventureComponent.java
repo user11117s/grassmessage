@@ -24,7 +24,12 @@ public class GAdventureComponent extends GAbstractComponent {
 
     @Override
     public Component instantiate(InstantiationContext ctx) {
-        return ctx.getAdventureComponent(name);
+        Object objComponent = ctx.getVarRaw(name);
+
+        if(objComponent instanceof Component component)
+            return component;
+        else
+            throw new IllegalArgumentException("Value of variable " + name + " is not an Adventure component.");
     }
 
     @Override

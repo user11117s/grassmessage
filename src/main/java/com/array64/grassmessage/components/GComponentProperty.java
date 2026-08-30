@@ -1,9 +1,9 @@
 package com.array64.grassmessage.components;
 
-import com.array64.grassmessage.xml.properties.XMLProperty;
+import com.array64.grassmessage.xml.properties.XmlProperty;
 import org.xml.sax.Attributes;
 
-public class GComponentProperty implements XMLProperty<GComponent> {
+public class GComponentProperty implements XmlProperty<GComponent> {
     private final GComponent component;
 
     public GComponentProperty(GComponent component) {

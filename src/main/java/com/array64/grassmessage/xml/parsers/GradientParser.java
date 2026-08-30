@@ -2,10 +2,10 @@ package com.array64.grassmessage.xml.parsers;
 
 import com.array64.grassmessage.misc.Color;
 import com.array64.grassmessage.data.GradientData;
-import com.array64.grassmessage.xml.XMLParser;
+import com.array64.grassmessage.xml.XmlParser;
 import org.xml.sax.Attributes;
 
-public class GradientParser implements XMLParser {
+public class GradientParser implements XmlParser {
     private final GradientData data;
     private Float stopPosition = null;
     private boolean doneParsing;
