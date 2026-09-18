@@ -4,32 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Better templating features">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/Preformat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/CallbackClickPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/ClickPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/ClickType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/CustomClickPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/DialogClickPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/IntegerClickPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/StringClickPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GClickComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHeadComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GPreformattedComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GSpriteComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifiers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/EntityHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/EntityHoveredContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GCompositeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GCompositeComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHoverComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHoverComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GTextComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GTextComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/ConstantNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/ConstantNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/PropertyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/PropertyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Extra adventure features, reform of click element">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/MessageInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/MessageInstanceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/components.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/example.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/example.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788105323342</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Extra adventure features, reform of click element">
+      <option name="closed" value="true" />
+      <created>1789756516997</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1789756516997</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -424,6 +411,7 @@
     <MESSAGE value="Pivoting to Adventure API: Part 2" />
     <MESSAGE value="Pivoting to Adventure API: Part 3" />
     <MESSAGE value="Better templating features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better templating features" />
+    <MESSAGE value="Extra adventure features, reform of click element" />
+    <option name="LAST_COMMIT_MESSAGE" value="Extra adventure features, reform of click element" />
   </component>
 </project>

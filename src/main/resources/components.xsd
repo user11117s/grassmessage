@@ -76,7 +76,11 @@
     <xs:complexType name="entityType">
         <xs:all>
             <xs:element name="type" type="xs:string"/>
-            <xs:element name="uuid" type="xs:string"/>
+            <xs:element name="uuid">
+                <xs:simpleType>
+                    <xs:union memberTypes="uuid varAttr"/>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name="name" type="compositeComponent" minOccurs="0"/>
         </xs:all>
     </xs:complexType>

@@ -3,6 +3,8 @@ package com.array64.grassmessage;
 import com.array64.grassmessage.components.GComponentRegistry;
 import com.array64.grassmessage.data.FileData;
 import com.array64.grassmessage.data.Message;
+import com.array64.grassmessage.data.MessageInstance;
+import com.array64.grassmessage.data.MessageInstanceImpl;
 import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.parsers.FileParser;
 import com.array64.grassmessage.xml.XmlParserAdapter;
@@ -73,7 +75,7 @@ public class Grass {
         return componentRegistry;
     }
 
-    public Message getMessage(String messageName) {
-        return fileData.getMessage(messageName);
+    public MessageInstance createMessageInstance(String messageName) {
+        return new MessageInstanceImpl(fileData.getMessage(messageName));
     }
 }
