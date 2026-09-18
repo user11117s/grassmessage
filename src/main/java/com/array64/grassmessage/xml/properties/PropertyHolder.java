@@ -33,10 +33,6 @@ public class PropertyHolder implements XmlProperty<List<XmlPropertyMeta>>, Depth
             this.currentProperty.parser().startTag(qName, attrs);
 
         // depthTracker.enter();
-        //
-        // SEND
-        // HELP
-        //
     }
 
     @Override

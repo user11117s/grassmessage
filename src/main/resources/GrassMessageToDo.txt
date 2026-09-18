@@ -1,7 +1,4 @@
-[3] Add horizontal and vertical spacing configurations
-[?] Add extra Adventure features (e.g. new styling, types of components, event types)
-[3] Review XSD component schemas in detail (maybe turn xs:Name into xs:string for placeholder attributes)
-[3] Take care of spacing of XMLProperties (i.e. trimming whitespace)
+[4] Change variables to have type, including new getters and creating a new builder. Add '$()' format to var attributes.
 [2] Turn on XInclude
 [1] Catalog should be able to resolve URLs without internet
 [1] Implement module-info.java

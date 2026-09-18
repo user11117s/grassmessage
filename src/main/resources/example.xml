@@ -12,15 +12,10 @@
     </styles>
     <messages>
         <message name="hello">
-            <hover>
-                <content>hhh</content>
-                <show_item>
-                    <id>aaa</id>
-                    <count>5</count>
-                    <sdata key="minecraft:a">b</sdata>
-                    <vdata key="minecraft:b" var="B"/>
-                </show_item>
-            </hover>
+            <click>
+                <content><b>Click on me to copy some self-affirmation!</b></content>
+                <copy_to_clipboard>You are lovely today.</copy_to_clipboard>
+            </click>
         </message>
     </messages>
 </grass>

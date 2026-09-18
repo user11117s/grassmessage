@@ -70,18 +70,20 @@ public class GCompositeComponent extends GAbstractComponent {
     @Override
     protected void enterTag(String qName, Attributes attrs) {
         if(atRootDepth()) {
-            Optional<String> whitespace = registry.getWhitespace(qName, attrs);
+            if(registry.topPreformat() == null) {
+                Optional<String> whitespace = registry.getWhitespace(qName, attrs);
 
-            if(whitespace.isPresent()) {
-                glue = Glue.TRUE;
-                appendText(whitespace.get());
-            }
-            else {
-                if(glue == Glue.FALSE) {
-                    appendText(" ");
-                    glue = Glue.DEFAULT;
+                if(whitespace.isPresent()) {
+                    glue = Glue.TRUE;
+                    appendText(whitespace.get());
+                } else {
+                    boolean addedNewline = addNewlineToPre();
+                    if(glue == Glue.FALSE) {
+                        if(!addedNewline) appendText(" ");
+                        glue = Glue.DEFAULT;
+                    }
+                    heldComponents.add(registry.get(qName, attrs));
                 }
-                heldComponents.add(registry.get(qName, attrs));
             }
         }
         else
@@ -90,8 +92,11 @@ public class GCompositeComponent extends GAbstractComponent {
 
     @Override
     protected void exitTag(String qName) {
-        if(atRootDepth())
+        if(atRootDepth()) {
             getLast().onEnd();
+            if(getLast() instanceof GPreformattedComponent)
+                glue = Glue.TRUE;
+        }
         else
             getLast().endTag(qName);
     }
@@ -99,20 +104,33 @@ public class GCompositeComponent extends GAbstractComponent {
     @Override
     public void parseText(String text) {
         if(atRootDepth()) {
-            String frontStrippedText = text.stripLeading();
-            String strippedText = frontStrippedText.stripTrailing();
+            if(registry.topPreformat() == null) {
+                if(text.isBlank()) {
+                    if(glue == Glue.DEFAULT) glue = Glue.FALSE;
+                    return;
+                }
 
-            // Turn leading whitespace into a single space.
-            if((frontStrippedText.length() < text.length() && glue == Glue.DEFAULT)
-                || glue == Glue.FALSE) {
+                addNewlineToPre();
 
-                appendText(" ");
+                String frontStrippedText = text.stripLeading();
+                String strippedText = frontStrippedText.stripTrailing();
+
+                // Turn leading whitespace into a single space.
+                if ((frontStrippedText.length() < text.length() && glue == Glue.DEFAULT)
+                        || glue == Glue.FALSE) {
+
+                    appendText(" ");
+                }
+
+                appendText(strippedText.replaceAll("\\s+", " "));
+
+                // Check if trailing whitespace exists.
+                glue = strippedText.length() == frontStrippedText.length() ? Glue.DEFAULT : Glue.FALSE;
             }
-
-            appendText(strippedText.replaceAll("\\s+", " "));
-
-            // Check if trailing whitespace exists.
-            glue = strippedText.length() == frontStrippedText.length() ? Glue.DEFAULT : Glue.FALSE;
+            else {
+                appendText(text);
+                registry.topPreformat().addTextComponent((GTextComponent) getLast());
+            }
         }
         else getLast().parseText(text);
     }
@@ -126,5 +144,14 @@ public class GCompositeComponent extends GAbstractComponent {
 
     private GComponent getLast() {
         return heldComponents.get(heldComponents.size() - 1);
+    }
+
+    private boolean addNewlineToPre() {
+        if(!heldComponents.isEmpty() && getLast() instanceof GPreformattedComponent preformatted)
+            if(!preformatted.isInline()) {
+                appendText("\n");
+                return true;
+            }
+        return false;
     }
 }

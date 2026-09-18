@@ -22,6 +22,8 @@ public class EntityHoveredContent implements HoveredContent {
 
     @Override
     public HoverEventSource<?> instantiate(InstantiationContext ctx) {
+        if(name == null) return HoverEvent.showEntity(Key.key(ctx.substituteVars(type)), UUID.fromString(ctx.substituteVars(uuid)));
+
         Component parent = Component.empty();
         parent = name.instantiateInParent(parent, ctx);
         return HoverEvent.showEntity(Key.key(ctx.substituteVars(type)), UUID.fromString(ctx.substituteVars(uuid)), parent);

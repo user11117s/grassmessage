@@ -1,5 +1,6 @@
 package com.array64.grassmessage.components;
 
+import net.kyori.adventure.dialog.DialogLike;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -28,12 +29,6 @@ public class GComponentModifiers {
 
     public static GComponentModifier shadow(String shadowColor) {
         return (component, ctx) -> component.shadowColor(ShadowColor.fromHexString(ctx.substituteVars(shadowColor)));
-    }
-
-    public static GComponentModifier click(ClickEvent.Action action, String value) {
-        return (component, ctx) -> component.clickEvent(
-                ClickEvent.clickEvent(action, ClickEvent.Payload.string(ctx.substituteVars(value)))
-        );
     }
 
     public static GComponentModifier font(String font) {

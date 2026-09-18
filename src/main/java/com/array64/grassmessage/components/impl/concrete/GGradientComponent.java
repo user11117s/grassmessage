@@ -36,6 +36,7 @@ public class GGradientComponent extends GAbstractComponent {
     }
 
     private Component instantiateTextInParent(Component parent, String text, InstantiationContext ctx) {
+        text = text.strip();
         int length = text.length();
         GradientData gradient = ctx.getGradient(ref);
 

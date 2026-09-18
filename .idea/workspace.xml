@@ -4,35 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GStyleComponent.java" afterDir="false" />
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Better templating features">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/Preformat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/CallbackClickPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/ClickPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/ClickType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/CustomClickPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/DialogClickPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/IntegerClickPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/StringClickPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GClickComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHeadComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GPreformattedComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GSpriteComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifiers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentProperty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/InstantiationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/InstantiationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/ItemHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/ItemHoveredContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GAdventureComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GAdventureComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/EntityHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/EntityHoveredContent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GCompositeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GCompositeComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHoverComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHoverComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/FileData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/FileData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GTextComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GTextComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/ConstantNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/ConstantNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XmlParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XMLParserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XmlParserAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/GradientParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/GradientParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/PropertyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/PropertyHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/TextHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/TextHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/XMLProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/XmlProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/XMLPropertyMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/XmlPropertyMeta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/components.xsd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/example.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/example.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.xsd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,13 +129,14 @@
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/arnavk/IdeaProjects/grassmessage&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.array64.grassmessage.components.impl.concrete" />
       <recent name="com.array64.grassmessage.components.hover" />
       <recent name="com.array64.grassmessage" />
     </key>
@@ -366,7 +364,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775839525896</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Better templating features">
+      <option name="closed" value="true" />
+      <created>1788105300247</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1788105300247</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Better templating features">
+      <option name="closed" value="true" />
+      <created>1788105323342</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1788105323342</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -409,6 +423,7 @@
     <MESSAGE value="Pivoting to Adventure API: Part 1" />
     <MESSAGE value="Pivoting to Adventure API: Part 2" />
     <MESSAGE value="Pivoting to Adventure API: Part 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pivoting to Adventure API: Part 3" />
+    <MESSAGE value="Better templating features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better templating features" />
   </component>
 </project>

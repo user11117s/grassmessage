@@ -13,6 +13,14 @@ public class GTextComponent extends GAbstractComponent {
         this.text += text;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     protected void enterTag(String qName, Attributes attrs) {
         throwOnEnterTag();

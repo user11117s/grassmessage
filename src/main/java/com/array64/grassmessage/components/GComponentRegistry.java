@@ -4,21 +4,23 @@ import com.array64.grassmessage.components.impl.concrete.*;
 import com.array64.grassmessage.misc.ConstantNames;
 import com.array64.grassmessage.xml.DepthTracker;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.event.ClickEvent;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Stack;
 import java.util.function.Function;
 
 public class GComponentRegistry {
     private final Map<String, GComponentFactory> componentFactories;
+    private final Stack<Preformat> preformats;
     public final DepthTracker depthTracker;
 
     public GComponentRegistry(DepthTracker depthTracker) {
         this.depthTracker = depthTracker;
         this.componentFactories = new HashMap<>();
+        this.preformats = new Stack<>();
         registerAll();
     }
 
@@ -75,11 +77,6 @@ public class GComponentRegistry {
 
         // Modifiers with attributes
 
-        registerModifier(attrs -> GComponentModifiers.click(
-            ConstantNames.CLICK_EVENTS.get(attrs.getValue("action")),
-            attrs.getValue("value")
-        ), "click");
-
         registerModifier(attrs -> GComponentModifiers.color(attrs.getValue("hex")), "color");
         registerModifier(attrs -> GComponentModifiers.insertion(attrs.getValue("text")), "insertion");
         registerModifier(attrs -> GComponentModifiers.font(attrs.getValue("font")), "font");
@@ -96,6 +93,19 @@ public class GComponentRegistry {
         register(attrs -> new GEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
         register(attrs -> new GTranslatableComponent(this), "translatable");
         register(attrs -> new GHoverComponent(this), "hover");
+        register(attrs -> new GPreformattedComponent(
+                attrs.getValue("dedent"),
+                attrs.getValue("trim_bounds"),
+                attrs.getValue("inline"),
+                this
+        ), "pre");
+
+        register(attrs -> new GSpriteComponent(
+                attrs.getValue("atlas"),
+                attrs.getValue("path")
+        ), "sprite");
+        register(attrs -> new GHeadComponent(attrs.getValue("outer_layer")), "head");
+        register(attrs -> new GClickComponent(this), "click");
     }
 
     public GCompositeComponent createCompositeComponent() {
@@ -103,5 +113,17 @@ public class GComponentRegistry {
         compositeComponent.initialize(depthTracker);
         compositeComponent.onStart();
         return compositeComponent;
+    }
+
+    public Preformat topPreformat() {
+        return preformats.isEmpty() ? null : preformats.peek();
+    }
+
+    public void addPreformat(Preformat preformat) {
+        this.preformats.push(preformat);
+    }
+
+    public void removePreformat() {
+        this.preformats.pop();
     }
 }

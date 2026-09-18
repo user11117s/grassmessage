@@ -20,7 +20,7 @@ public class ConstantNames {
         mod(GComponentModifiers.UNDERLINED, "underlined", "u"),
         mod(GComponentModifiers.STRIKETHROUGH, "strikethrough", "st"),
         mod(GComponentModifiers.OBFUSCATED, "obfuscated", "obf"),
-        mod(GComponentModifiers.RESET, "reset"),
+        mod(GComponentModifiers.RESET, "reset")
     };
     public static final ColorMapping[] CHAT_COLORS = {
         color(BLACK, "black"),
@@ -46,7 +46,9 @@ public class ConstantNames {
         entry("suggest_command", SUGGEST_COMMAND),
         entry("open_url", OPEN_URL),
         entry("change_page", CHANGE_PAGE),
-        entry("copy_to_clipboard", COPY_TO_CLIPBOARD)
+        entry("copy_to_clipboard", COPY_TO_CLIPBOARD),
+        entry("custom", CUSTOM),
+        entry("show_dialog", SHOW_DIALOG)
     );
 
     public static final Map<String, HoverEvent.Action<?>> HOVER_EVENTS = Map.ofEntries(

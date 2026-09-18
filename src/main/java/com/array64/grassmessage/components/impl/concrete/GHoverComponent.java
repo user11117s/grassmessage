@@ -13,14 +13,12 @@ import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
 import com.array64.grassmessage.xml.properties.XmlPropertyMeta;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.event.DataComponentValue;
 import net.kyori.adventure.text.event.HoverEventSource;
 import org.xml.sax.Attributes;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class GHoverComponent extends GAbstractComponent {
     private HoveredContent hoveredContent;
@@ -83,40 +81,38 @@ public class GHoverComponent extends GAbstractComponent {
 
     @SuppressWarnings("unchecked")
     private void parseItemProperties(List<?> properties) {
-        AtomicReference<String> id = new AtomicReference<>("");
-        AtomicReference<String> count = new AtomicReference<>("1");
+        String id = "";
+        String count = "1";
         Map<String, String> sdata = new HashMap<>();
         Map<String, String> vdata = new HashMap<>();
 
-        ((List<XmlPropertyMeta>) properties)
-            .forEach(propertyMeta -> {
+        for(var propertyMeta : (List<XmlPropertyMeta>) properties) {
                 switch(propertyMeta.propertyName()) {
-                    case "id" -> id.set(propertyMeta.getValue(String.class));
-                    case "count" -> count.set(propertyMeta.getValue(String.class));
+                    case "id" -> id = propertyMeta.getValue(String.class);
+                    case "count" -> count = propertyMeta.getValue(String.class);
                     case "sdata" -> sdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.getValue(String.class));
                     case "vdata" -> vdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.attrs().getValue("var"));
                 }
-            });
+            }
 
-        hoveredContent = new ItemHoveredContent(id.get(), count.get(), sdata, vdata);
+        hoveredContent = new ItemHoveredContent(id, count, sdata, vdata);
     }
 
     @SuppressWarnings("unchecked")
     private void parseEntityProperties(List<?> properties) {
-        AtomicReference<String> type = new AtomicReference<>("");
-        AtomicReference<String> uuid = new AtomicReference<>("");
-        AtomicReference<GComponent> name = new AtomicReference<>();
+        String type = "";
+        String uuid = "";
+        GComponent name = null;
 
-        ((List<XmlPropertyMeta>) properties)
-            .forEach(propertyMeta -> {
-                switch(propertyMeta.propertyName()) {
-                    case "type" -> type.set(propertyMeta.getValue(String.class));
-                    case "uuid" -> uuid.set(propertyMeta.getValue(String.class));
-                    case "name" -> name.set(propertyMeta.getValue(GComponent.class));
-                }
-            });
+        for(var propertyMeta : (List<XmlPropertyMeta>) properties) {
+            switch(propertyMeta.propertyName()) {
+                case "type" -> type = propertyMeta.getValue(String.class);
+                case "uuid" -> uuid = propertyMeta.getValue(String.class);
+                case "name" -> name = propertyMeta.getValue(GComponent.class);
+            }
+        }
 
-        hoveredContent = new EntityHoveredContent(type.get(), uuid.get(), name.get());
+        hoveredContent = new EntityHoveredContent(type, uuid, name);
     }
 
     @Override
