@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Extra adventure features, reform of click element">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/MessageInstance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/MessageInstanceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Add Evaluation class">
       <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/components.xsd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -367,7 +364,31 @@
       <option name="project" value="LOCAL" />
       <updated>1789756516997</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Wrap variable map in builder">
+      <option name="closed" value="true" />
+      <created>1789758632292</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1789758632292</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Add Evaluation class">
+      <option name="closed" value="true" />
+      <created>1789793418802</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1789793418802</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add Evaluation class">
+      <option name="closed" value="true" />
+      <created>1789793621858</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1789793621858</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -412,6 +433,8 @@
     <MESSAGE value="Pivoting to Adventure API: Part 3" />
     <MESSAGE value="Better templating features" />
     <MESSAGE value="Extra adventure features, reform of click element" />
-    <option name="LAST_COMMIT_MESSAGE" value="Extra adventure features, reform of click element" />
+    <MESSAGE value="Wrap variable map in builder" />
+    <MESSAGE value="Add Evaluation class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Evaluation class" />
   </component>
 </project>

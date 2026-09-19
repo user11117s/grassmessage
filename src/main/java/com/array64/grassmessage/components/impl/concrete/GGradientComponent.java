@@ -18,11 +18,13 @@ public class GGradientComponent extends GAbstractComponent {
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
-        throw new IllegalStateException("Unexpected tag: " + qName);
+        throwOnEnterTag();
     }
 
     @Override
-    protected void exitTag(String qName) {}
+    protected void exitTag(String qName) {
+        throwOnExitTag();
+    }
 
     @Override
     public Component instantiateInParent(Component parent, InstantiationContext ctx) {

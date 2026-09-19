@@ -1,6 +1,7 @@
 package com.array64.grassmessage.components.hover;
 
 import com.array64.grassmessage.components.InstantiationContext;
+import com.array64.grassmessage.misc.Evaluation;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.nbt.api.BinaryTagHolder;
 import net.kyori.adventure.text.event.DataComponentValue;
@@ -27,22 +28,14 @@ public class ItemHoveredContent implements HoveredContent {
     public HoverEventSource<?> instantiate(InstantiationContext ctx) {
         HoverEvent.ShowItem showItem = HoverEvent.ShowItem.showItem(
                 Key.key(ctx.substituteVars(id)),
-                Integer.parseInt(ctx.substituteVars(count))
+                Evaluation.evalInt(count, ctx)
         );
         if(sdata.isEmpty() && vdata.isEmpty()) return HoverEvent.showItem(showItem);
 
         Map<Key, DataComponentValue> dataComponentMap = new HashMap<>();
-        sdata.forEach((k, v) -> {
-            dataComponentMap.put(Key.key(k), BinaryTagHolder.binaryTagHolder(ctx.substituteVars(v)));
-        });
-        vdata.forEach((k, v) -> {
-            try {
-                dataComponentMap.put(Key.key(k), (DataComponentValue) ctx.getVarRaw(v));
-            }
-            catch(ClassCastException e) {
-                throw new IllegalArgumentException("Value of " + k + ", pointed to by variable " + v + ", is not of type DataComponentValue.");
-            }
-        });
+        sdata.forEach((k, v) -> dataComponentMap.put(Key.key(k), BinaryTagHolder.binaryTagHolder(ctx.substituteVars(v))));
+        vdata.forEach((k, v) -> dataComponentMap.put(Key.key(k), Evaluation.evalData(v, ctx)));
+
         return HoverEvent.showItem(showItem.dataComponents(dataComponentMap));
     }
 }

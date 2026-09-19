@@ -8,7 +8,6 @@ import org.xml.sax.Attributes;
 public class GradientParser implements XmlParser {
     private final GradientData data;
     private Float stopPosition = null;
-    private boolean doneParsing;
 
     public GradientParser(GradientData data) {
         this.data = data;
@@ -20,15 +19,12 @@ public class GradientParser implements XmlParser {
             case "start" -> 0f;
             case "end" -> 1f;
             case "middle" -> Float.parseFloat(attrs.getValue("position"));
-            default -> throw new IllegalStateException("Unexpected tag: " + qName);
+            default -> throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Unexpected tag: " + qName);
         };
     }
 
     @Override
-    public void endTag(String qName) {
-        if(qName.equals("gradient"))
-            this.doneParsing = true;
-    }
+    public void endTag(String qName) {}
 
     @Override
     public void parseText(String text) {

@@ -7,12 +7,12 @@ public class TextHolder implements XmlProperty<String> {
 
     @Override
     public void startTag(String qName, Attributes attrs) {
-        throw new UnsupportedOperationException("Text holder can't have child elements.");
+        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Text holder can't have child elements.");
     }
 
     @Override
     public void endTag(String qName) {
-        throw new UnsupportedOperationException("Text holder can't have child elements.");
+        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Text holder can't have child elements.");
     }
 
     @Override

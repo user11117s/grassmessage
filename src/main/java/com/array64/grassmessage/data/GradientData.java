@@ -16,7 +16,7 @@ public class GradientData {
 
     public Color evaluate(float position) {
         if(position < 0 || position > 1)
-            throw new IllegalArgumentException("position must be between 0 and 1.");
+            throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Position must be between 0 and 1.");
 
         Iterator<ColorStop> stopIterator = colorStops.iterator();
         ColorStop previous = stopIterator.next();
@@ -33,7 +33,7 @@ public class GradientData {
                 );
             } else previous = next;
         }
-        throw new IllegalStateException("gradient does not have end stop yet.");
+        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Gradient does not have end stop.");
     }
     private record ColorStop(float position, Color color) {}
 }

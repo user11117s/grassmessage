@@ -9,7 +9,6 @@ import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.properties.PropertyHolder;
 import com.array64.grassmessage.xml.properties.TextHolder;
 import com.array64.grassmessage.xml.properties.XmlPropertyMeta;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickCallback;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -69,15 +68,20 @@ public class GClickComponent extends GAbstractComponent {
     private void parseCustomProperties(List<?> properties) {
         String id = "";
         String customPayload = "{}";
+        boolean isVar = false;
 
         for(var propertyMeta : (List<XmlPropertyMeta>) properties) {
             switch(propertyMeta.propertyName()) {
                 case "id" -> id = propertyMeta.getValue(String.class);
-                case "payload" -> customPayload = propertyMeta.getValue(String.class);
+                case "spayload" -> customPayload = propertyMeta.getValue(String.class);
+                case "vpayload" -> {
+                    isVar = true;
+                    customPayload = propertyMeta.attrs().getValue("src");
+                }
             }
         }
 
-        payload = new CustomClickPayload(id, customPayload);
+        payload = new CustomClickPayload(id, customPayload, isVar);
     }
 
     @Override
@@ -114,7 +118,7 @@ public class GClickComponent extends GAbstractComponent {
                         case "open_url" -> ClickType.OPEN_URL;
                         case "open_file" -> ClickType.OPEN_FILE;
                         case "copy_to_clipboard" -> ClickType.COPY_TO_CLIPBOARD;
-                        default -> throw new IllegalStateException("This should not happen.");
+                        default -> throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Unexpected click action: " + propertyMeta.propertyName());
                     };
                 }
             }
@@ -122,25 +126,21 @@ public class GClickComponent extends GAbstractComponent {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected Component instantiate(InstantiationContext ctx) {
-        try {
-            Component parent = Component.empty();
-            parent = mainContent.instantiateInParent(parent, ctx);
+        Component parent = Component.empty();
+        parent = mainContent.instantiateInParent(parent, ctx);
+        if(type == ClickType.CALLBACK) {
+            CallbackClickPayload callbackPayload = (CallbackClickPayload) payload;
             return parent.clickEvent(
-                type == ClickType.CALLBACK
-                ? ClickEvent.callback(
-                    (ClickCallback<Audience>) ctx.getVarRaw(((CallbackClickPayload) payload).getVar()),
+                ClickEvent.callback(
+                    callbackPayload.getCallback(ctx),
                     ClickCallback.Options.builder()
-                        .lifetime(((CallbackClickPayload) payload).getDuration(ctx))
-                        .uses(((CallbackClickPayload) payload).getUses(ctx))
+                        .lifetime(callbackPayload.getDuration(ctx))
+                        .uses(callbackPayload.getUses(ctx))
                         .build()
                 )
-                : ClickEvent.clickEvent(type.getAction(), payload.getPayload(ctx))
             );
-        } catch(ClassCastException e) {
-            throw new IllegalArgumentException("Click event callback, pointed to by variable "
-                    + ((CallbackClickPayload) payload).getVar() + ", is not a ClickCallback<Audience>");
         }
+        else return parent.clickEvent(ClickEvent.clickEvent(type.getAction(), payload.getPayload(ctx)));
     }
 }

@@ -33,7 +33,7 @@ public class Grass {
     public Grass(InputStream messagesStream) throws IOException, SAXException {
         InputStream schemaStream = getClass().getClassLoader().getResourceAsStream("schema.xsd");
         if(schemaStream == null)
-            throw new RuntimeException("Schema could not be found. This should not be happening.");
+            throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Schema could not be found.");
 
         try(schemaStream) {
             parseXML(schemaStream, messagesStream);
@@ -53,7 +53,7 @@ public class Grass {
 
     private void parseXML(InputStream schemaIS, InputStream is) throws IOException, SAXException, ParserConfigurationException, URISyntaxException {
         // Load catalog
-        URI catalogURI = Objects.requireNonNull(getClass().getClassLoader().getResource("catalog.xml")).toURI();
+        URI catalogURI = Objects.requireNonNull(getClass().getClassLoader().getResource("catalog.xml"), "[THIS SHOULD NEVER HAPPEN] Catalog could not be found.").toURI();
         CatalogResolver resolver = CatalogManager.catalogResolver(CatalogFeatures.defaults(), catalogURI);
 
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);

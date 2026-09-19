@@ -45,7 +45,7 @@
 
     <xs:complexType name="valuedDataComponent">
         <xs:attribute name="key" type="xs:string" use="required"/>
-        <xs:attribute name="var" type="xs:string" use="required"/>
+        <xs:attribute name="src" type="varAttr" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="compositeComponent" mixed="true">
@@ -119,18 +119,25 @@
                         <xs:complexType>
                             <xs:sequence>
                                 <xs:element name="id" type="xs:string"/>
-                                <xs:element name="payload" type="xs:string"/>
+                                <xs:choice>
+                                    <xs:element name="spayload" type="xs:string"/>
+                                    <xs:element name="vpayload">
+                                        <xs:complexType>
+                                            <xs:attribute name="src" type="varAttr" use="required"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:choice>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="show_dialog">
                         <xs:complexType>
-                            <xs:attribute name="var" type="xs:string" use="required"/>
+                            <xs:attribute name="src" type="varAttr" use="required"/>
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="callback">
                         <xs:complexType>
-                            <xs:attribute name="var" type="xs:string" use="required"/>
+                            <xs:attribute name="src" type="varAttr" use="required"/>
                             <xs:attribute name="uses" default="1">
                                 <xs:simpleType>
                                     <xs:union memberTypes="xs:int varAttr"/>
@@ -308,7 +315,7 @@
 
     <xs:element name="adventure" substitutionGroup="component">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:Name" use="required"/>
+            <xs:attribute name="src" type="varAttr" use="required"/>
         </xs:complexType>
     </xs:element>
 

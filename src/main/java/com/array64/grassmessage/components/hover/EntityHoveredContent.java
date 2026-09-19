@@ -2,6 +2,7 @@ package com.array64.grassmessage.components.hover;
 
 import com.array64.grassmessage.components.GComponent;
 import com.array64.grassmessage.components.InstantiationContext;
+import com.array64.grassmessage.misc.Evaluation;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -22,10 +23,10 @@ public class EntityHoveredContent implements HoveredContent {
 
     @Override
     public HoverEventSource<?> instantiate(InstantiationContext ctx) {
-        if(name == null) return HoverEvent.showEntity(Key.key(ctx.substituteVars(type)), UUID.fromString(ctx.substituteVars(uuid)));
+        if(name == null) return HoverEvent.showEntity(Key.key(ctx.substituteVars(type)), Evaluation.evalUUID(uuid, ctx));
 
         Component parent = Component.empty();
         parent = name.instantiateInParent(parent, ctx);
-        return HoverEvent.showEntity(Key.key(ctx.substituteVars(type)), UUID.fromString(ctx.substituteVars(uuid)), parent);
+        return HoverEvent.showEntity(Key.key(ctx.substituteVars(type)), Evaluation.evalUUID(uuid, ctx), parent);
     }
 }

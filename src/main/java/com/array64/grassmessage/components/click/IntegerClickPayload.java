@@ -1,6 +1,7 @@
 package com.array64.grassmessage.components.click;
 
 import com.array64.grassmessage.components.InstantiationContext;
+import com.array64.grassmessage.misc.Evaluation;
 import net.kyori.adventure.text.event.ClickEvent;
 
 public class IntegerClickPayload implements ClickPayload {
@@ -12,6 +13,6 @@ public class IntegerClickPayload implements ClickPayload {
 
     @Override
     public ClickEvent.Payload getPayload(InstantiationContext ctx) {
-        return ClickEvent.Payload.integer(Integer.parseInt(ctx.substituteVars(value)));
+        return ClickEvent.Payload.integer(Evaluation.evalInt(value, ctx));
     }
 }

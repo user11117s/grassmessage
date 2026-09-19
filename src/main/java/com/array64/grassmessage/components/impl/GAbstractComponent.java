@@ -37,19 +37,19 @@ public abstract class GAbstractComponent implements GComponent, DepthTrackable {
     // Helper methods for subclasses
 
     protected void throwOnEnterTag() {
-        throw new UnsupportedOperationException(this.getClass() + " does not support enterTag.");
+        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN]" + this.getClass() + " does not support enterTag.");
     }
 
     protected void throwOnExitTag() {
-        throw new UnsupportedOperationException(this.getClass() + " does not support exitTag.");
+        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN]" + this.getClass() + " does not support exitTag.");
     }
 
     protected void throwOnParseText() {
-        throw new UnsupportedOperationException(this.getClass() + " does not support parseText.");
+        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN]" + this.getClass() + " does not support parseText.");
     }
 
     protected void throwOnInstantiate() {
-        throw new UnsupportedOperationException(this.getClass() + " does not support instantiate.");
+        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN]" + this.getClass() + " does not support instantiate.");
     }
 
     @Override
