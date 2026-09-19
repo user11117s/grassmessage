@@ -91,7 +91,7 @@ public class GHoverComponent extends GAbstractComponent {
                     case "id" -> id = propertyMeta.getValue(String.class);
                     case "count" -> count = propertyMeta.getValue(String.class);
                     case "sdata" -> sdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.getValue(String.class));
-                    case "vdata" -> vdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.attrs().getValue("var"));
+                    case "vdata" -> vdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.attrs().getValue("src"));
                 }
             }
 

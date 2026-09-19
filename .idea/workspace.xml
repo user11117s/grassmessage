@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Add Evaluation class">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/components.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/ItemHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/ItemHoveredContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GClickComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GClickComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/catalog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/catalog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/components.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/example.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/example.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/schema.xsd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +105,7 @@
     &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.GrassMessage [dependencies].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.grassmessage [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.grassmessage [publishMavenJavaPublicationToMavenLocal].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.grassmessage [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
@@ -107,7 +117,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalResources&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -117,6 +127,7 @@
       <recent name="com.array64.grassmessage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\arnavk\IdeaProjects\grassmessage\src\main\resources\META-INF\xml" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
@@ -171,6 +182,31 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="grassmessage [publishMavenJavaPublicationToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishMavenJavaPublicationToMavenLocal" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
     <configuration name="grassmessage [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -199,6 +235,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.grassmessage [publishToMavenLocal]" />
+        <item itemvalue="Gradle.grassmessage [publishMavenJavaPublicationToMavenLocal]" />
         <item itemvalue="Gradle.grassmessage [build]" />
         <item itemvalue="Gradle.GrassMessage [dependencies]" />
       </list>
@@ -388,7 +425,31 @@
       <option name="project" value="LOCAL" />
       <updated>1789793621858</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add Evaluation class">
+      <option name="closed" value="true" />
+      <created>1789794028456</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1789794028456</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Add Evaluation class">
+      <option name="closed" value="true" />
+      <created>1789847000349</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1789847000349</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Add Evaluation class">
+      <option name="closed" value="true" />
+      <created>1789857432282</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1789857432282</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -436,5 +497,9 @@
     <MESSAGE value="Wrap variable map in builder" />
     <MESSAGE value="Add Evaluation class" />
     <option name="LAST_COMMIT_MESSAGE" value="Add Evaluation class" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

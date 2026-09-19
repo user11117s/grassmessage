@@ -1,8 +1,7 @@
-[4] Change variables to have type, including new getters and creating a new builder. Add '$()' format to var attributes.
-[2] Turn on XInclude
-[1] Catalog should be able to resolve URLs without internet
+[2] Add variable support for gradients and styles
 [1] Implement module-info.java
 [3] Remove warnings
+[3] Test speed and find bottlenecks
 [5] Documentation (XML and Java)
 
 Number in square brackets represents how long it'll take:

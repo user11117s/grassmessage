@@ -96,12 +96,12 @@ public class GClickComponent extends GAbstractComponent {
                 }
                 case "show_dialog" -> {
                     type = ClickType.SHOW_DIALOG;
-                    payload = new DialogClickPayload(propertyMeta.attrs().getValue("var"));
+                    payload = new DialogClickPayload(propertyMeta.attrs().getValue("src"));
                 }
                 case "callback" -> {
                     type = ClickType.CALLBACK;
                     payload = new CallbackClickPayload(
-                        propertyMeta.attrs().getValue("var"),
+                        propertyMeta.attrs().getValue("src"),
                         propertyMeta.attrs().getValue("duration"),
                         propertyMeta.attrs().getValue("uses")
                     );
@@ -141,6 +141,12 @@ public class GClickComponent extends GAbstractComponent {
                 )
             );
         }
-        else return parent.clickEvent(ClickEvent.clickEvent(type.getAction(), payload.getPayload(ctx)));
+        else {
+            if(type == ClickType.CHANGE_PAGE)
+                if(((ClickEvent.Payload.Int) payload.getPayload(ctx)).integer() < 1)
+                    throw new IllegalArgumentException("Page number is less than 1.");
+
+            return parent.clickEvent(ClickEvent.clickEvent(type.getAction(), payload.getPayload(ctx)));
+        }
     }
 }

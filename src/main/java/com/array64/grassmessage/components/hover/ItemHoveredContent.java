@@ -26,10 +26,10 @@ public class ItemHoveredContent implements HoveredContent {
 
     @Override
     public HoverEventSource<?> instantiate(InstantiationContext ctx) {
-        HoverEvent.ShowItem showItem = HoverEvent.ShowItem.showItem(
-                Key.key(ctx.substituteVars(id)),
-                Evaluation.evalInt(count, ctx)
-        );
+        int countInt = Evaluation.evalInt(count, ctx);
+        if(countInt < 0) throw new IllegalArgumentException("Count of item is negative.");
+
+        HoverEvent.ShowItem showItem = HoverEvent.ShowItem.showItem(Key.key(ctx.substituteVars(id)), countInt);
         if(sdata.isEmpty() && vdata.isEmpty()) return HoverEvent.showItem(showItem);
 
         Map<Key, DataComponentValue> dataComponentMap = new HashMap<>();

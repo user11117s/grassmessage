@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <system systemId="https://raw.githubusercontent.com/user11117s/grassmessage-schemas/refs/heads/main/components.xsd"
-            uri="components.xsd"/>
-    <system systemId="https://raw.githubusercontent.com/user11117s/grassmessage-schemas/refs/heads/main/schema.xsd"
-            uri="schema.xsd"/>
-</catalog>

@@ -8,67 +8,55 @@ import com.array64.grassmessage.data.MessageInstanceImpl;
 import com.array64.grassmessage.xml.DepthTracker;
 import com.array64.grassmessage.xml.parsers.FileParser;
 import com.array64.grassmessage.xml.XmlParserAdapter;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
-import javax.xml.catalog.CatalogFeatures;
-import javax.xml.catalog.CatalogManager;
-import javax.xml.catalog.CatalogResolver;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.sax.SAXSource;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Objects;
 
 public class Grass {
     private final FileData fileData = new FileData();
     private final GComponentRegistry componentRegistry = new GComponentRegistry(new DepthTracker());
 
-    public Grass(InputStream messagesStream) throws IOException, SAXException {
-        InputStream schemaStream = getClass().getClassLoader().getResourceAsStream("schema.xsd");
-        if(schemaStream == null)
-            throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Schema could not be found.");
+    public Grass(URL messagesFile) throws IOException, SAXException {
+        this(messagesFile, Objects.requireNonNull(Grass.class.getResource("/META-INF/xml/schema.xsd"), "[THIS SHOULD NEVER HAPPEN] Schema could not be found."));
+    }
 
-        try(schemaStream) {
-            parseXML(schemaStream, messagesStream);
+    public Grass(URL messagesFile, URL schemaFile) throws IOException, SAXException {
+        try {
+            parseXML(messagesFile, schemaFile);
         }
         catch(ParserConfigurationException | URISyntaxException e) {
             throw new RuntimeException(e); // Nous ne mettons pas la blâme sur le client pour nos propres fauts.
         }
     }
 
-    public Grass(InputStream messagesStream, InputStream schemaStream) throws IOException, SAXException {
-        try {
-            parseXML(schemaStream, messagesStream);
-        } catch(ParserConfigurationException | URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void parseXML(InputStream schemaIS, InputStream is) throws IOException, SAXException, ParserConfigurationException, URISyntaxException {
-        // Load catalog
-        URI catalogURI = Objects.requireNonNull(getClass().getClassLoader().getResource("catalog.xml"), "[THIS SHOULD NEVER HAPPEN] Catalog could not be found.").toURI();
-        CatalogResolver resolver = CatalogManager.catalogResolver(CatalogFeatures.defaults(), catalogURI);
-
+    private void parseXML(URL messagesFile, URL schemaFile) throws IOException, SAXException, ParserConfigurationException, URISyntaxException {
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        schemaFactory.setResourceResolver(resolver);
-        Schema schema = schemaFactory.newSchema(new StreamSource(schemaIS));
+        Schema schema = schemaFactory.newSchema(schemaFile);
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setSchema(schema);
         factory.setNamespaceAware(true);
-
+        factory.setXIncludeAware(true);
         SAXParser saxParser = factory.newSAXParser();
-        saxParser.getXMLReader().setEntityResolver(resolver);
+
+        Validator validator = schema.newValidator();
+        validator.validate(new SAXSource(saxParser.getXMLReader(), new InputSource(messagesFile.toExternalForm())));
 
         FileParser fileParser = new FileParser(fileData, componentRegistry);
-        saxParser.parse(is, new XmlParserAdapter(fileParser));
+        saxParser.parse(messagesFile.toExternalForm(), new XmlParserAdapter(fileParser));
     }
 
     public GComponentRegistry getComponentRegistry() {
@@ -76,6 +64,7 @@ public class Grass {
     }
 
     public MessageInstance createMessageInstance(String messageName) {
-        return new MessageInstanceImpl(fileData.getMessage(messageName));
+        Message message = Objects.requireNonNull(fileData.getMessage(messageName), "Message " + messageName + "does not exist.");
+        return new MessageInstanceImpl(message);
     }
 }

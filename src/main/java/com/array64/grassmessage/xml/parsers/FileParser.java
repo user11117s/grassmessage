@@ -4,7 +4,6 @@ import com.array64.grassmessage.components.impl.concrete.GCompositeComponent;
 import com.array64.grassmessage.components.GComponentRegistry;
 import com.array64.grassmessage.data.FileData;
 import com.array64.grassmessage.data.GradientData;
-import com.array64.grassmessage.misc.Color;
 import com.array64.grassmessage.misc.ConstantNames;
 import com.array64.grassmessage.xml.XmlParser;
 import net.kyori.adventure.key.Key;
@@ -14,10 +13,13 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.xml.sax.Attributes;
 
+import java.util.Objects;
+
 public class FileParser implements XmlParser {
     private final FileData fileData;
     private final GComponentRegistry componentRegistry;
     private XmlParser currentSubParser = null;
+    private boolean rootFound = false;
 
     public FileParser(FileData fileData, GComponentRegistry componentRegistry) {
         this.fileData = fileData;
@@ -25,6 +27,10 @@ public class FileParser implements XmlParser {
     }
 
     public void startTag(String qName, Attributes attrs) {
+        if(!rootFound) {
+            if(!"grass".equals(qName)) throw new IllegalStateException("Root element is not grass.");
+            rootFound = true;
+        }
         if(currentSubParser == null) {
             // Use respective parsers when they come.
             // XSD does the heavy lifting of validation for us.
