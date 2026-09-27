@@ -29,8 +29,12 @@ public class GradientParser implements XmlParser {
     @Override
     public void parseText(String text) {
         if(stopPosition != null) {
-            data.addStop(stopPosition, new Color(text));
+            data.addStop(stopPosition, text);
             stopPosition = null;
         }
+    }
+
+    public GradientData getData() {
+        return data;
     }
 }

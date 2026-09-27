@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Add Evaluation class">
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Add XInclude">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/ItemHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/ItemHoveredContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GClickComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GClickComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/GradientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/GradientData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/GradientParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/GradientParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/catalog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/catalog.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/components.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/components.xsd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/example.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/example.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/schema.xsd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/xml/schema.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/schema.xsd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +88,9 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.md-5/bungeecord-chat/1.21-R0.4-SNAPSHOT/e0da19182cb027b04b0e1249db8c0f066d34a8b/bungeecord-chat-1.21-R0.4-SNAPSHOT-sources.jar!/net/md_5/bungee/api/chat/ComponentBuilder.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -449,7 +450,23 @@
       <option name="project" value="LOCAL" />
       <updated>1789857432282</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Add XInclude">
+      <option name="closed" value="true" />
+      <created>1790528636871</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1790528636871</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Add XInclude">
+      <option name="closed" value="true" />
+      <created>1790528754596</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1790528754596</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -496,7 +513,8 @@
     <MESSAGE value="Extra adventure features, reform of click element" />
     <MESSAGE value="Wrap variable map in builder" />
     <MESSAGE value="Add Evaluation class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Evaluation class" />
+    <MESSAGE value="Add XInclude" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add XInclude" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

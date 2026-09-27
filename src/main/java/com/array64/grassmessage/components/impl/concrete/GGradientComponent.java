@@ -8,6 +8,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.xml.sax.Attributes;
 
+import java.util.Iterator;
+
 public class GGradientComponent extends GAbstractComponent {
     private String text = "";
     private final String ref;
@@ -38,18 +40,17 @@ public class GGradientComponent extends GAbstractComponent {
     }
 
     private Component instantiateTextInParent(Component parent, String text, InstantiationContext ctx) {
-        text = text.strip();
-        int length = text.length();
+        String finalText = text.strip();
+        int length = finalText.length();
         GradientData gradient = ctx.getGradient(ref);
+        Component[] atomParent = new Component[] {parent};
 
-        for(int i = 0; i < length; i++) {
-            Component component = Component.text(Character.toString(text.charAt(i)));
-            Color color = gradient.evaluate((float) i / Math.max(1f, length - 1));
-            component = component.color(TextColor.fromHexString(color.toString()));
+        gradient.evaluate(length, (color, i) -> {
+            Component ch = Component.text(Character.toString(finalText.charAt(i)));
+            atomParent[0] = atomParent[0].append(ch.color(color));
+        }, ctx);
 
-            parent = parent.append(component);
-        }
-        return parent;
+        return atomParent[0];
     }
 
     @Override

@@ -99,6 +99,9 @@ public class FileParser implements XmlParser {
     @Override
     public void endTag(String qName) {
         if(qName.equals("gradient") || qName.equals("message")) {
+            if(qName.equals("gradient"))
+                ((GradientParser) currentSubParser).getData().onEnd();
+
             currentSubParser = null;
             componentRegistry.depthTracker.exit();
         }

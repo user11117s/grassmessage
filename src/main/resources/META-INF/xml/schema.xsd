@@ -16,13 +16,15 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="flexHexColor">
+        <xs:union memberTypes="hexColor varAttr"/>
+    </xs:simpleType>
+
     <!--
     _______________
     Top-level setup
     _______________
     -->
-
-    <!-- Types -->
 
     <xs:element name="message">
         <xs:complexType>
@@ -45,7 +47,7 @@
 
     <xs:complexType name="middleColorStopType">
         <xs:simpleContent>
-            <xs:extension base="hexColor">
+            <xs:extension base="flexHexColor">
                 <xs:attribute name="position" type="normalizedFloat" use="required"/>
             </xs:extension>
         </xs:simpleContent>
@@ -54,9 +56,9 @@
     <xs:element name="gradient">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="start" type="hexColor"/>
+                <xs:element name="start" type="flexHexColor"/>
                 <xs:element name="middle" minOccurs="0" maxOccurs="unbounded" type="middleColorStopType"/>
-                <xs:element name="end" type="hexColor"/>
+                <xs:element name="end" type="flexHexColor"/>
             </xs:sequence>
             <xs:attribute name="name" type="xs:Name" use="required"/>
         </xs:complexType>

@@ -1,39 +1,54 @@
 package com.array64.grassmessage.data;
 
+import com.array64.grassmessage.components.InstantiationContext;
 import com.array64.grassmessage.misc.Color;
+import com.array64.grassmessage.misc.Evaluation;
+import net.kyori.adventure.text.format.TextColor;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 public class GradientData {
-    private final SortedSet<ColorStop> colorStops = new TreeSet<>(Comparator.comparing(ColorStop::position));
+    private final List<ColorStop> colorStops = new ArrayList<>();
 
-    public void addStop(float position, Color color) {
+    public void addStop(float position, String color) {
         colorStops.add(new ColorStop(position, color));
     }
 
-    public Color evaluate(float position) {
-        if(position < 0 || position > 1)
-            throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Position must be between 0 and 1.");
-
-        Iterator<ColorStop> stopIterator = colorStops.iterator();
-        ColorStop previous = stopIterator.next();
-
-        while(stopIterator.hasNext()) {
-            ColorStop next = stopIterator.next();
-            if(next.position == position) return next.color;
-
-            if(next.position > position) {
-                return next.color.add(
-                    next.color.sub(previous.color)
-                        .div(next.position - previous.position)
-                        .mul(position - next.position)
-                );
-            } else previous = next;
-        }
-        throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Gradient does not have end stop.");
+    public void onEnd() {
+        colorStops.sort(Comparator.comparing(ColorStop::position));
+        if(colorStops.get(0).position != 0f || colorStops.get(colorStops.size() - 1).position != 1f)
+            throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Gradients must have a start and end.");
     }
-    private record ColorStop(float position, Color color) {}
+
+    public void evaluate(int length, BiConsumer<TextColor, Integer> callback, InstantiationContext ctx) {
+        ColorStop previous = colorStops.get(0); // Initialization is just to remove editor warnings. previous is guaranteed to have been assigned at least once before statement LERP triggers.
+
+        int i = 0;
+        for(ColorStop colorStop : colorStops) {
+            float position;
+            while(i < length && (position = i / Math.max(1f, length - 1)) <= colorStop.position) {
+                if(position == colorStop.position) {
+                    callback.accept(Evaluation.evalTextColor(colorStop.color, ctx), i);
+                    previous = colorStop;
+                }
+                else if(position < colorStop.position) {
+                    Color color,
+                        cur = new Color(Evaluation.evalTextColor(colorStop.color, ctx)),
+                        prev = new Color(Evaluation.evalTextColor(previous.color, ctx));
+
+                    LERP:
+                    color = cur.add(
+                            cur.sub(prev)
+                            .div(colorStop.position - previous.position)
+                            .mul(position - colorStop.position)
+                    );
+                    callback.accept(color.toAdventureColor(), i);
+                }
+                i++;
+            }
+            previous = colorStop;
+        }
+    }
+    private record ColorStop(float position, String color) {}
 }

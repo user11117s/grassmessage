@@ -1,5 +1,5 @@
-[2] Add variable support for gradients and styles
-[1] Implement module-info.java
+[1] Implement two artifacts (public and impl), plus packages
+[2] Move stuff from instantiate[InParent] to onEnd to improve performance
 [3] Remove warnings
 [3] Test speed and find bottlenecks
 [5] Documentation (XML and Java)
