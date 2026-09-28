@@ -10,7 +10,7 @@ public class GTextComponent extends GAbstractComponent {
 
     @Override
     public void parseText(String text) {
-        this.text += text;
+        this.text += text; // This should never trigger more than once.
     }
 
     public String getText() {

@@ -15,10 +15,6 @@ public class Message {
         this.fileData = fileData;
     }
 
-    public Component get() {
-        return this.get(Map.of());
-    }
-
     public Component get(Map<String, Object> vars) {
 
         Component parent = Component.empty();

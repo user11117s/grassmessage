@@ -15,7 +15,7 @@ public enum ClickType {
 
     private final Action action;
 
-    private ClickType(Action action) {
+    ClickType(Action action) {
         this.action = action;
     }
 

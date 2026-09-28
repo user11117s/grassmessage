@@ -37,13 +37,14 @@ public class GScoreComponent extends GAbstractComponent {
     public void onEnd() {
         propertyHolder.get().forEach(propertyMeta -> {
             switch(propertyMeta.propertyName()) {
-                case "target" -> target = propertyMeta.getValue(String.class);
-                case "objective" -> objective = propertyMeta.getValue(String.class);
-                case "default" -> defaultValue = propertyMeta.getValue(String.class);
+                case "target" -> target = propertyMeta.getValue();
+                case "objective" -> objective = propertyMeta.getValue();
+                case "default" -> defaultValue = propertyMeta.getValue();
             }
         });
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public Component instantiate(InstantiationContext ctx) {
         String substitutedTarget = ctx.substituteVars(target),

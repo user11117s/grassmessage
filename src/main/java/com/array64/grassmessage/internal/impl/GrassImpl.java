@@ -20,28 +20,36 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
 
 public class GrassImpl implements Grass {
     private final FileData fileData = new FileData();
     private final GComponentRegistry componentRegistry = new GComponentRegistry(new DepthTracker());
+    private final URL messagesFile;
+    private final URL schemaFile;
+    private static final URL DEFAULT_SCHEMA = Objects.requireNonNull(Grass.class.getResource("/META-INF/xml/schema.xsd"), "[THIS SHOULD NEVER HAPPEN] Schema could not be found.");
 
-    public GrassImpl(URL messagesFile) throws IOException, SAXException {
-        this(messagesFile, Objects.requireNonNull(Grass.class.getResource("/META-INF/xml/schema.xsd"), "[THIS SHOULD NEVER HAPPEN] Schema could not be found."));
+    public GrassImpl(URL messagesFile) {
+        this(messagesFile, DEFAULT_SCHEMA);
     }
 
-    public GrassImpl(URL messagesFile, URL schemaFile) throws IOException, SAXException {
+    public GrassImpl(URL messagesFile, URL schemaFile) {
+        this.messagesFile = messagesFile;
+        this.schemaFile = schemaFile;
+    }
+
+    @Override
+    public void parse() throws IOException, SAXException {
         try {
             parseXML(messagesFile, schemaFile);
         }
-        catch(ParserConfigurationException | URISyntaxException e) {
+        catch(ParserConfigurationException e) {
             throw new RuntimeException(e); // Nous ne mettons pas la blâme sur le client pour nos propres fauts.
         }
     }
 
-    private void parseXML(URL messagesFile, URL schemaFile) throws IOException, SAXException, ParserConfigurationException, URISyntaxException {
+    private void parseXML(URL messagesFile, URL schemaFile) throws IOException, SAXException, ParserConfigurationException {
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Schema schema = schemaFactory.newSchema(schemaFile);
 

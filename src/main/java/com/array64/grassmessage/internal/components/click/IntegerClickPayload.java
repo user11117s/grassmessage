@@ -5,7 +5,7 @@ import com.array64.grassmessage.internal.misc.Evaluation;
 import net.kyori.adventure.text.event.ClickEvent;
 
 public class IntegerClickPayload implements ClickPayload {
-    private String value;
+    private final String value;
 
     public IntegerClickPayload(String value) {
         this.value = value;

@@ -5,6 +5,7 @@ import com.array64.grassmessage.internal.components.GComponentRegistry;
 import com.array64.grassmessage.internal.components.InstantiationContext;
 import com.array64.grassmessage.internal.components.click.*;
 import com.array64.grassmessage.internal.components.GAbstractComponent;
+import com.array64.grassmessage.internal.misc.ConstantNames;
 import com.array64.grassmessage.internal.xml.DepthTracker;
 import com.array64.grassmessage.internal.xml.properties.PropertyHolder;
 import com.array64.grassmessage.internal.xml.properties.TextHolder;
@@ -27,7 +28,6 @@ public class GClickComponent extends GAbstractComponent {
     public GClickComponent(GComponentRegistry componentRegistry) {
         this.componentRegistry = componentRegistry;
     }
-
 
     @Override
     public void onStart() {
@@ -72,8 +72,8 @@ public class GClickComponent extends GAbstractComponent {
 
         for(var propertyMeta : (List<XmlPropertyMeta>) properties) {
             switch(propertyMeta.propertyName()) {
-                case "id" -> id = propertyMeta.getValue(String.class);
-                case "spayload" -> customPayload = propertyMeta.getValue(String.class);
+                case "id" -> id = propertyMeta.getValue();
+                case "spayload" -> customPayload = propertyMeta.getValue();
                 case "vpayload" -> {
                     isVar = true;
                     customPayload = propertyMeta.attrs().getValue("src");
@@ -89,39 +89,24 @@ public class GClickComponent extends GAbstractComponent {
         List<XmlPropertyMeta> properties = propertyHolder.get();
         for(var propertyMeta : properties) {
             switch(propertyMeta.propertyName()) {
-                case "content" -> mainContent = propertyMeta.getValue(GComponent.class);
-                case "custom" -> {
-                    type = ClickType.CUSTOM;
-                    parseCustomProperties(propertyMeta.getValue(List.class));
-                }
-                case "show_dialog" -> {
-                    type = ClickType.SHOW_DIALOG;
-                    payload = new DialogClickPayload(propertyMeta.attrs().getValue("src"));
-                }
-                case "callback" -> {
-                    type = ClickType.CALLBACK;
+                case "content" -> mainContent = propertyMeta.getValue();
+                case "custom" -> parseCustomProperties(propertyMeta.getValue());
+                case "show_dialog" -> payload = new DialogClickPayload(propertyMeta.attrs().getValue("src"));
+                case "callback" ->
                     payload = new CallbackClickPayload(
                         propertyMeta.attrs().getValue("src"),
                         propertyMeta.attrs().getValue("duration"),
                         propertyMeta.attrs().getValue("uses")
                     );
-                }
-                case "change_page" -> {
-                    type = ClickType.CHANGE_PAGE;
-                    payload = new IntegerClickPayload(propertyMeta.getValue(String.class));
-                }
-                case "run_command", "suggest_command", "open_url", "open_file", "copy_to_clipboard" -> {
-                    payload = new StringClickPayload(propertyMeta.getValue(String.class));
-                    type = switch(propertyMeta.propertyName()) {
-                        case "run_command" -> ClickType.RUN_COMMAND;
-                        case "suggest_command" -> ClickType.SUGGEST_COMMAND;
-                        case "open_url" -> ClickType.OPEN_URL;
-                        case "open_file" -> ClickType.OPEN_FILE;
-                        case "copy_to_clipboard" -> ClickType.COPY_TO_CLIPBOARD;
-                        default -> throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Unexpected click action: " + propertyMeta.propertyName());
-                    };
-                }
+                case "change_page" -> payload = new IntegerClickPayload(propertyMeta.getValue());
+                case "run_command", "suggest_command", "open_url", "open_file", "copy_to_clipboard" ->
+                    payload = new StringClickPayload(propertyMeta.getValue());
+
+                default -> throw new IllegalStateException("[THIS SHOULD NEVER HAPPEN] Unexpected click action: " + propertyMeta.propertyName());
             }
+
+            if(!propertyMeta.propertyName().equals("content"))
+                type = ConstantNames.CLICK_EVENTS.get(propertyMeta.propertyName());
         }
     }
 

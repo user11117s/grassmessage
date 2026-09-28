@@ -50,7 +50,7 @@ public class GHeadComponent extends GAbstractComponent {
     @Override
     protected Component instantiate(InstantiationContext ctx) {
         String action = propertyHolder.get().get(0).propertyName(),
-                unsubbedValue = propertyHolder.get().get(0).getValue(String.class);
+                unsubbedValue = propertyHolder.get().get(0).getValue();
         String value = ctx.substituteVars(unsubbedValue);
 
         return Component.object(

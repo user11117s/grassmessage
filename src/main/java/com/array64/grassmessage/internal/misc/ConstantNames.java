@@ -2,16 +2,14 @@ package com.array64.grassmessage.internal.misc;
 
 import com.array64.grassmessage.internal.components.GComponentModifier;
 import com.array64.grassmessage.internal.components.GComponentModifiers;
+import com.array64.grassmessage.internal.components.click.ClickType;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
 
 import java.util.Map;
 
+import static com.array64.grassmessage.internal.components.click.ClickType.*;
 import static java.util.Map.entry;
 import static net.kyori.adventure.text.format.NamedTextColor.*;
-import static net.kyori.adventure.text.event.ClickEvent.Action.*;
-import static net.kyori.adventure.text.event.HoverEvent.Action.*;
 
 public class ConstantNames {
     public static final ModifierMapping[] MODIFIERS = {
@@ -41,20 +39,16 @@ public class ConstantNames {
         color(WHITE, "white")
     };
 
-    public static final Map<String, ClickEvent.Action> CLICK_EVENTS = Map.ofEntries(
+    public static final Map<String, ClickType> CLICK_EVENTS = Map.ofEntries(
         entry("run_command", RUN_COMMAND),
         entry("suggest_command", SUGGEST_COMMAND),
         entry("open_url", OPEN_URL),
         entry("change_page", CHANGE_PAGE),
         entry("copy_to_clipboard", COPY_TO_CLIPBOARD),
         entry("custom", CUSTOM),
-        entry("show_dialog", SHOW_DIALOG)
-    );
-
-    public static final Map<String, HoverEvent.Action<?>> HOVER_EVENTS = Map.ofEntries(
-        entry("show_text", SHOW_TEXT),
-        entry("show_item", SHOW_ITEM),
-        entry("show_entity", SHOW_ENTITY)
+        entry("show_dialog", SHOW_DIALOG),
+        entry("open_file", OPEN_FILE),
+        entry("callback", CALLBACK)
     );
 
     public record ModifierMapping(GComponentModifier modifier, String[] qNames) {}

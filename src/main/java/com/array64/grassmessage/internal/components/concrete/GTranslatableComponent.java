@@ -53,9 +53,9 @@ public class GTranslatableComponent extends GAbstractComponent {
     public void onEnd() {
         propertyHolder.get().forEach(propertyMeta -> {
             switch(propertyMeta.propertyName()) {
-                case "key" -> key = propertyMeta.getValue(String.class);
-                case "with" -> with.add(propertyMeta.getValue(GComponent.class));
-                case "fallback" -> fallback = propertyMeta.getValue(String.class);
+                case "key" -> key = propertyMeta.getValue();
+                case "with" -> with.add(propertyMeta.getValue());
+                case "fallback" -> fallback = propertyMeta.getValue();
             }
         });
     }

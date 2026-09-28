@@ -1,5 +1,3 @@
-[2] Move stuff from instantiate[InParent] to onEnd to improve performance
-[3] Remove warnings
 [3] Test speed and find bottlenecks
 [5] Documentation (XML and Java)
 

@@ -22,7 +22,7 @@ public class GradientData {
     }
 
     public void evaluate(int length, BiConsumer<TextColor, Integer> callback, InstantiationContext ctx) {
-        ColorStop previous = colorStops.get(0); // Initialization is just to remove editor warnings. previous is guaranteed to have been assigned at least once before statement LERP triggers.
+        ColorStop previous = colorStops.get(0); // Initialization is just to remove editor warnings. previous is guaranteed to have been assigned at least once before the lerping statement triggers.
 
         int i = 0;
         for(ColorStop colorStop : colorStops) {
@@ -37,7 +37,6 @@ public class GradientData {
                         cur = new Color(Evaluation.evalTextColor(colorStop.color, ctx)),
                         prev = new Color(Evaluation.evalTextColor(previous.color, ctx));
 
-                    LERP:
                     color = cur.add(
                             cur.sub(prev)
                             .div(colorStop.position - previous.position)

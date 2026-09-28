@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class MessageInstanceImpl implements MessageInstance {
     private final Map<String, Object> vars;
-    private Message message;
+    private final Message message;
 
     public MessageInstanceImpl(Message message) {
         this.message = message;

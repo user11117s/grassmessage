@@ -71,10 +71,10 @@ public class GHoverComponent extends GAbstractComponent {
         List<XmlPropertyMeta> properties = propertyHolder.get();
         properties.forEach(propertyMeta -> {
             switch(propertyMeta.propertyName()) {
-                case "content" -> mainContent = propertyMeta.getValue(GComponent.class);
-                case "show_text" -> hoveredContent = new TextHoveredContent(propertyMeta.getValue(GComponent.class));
-                case "show_item" -> parseItemProperties(propertyMeta.getValue(List.class));
-                case "show_entity" -> parseEntityProperties(propertyMeta.getValue(List.class));
+                case "content" -> mainContent = propertyMeta.getValue();
+                case "show_text" -> hoveredContent = new TextHoveredContent(propertyMeta.getValue());
+                case "show_item" -> parseItemProperties(propertyMeta.getValue());
+                case "show_entity" -> parseEntityProperties(propertyMeta.getValue());
             }
         });
     }
@@ -88,9 +88,9 @@ public class GHoverComponent extends GAbstractComponent {
 
         for(var propertyMeta : (List<XmlPropertyMeta>) properties) {
                 switch(propertyMeta.propertyName()) {
-                    case "id" -> id = propertyMeta.getValue(String.class);
-                    case "count" -> count = propertyMeta.getValue(String.class);
-                    case "sdata" -> sdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.getValue(String.class));
+                    case "id" -> id = propertyMeta.getValue();
+                    case "count" -> count = propertyMeta.getValue();
+                    case "sdata" -> sdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.getValue());
                     case "vdata" -> vdata.put(propertyMeta.attrs().getValue("key"), propertyMeta.attrs().getValue("src"));
                 }
             }
@@ -106,9 +106,9 @@ public class GHoverComponent extends GAbstractComponent {
 
         for(var propertyMeta : (List<XmlPropertyMeta>) properties) {
             switch(propertyMeta.propertyName()) {
-                case "type" -> type = propertyMeta.getValue(String.class);
-                case "uuid" -> uuid = propertyMeta.getValue(String.class);
-                case "name" -> name = propertyMeta.getValue(GComponent.class);
+                case "type" -> type = propertyMeta.getValue();
+                case "uuid" -> uuid = propertyMeta.getValue();
+                case "name" -> name = propertyMeta.getValue();
             }
         }
 

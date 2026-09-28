@@ -18,16 +18,8 @@ public class Preformat {
 
     private final List<GTextComponent> textComponents = new ArrayList<>();
 
-    public boolean getDedent() {
-        return dedent;
-    }
-
     public void setDedent(boolean dedent) {
         this.dedent = dedent;
-    }
-
-    public boolean getTrimBounds() {
-        return trimBounds;
     }
 
     public void setTrimBounds(boolean trimBounds) {
