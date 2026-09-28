@@ -14,10 +14,23 @@ dependencies {
     compileOnly("net.kyori:adventure-api:4.26.1")
 }
 
+tasks.register('apiJar', Jar) {
+    archiveClassifier.set('api')
+    from sourceSets.main.output
+    exclude 'com/array64/grassmessage/internal/**'
+}
+
+tasks.register('sourcesJar', Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
+            artifact jar
+            artifact apiJar
+            artifact sourcesJar
         }
     }
 }

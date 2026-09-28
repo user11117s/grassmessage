@@ -4,15 +4,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Add XInclude">
+    <list default="true" id="f0602340-601b-44f1-aa5d-35e43958a394" name="Changes" comment="Add variable support for gradients">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/impl/GrassImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/GradientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/GradientData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/GradientParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/GradientParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/api/Grass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/GComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/GComponentFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/GComponentModifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentModifiers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/GComponentModifiers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/GComponentProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/GComponentRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/GComponentRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/InstantiationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/InstantiationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/Preformat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/Preformat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/VariableSubstitutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/VariableSubstitutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/CallbackClickPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/click/CallbackClickPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/ClickPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/click/ClickPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/ClickType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/click/ClickType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/CustomClickPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/click/CustomClickPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/DialogClickPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/click/DialogClickPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/IntegerClickPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/click/IntegerClickPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/click/StringClickPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/click/StringClickPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/EntityHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/hover/EntityHoveredContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/HoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/hover/HoveredContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/ItemHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/hover/ItemHoveredContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/hover/TextHoveredContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/hover/TextHoveredContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/GAbstractComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/GAbstractComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GAdventureComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GAdventureComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GClickComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GClickComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GCompositeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GCompositeComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GEmbeddedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GEmbeddedMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GGradientComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GGradientComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHeadComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GHeadComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GHoverComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GHoverComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GKeybindComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GKeybindComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GPreformattedComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GPreformattedComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GScoreComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GScoreComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GSelectorComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GSelectorComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GSpriteComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GSpriteComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GStyleComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GStyleComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GTextComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GTextComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/components/impl/concrete/GTranslatableComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/components/concrete/GTranslatableComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/FileData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/data/FileData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/GradientData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/data/GradientData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/data/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/MessageInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/api/MessageInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/data/MessageInstanceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/impl/MessageInstanceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/misc/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/ConstantNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/misc/ConstantNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/Evaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/misc/Evaluation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/misc/Glue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/misc/Glue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/DepthTrackable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/DepthTrackable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/DepthTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/DepthTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XmlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/XmlParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/XmlParserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/XmlParserAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/parsers/FileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/parsers/GradientParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/parsers/GradientParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/PropertyHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/properties/PropertyHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/TextHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/properties/TextHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/XmlProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/properties/XmlProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/xml/properties/XmlPropertyMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/array64/grassmessage/internal/xml/properties/XmlPropertyMeta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/GrassMessageToDo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/xml/schema.xsd" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/xml/schema.xsd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -466,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790528754596</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Add variable support for gradients">
+      <option name="closed" value="true" />
+      <created>1790537620873</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1790537620873</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -514,7 +574,8 @@
     <MESSAGE value="Wrap variable map in builder" />
     <MESSAGE value="Add Evaluation class" />
     <MESSAGE value="Add XInclude" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add XInclude" />
+    <MESSAGE value="Add variable support for gradients" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add variable support for gradients" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
