@@ -1,5 +1,5 @@
-[3] Test speed and find bottlenecks
 [5] Documentation (XML and Java)
+[5] Test all the features (with times) one last time
 
 Number in square brackets represents how long it'll take:
 
