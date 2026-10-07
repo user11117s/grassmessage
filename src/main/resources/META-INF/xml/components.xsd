@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:grassmessage" elementFormDefault="qualified">
 
     <xs:simpleType name="hexColor">
@@ -285,6 +286,7 @@
 
     <xs:element name="glue" type="empty">
         <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#glue">Find more here</a>]
             Removes the space between two components (or text) if you insert this element between them.
         </xs:documentation></xs:annotation>
     </xs:element>

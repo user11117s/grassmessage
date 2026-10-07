@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <grass xmlns="urn:grassmessage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:grassmessage urn:grassmessage:schema:v1">
     <gradients>
         <gradient name="cyan2white2cyan">
@@ -16,6 +16,7 @@
                 <content><b>Click on me to copy some self-affirmation!</b></content>
                 <copy_to_clipboard>You are lovely today.</copy_to_clipboard>
             </click>
+            <glue/>
         </message>
     </messages>
 </grass>

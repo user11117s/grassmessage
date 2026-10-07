@@ -6,6 +6,9 @@
     <pattern value="com.array64.grassmessage.internal.impl.GrassImpl" method="getComponentRegistry" />
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectResources">
+    <resource url="urn:grassmessage:schema:v1" location="$PROJECT_DIR$/../GrassTest" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="ms-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

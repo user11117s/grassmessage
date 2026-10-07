@@ -1,0 +1,32 @@
+name: Processing on push
+
+on:
+  push:
+  create:
+
+jobs:
+  on-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create temp folder
+        run: |
+          cp -r src/main/resources/META-INF/xml/ src/main/resources/tmp_xml/
+
+      - name: Substitute $VERSION and $DOCS
+        run: |
+          sed 's|$DOCS|https://github.com/user11117s/grassmessage/blob/$REF/docs|g' src/main/resources/tmp_xml/*
+          sed "s|\$REF|$GITHUB_REF_NAME|g" src/main/resources/tmp_xml/* docs/*
+
+      - name: Create tarball and remove temp folder
+        run: |
+          tar -czvf src/main/resources/xml.tar.gz src/main/resources/tmp_xml/
+          rm -rf src/main/resources/tmp_xml/
+
+      - name: Commit and push to branch
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Automated processing [skip ci]"
+          file_pattern: 'src/main/resources/xml.tar.gz'
