@@ -30,4 +30,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Automated processing [skip ci]"
-          file_pattern: 'src/main/resources/xml.tar.gz'
+          file_pattern: 'src/main/resources/xml.tar.gz docs/*'
