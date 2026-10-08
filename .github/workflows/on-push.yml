@@ -15,7 +15,7 @@ jobs:
       - name: Move raw to formed
         run: |
           cp -r src/main/resources/META-INF/xml/ src/main/resources/grassmessage/
-          cp -r docs/raw/ docs/formed/
+          cp docs/raw/* docs/formed/
 
       - name: Substitute $VERSION and $DOCS
         run: |
