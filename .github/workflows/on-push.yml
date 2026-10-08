@@ -12,14 +12,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create temp folder
+      - name: Move raw to formed
         run: |
           cp -r src/main/resources/META-INF/xml/ src/main/resources/grassmessage/
+          cp -r docs/raw/ docs/formed/
 
       - name: Substitute $VERSION and $DOCS
         run: |
-          sed -i 's|$DOCS|https://github.com/user11117s/grassmessage/blob/$REF/docs|g' src/main/resources/grassmessage/*
-          sed -i 's|$REF|'"$GITHUB_REF_NAME|g" src/main/resources/grassmessage/* docs/*
+          sed -i 's|$DOCS|https://github.com/user11117s/grassmessage/blob/$REF/docs/formed|g' src/main/resources/grassmessage/*
+          sed -i 's|$REF|'"$GITHUB_REF_NAME|g" src/main/resources/grassmessage/* docs/formed/*
 
       - name: Create tarball and remove temp folder
         run: |
