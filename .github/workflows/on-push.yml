@@ -19,8 +19,7 @@ jobs:
       - name: Substitute $VERSION and $DOCS
         run: |
           sed -i 's|$DOCS|https://github.com/user11117s/grassmessage/blob/$REF/docs|g' src/main/resources/grassmessage/*
-          echo $GITHUB_REF_NAME
-          sed -i "s|\$REF|$GITHUB_REF_NAME|g" src/main/resources/grassmessage/* docs/*
+          sed -i 's|$REF|'"$GITHUB_REF_NAME|g" src/main/resources/grassmessage/* docs/*
 
       - name: Create tarball and remove temp folder
         run: |
