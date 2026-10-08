@@ -14,7 +14,7 @@ jobs:
 
       - name: Create temp folder
         run: |
-          cp -r src/main/resources/META-INF/xml/ -C src/main/resources/grassmessage/
+          cp -r src/main/resources/META-INF/xml/ src/main/resources/grassmessage/
 
       - name: Substitute $VERSION and $DOCS
         run: |
