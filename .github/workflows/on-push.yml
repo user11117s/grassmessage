@@ -24,7 +24,7 @@ jobs:
 
       - name: Create tarball and remove temp folder
         run: |
-          tar -czvf src/main/resources/xml.tar.gz -C src/main/resources/ grassmessage/
+          tar -czvf src/main/resources/xml.tar.gz src/main/resources/grassmessage/
           rm -rf src/main/resources/grassmessage/
 
       - name: Commit and push to branch
