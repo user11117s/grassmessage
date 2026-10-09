@@ -10,6 +10,7 @@ import com.array64.grassmessage.internal.xml.XmlParserAdapter;
 import com.array64.grassmessage.internal.xml.parsers.FileParser;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
@@ -40,11 +41,11 @@ public class GrassImpl implements Grass {
     }
 
     @Override
-    public void parse() throws IOException, SAXException {
+    public void parse() throws IOException {
         try {
             parseXML(messagesFile, schemaFile);
         }
-        catch(ParserConfigurationException e) {
+        catch(ParserConfigurationException | SAXException e) {
             throw new RuntimeException(e); // Nous ne mettons pas la blâme sur le client pour nos propres fauts.
         }
     }

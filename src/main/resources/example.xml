@@ -8,11 +8,11 @@
         </gradient>
     </gradients>
     <styles>
-        <style name="lightred" color="#FFE0E0"/>
+        <style name="emphasis" color="#FFE0E0" bold="true" italic="true"/>
     </styles>
     <messages>
         <message name="hello">
-
+            Hello, World!
         </message>
     </messages>
 </grass>
