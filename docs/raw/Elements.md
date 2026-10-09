@@ -1,4 +1,4 @@
-# Elements
+# Message elements
 Command to get XML files (root of project):
 
 ```curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@$REF/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;```

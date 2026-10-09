@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.array64'
-version = '1.0.0-alpha'
+version = '1.0.0-alpha.1'
 
 repositories {
     mavenCentral()
@@ -12,6 +12,12 @@ repositories {
 
 dependencies {
     compileOnly("net.kyori:adventure-api:4.26.1")
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 tasks.register('apiJar', Jar) {

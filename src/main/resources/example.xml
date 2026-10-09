@@ -12,11 +12,7 @@
     </styles>
     <messages>
         <message name="hello">
-            <click>
-                <content><b>Click on me to copy some self-affirmation!</b></content>
-                <copy_to_clipboard>You are lovely today.</copy_to_clipboard>
-            </click>
-            <glue/>
+
         </message>
     </messages>
 </grass>

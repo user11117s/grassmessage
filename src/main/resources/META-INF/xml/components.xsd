@@ -75,6 +75,10 @@
     <!-- Events -->
 
     <xs:element name="hover">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#hover">Find more here</a>]
+            Applies a hover effect to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="content" type="compositeComponent"/>
@@ -93,6 +97,10 @@
     </xs:element>
 
     <xs:element name="click">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#click">Find more here</a>]
+            Applies a click effect to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="content" type="compositeComponent"/>
@@ -165,6 +173,10 @@
     <xs:element name="obf" type="compositeComponent"/>
 
     <xs:element name="font">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#font">Find more here</a>]
+            Applies a font to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
@@ -175,6 +187,10 @@
     </xs:element>
 
     <xs:element name="insertion">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#insertion">Find more here</a>]
+            Applies an insertion text to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
@@ -185,6 +201,10 @@
     </xs:element>
 
     <xs:element name="color">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#color">Find more here</a>]
+            Applies a text color to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
@@ -199,6 +219,10 @@
     </xs:element>
 
     <xs:element name="shadow">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#shadow">Find more here</a>]
+            Applies a shadow color to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
@@ -213,20 +237,28 @@
     </xs:element>
 
     <xs:element name="gradref">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#gradref">Find more here</a>]
+            Applies a gradient declared in <code>&lt;gradients&gt;</code> to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="ref" type="xs:Name" use="required"/>
+                    <xs:attribute name="ref" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="styleref">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#styleref">Find more here</a>]
+            Applies a style declared in <code>&lt;styles&gt;</code> to the content within.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
-                    <xs:attribute name="ref" type="xs:Name" use="required"/>
+                    <xs:attribute name="ref" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
@@ -255,6 +287,10 @@
     <!-- Non-text components -->
 
     <xs:element name="translatable">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#translatable">Find more here</a>]
+            Adds a translatable component.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="key" type="xs:string"/>
@@ -264,9 +300,23 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="keybind" type="xs:string"/>
-    <xs:element name="selector" type="xs:string"/>
+    <xs:element name="keybind" type="xs:string">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#keybind">Find more here</a>]
+            Adds a keybind component.
+        </xs:documentation></xs:annotation>
+    </xs:element>
+    <xs:element name="selector" type="xs:string">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#selector">Find more here</a>]
+            Adds a selector component.
+        </xs:documentation></xs:annotation>
+    </xs:element>
     <xs:element name="score">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#score">Find more here</a>]
+            Adds a score component.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="target" type="xs:string"/>
@@ -280,6 +330,7 @@
 
     <xs:element name="ln" type="empty">
         <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#ln">Find more here</a>]
             Creates a new line.
         </xs:documentation></xs:annotation>
     </xs:element>
@@ -293,7 +344,8 @@
 
     <xs:element name="nbsp">
         <xs:annotation><xs:documentation>
-            Adds more than one space between two components (or text) if you insert this element between them.
+            [<a href="$DOCS/Elements.md#nbsp">Find more here</a>]
+            Adds more than one space (useful as whitespace is collapsed).
         </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:attribute name="spaces" type="xs:positiveInteger" default="1"/>
@@ -301,18 +353,30 @@
     </xs:element>
 
     <xs:element name="embed_msg">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#embed_msg">Find more here</a>]
+            Embeds a different message referenced by name.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
-            <xs:attribute name="ref" type="xs:Name" use="required"/>
+            <xs:attribute name="ref" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="adventure">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#adventure">Find more here</a>]
+            Embeds a <code>net.kyori.adventure.text.Component</code> provided through a variable source.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:attribute name="src" type="varAttr" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="pre">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#pre">Find more here</a>]
+            Preserves whitespace.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
@@ -325,6 +389,10 @@
     </xs:element>
 
     <xs:element name="sprite">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#sprite">Find more here</a>]
+            Adds a sprite referenced by path and atlas.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:attribute name="atlas" type="xs:string"/>
             <xs:attribute name="path" type="xs:string" use="required"/>
@@ -332,6 +400,10 @@
     </xs:element>
 
     <xs:element name="head">
+        <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#head">Find more here</a>]
+            Adds a head which can be referenced by player name, player UUID or texture path.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:choice>
                 <xs:element name="uuid">
