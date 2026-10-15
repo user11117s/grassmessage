@@ -26,7 +26,7 @@ Awesome! You can refer to [Elements.md](Elements.md) for a complete breakdown of
 ## Variables
 
 Variables are an important feature in grassmessage. They allow you to turn a static message into a dynamic one.
-Variables are referenced in message files as `$(<p name>)`.
+Variables are referenced in message files as `$(<variable name>)`.
 
 Try replacing `Hello, World!` in your `messages.xml` with `Hello, $(name)!`, then modify your Java code:
 
