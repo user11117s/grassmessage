@@ -36,13 +36,12 @@ public class GGradientComponent extends GAbstractComponent {
     }
 
     private Component instantiateTextInParent(Component parent, String text, InstantiationContext ctx) {
-        String finalText = text.strip();
-        int length = finalText.length();
+        int length = text.length();
         GradientData gradient = ctx.getGradient(ref);
         Component[] atomParent = new Component[] {parent};
 
         gradient.evaluate(length, (color, i) -> {
-            Component ch = Component.text(Character.toString(finalText.charAt(i)));
+            Component ch = Component.text(Character.toString(text.charAt(i)));
             atomParent[0] = atomParent[0].append(ch.color(color));
         }, ctx);
 
@@ -52,5 +51,10 @@ public class GGradientComponent extends GAbstractComponent {
     @Override
     public void parseText(String text) {
         this.text += text;
+    }
+
+    @Override
+    public void onEnd() {
+        text = text.strip();
     }
 }

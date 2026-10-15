@@ -15,6 +15,6 @@ public interface Grass {
         return new GrassImpl(messagesFile, schemaFile);
     }
 
-    void parse() throws IOException, SAXException;
+    void parse() throws IOException;
     MessageInstance createMessageInstance(String messageName);
 }

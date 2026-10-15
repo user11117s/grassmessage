@@ -45,7 +45,7 @@ Now you have declared a dependency on grassmessage!
 
 ### Autocomplete
 
-This step is required for XML autocomplete to work. Download the required files to your `src/main/resources` folder with this command:
+This step is required for XML autocomplete to work. Run this command to download the required files to your `src/main/resources` folder:
 ```shell
 curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@v$VER/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;
 ```
@@ -86,4 +86,8 @@ catch(IOException e) {
 Component hello = grass.createMessageInstance("hello").build();
 ```
 
-If you try to display `hello` using the Adventure library, you should now see `Hello, World!` displayed on your screen!
+If you try to display `hello` using the Adventure library, you should now see a greeting displayed on your screen!
+
+!["Hello, World"](../images/HelloWorld.png)
+
+To learn how to do more with grassmessage, visit [Tutorial.md](Tutorial.md)!

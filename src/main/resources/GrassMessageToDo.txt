@@ -1,5 +1,7 @@
 [5] Documentation (XML and Java)
-[5] Test all the features (with times) one last time in Forge
+[4] Allow message/gradient/style declarations for XInclude'd files (much like those C/C++ header files)
+[2] Change Tutorial.md#XInclude to accommodate new XInclude system.
+[5] Extensive testing of every feature (with times) one last time in Forge
 
 Number in square brackets represents how long it'll take:
 

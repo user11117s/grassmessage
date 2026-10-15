@@ -9,18 +9,16 @@ import org.xml.sax.Attributes;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Stack;
 import java.util.function.Function;
 
 public class GComponentRegistry {
     private final Map<String, GComponentFactory> componentFactories;
-    private final Stack<Preformat> preformats;
+    private int numPreformats = 0;
     public final DepthTracker depthTracker;
 
     public GComponentRegistry(DepthTracker depthTracker) {
         this.depthTracker = depthTracker;
         this.componentFactories = new HashMap<>();
-        this.preformats = new Stack<>();
         registerAll();
     }
 
@@ -33,7 +31,7 @@ public class GComponentRegistry {
     public void register(GComponentFactory.Abstract factory, String... qNames) {
         // Allows me to initialize parts of AbstractComponent here. Probably not the best design though,
         // since it's not obvious which overload is used.
-        register((GComponentFactory) (attrs -> factory.getAbstractComponent(attrs).initialize(depthTracker)), qNames);
+        register((GComponentFactory) (attrs -> factory.getAbstractComponent(attrs).initialize(depthTracker, true)), qNames);
     }
 
     public GComponent get(String qName, Attributes attrs) {
@@ -110,20 +108,27 @@ public class GComponentRegistry {
 
     public GCompositeComponent createCompositeComponent() {
         var compositeComponent = new GCompositeComponent(this);
-        compositeComponent.initialize(depthTracker);
+        compositeComponent.initialize(depthTracker, true);
         compositeComponent.onStart();
         return compositeComponent;
     }
 
-    public Preformat topPreformat() {
-        return preformats.isEmpty() ? null : preformats.peek();
+    public GCompositeComponent createRootLevelCompositeComponent() {
+        var compositeComponent = new GCompositeComponent(this);
+        compositeComponent.initialize(depthTracker, false);
+        compositeComponent.onStart();
+        return compositeComponent;
     }
 
-    public void addPreformat(Preformat preformat) {
-        this.preformats.push(preformat);
+    public boolean inPreformat() {
+        return numPreformats > 0;
+    }
+
+    public void countPreformat() {
+        numPreformats++;
     }
 
     public void removePreformat() {
-        this.preformats.pop();
+        if(numPreformats > 0) numPreformats--;
     }
 }

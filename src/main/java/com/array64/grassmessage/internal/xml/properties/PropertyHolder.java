@@ -31,14 +31,10 @@ public class PropertyHolder implements XmlProperty<List<XmlPropertyMeta>>, Depth
             this.currentProperty = new XmlPropertyMeta(qName, attrs, propertyParsers.get(qName).get());
         else
             this.currentProperty.parser().startTag(qName, attrs);
-
-        // depthTracker.enter();
     }
 
     @Override
     public void endTag(String qName) {
-        // depthTracker.exit();
-
         if(atRootDepth()) {
             properties.add(currentProperty);
             this.currentProperty = null;

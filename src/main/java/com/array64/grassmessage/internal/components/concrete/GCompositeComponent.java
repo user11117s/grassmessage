@@ -69,20 +69,24 @@ public class GCompositeComponent extends GAbstractComponent {
     @Override
     protected void enterTag(String qName, Attributes attrs) {
         if(atRootDepth()) {
-            if(registry.topPreformat() == null) {
-                Optional<String> whitespace = registry.getWhitespace(qName, attrs);
+            Optional<String> whitespace = registry.getWhitespace(qName, attrs);
 
-                if(whitespace.isPresent()) {
-                    glue = Glue.TRUE;
-                    appendText(whitespace.get());
-                } else {
+            // set glue to true if a whitespace tag is present (e.g. glue, nbsp, ln)
+            if(whitespace.isPresent()) {
+                glue = Glue.TRUE;
+                appendText(whitespace.get());
+            } else {
+                // Try to add a newline if the last tag was <pre>.
+                // If whitespace was recorded, add a space and reset glue.
+
+                if(!registry.inPreformat()) {
                     boolean addedNewline = addNewlineToPre();
-                    if(glue == Glue.FALSE) {
-                        if(!addedNewline) appendText(" ");
-                        glue = Glue.DEFAULT;
-                    }
-                    heldComponents.add(registry.get(qName, attrs));
+                    if(glue == Glue.FALSE && !addedNewline) appendText(" ");
+
+                    // glue will always be default when the inner element is exited
+                    glue = Glue.DEFAULT;
                 }
+                heldComponents.add(registry.get(qName, attrs));
             }
         }
         else
@@ -93,17 +97,21 @@ public class GCompositeComponent extends GAbstractComponent {
     protected void exitTag(String qName) {
         if(atRootDepth()) {
             getLast().onEnd();
-            if(getLast() instanceof GPreformattedComponent)
+            // If a newline will be added a <pre>, there's no need for a new space as well.
+            if(getLast() instanceof GPreformattedComponent pre && pre.isBlock())
                 glue = Glue.TRUE;
-        }
-        else
+        } else
             getLast().endTag(qName);
     }
 
     @Override
     public void parseText(String text) {
         if(atRootDepth()) {
-            if(registry.topPreformat() == null) {
+            if(registry.inPreformat())
+                appendText(text);
+
+            else {
+                // If text is just whitespace, record whitespace unless glue is already true
                 if(text.isBlank()) {
                     if(glue == Glue.DEFAULT) glue = Glue.FALSE;
                     return;
@@ -121,14 +129,11 @@ public class GCompositeComponent extends GAbstractComponent {
                     appendText(" ");
                 }
 
+                // Collapse internal whitespace.
                 appendText(strippedText.replaceAll("\\s+", " "));
 
-                // Check if trailing whitespace exists.
+                // Check if trailing whitespace exists and assign the appropriate glue.
                 glue = strippedText.length() == frontStrippedText.length() ? Glue.DEFAULT : Glue.FALSE;
-            }
-            else {
-                appendText(text);
-                registry.topPreformat().addTextComponent((GTextComponent) getLast());
             }
         }
         else getLast().parseText(text);
@@ -147,7 +152,7 @@ public class GCompositeComponent extends GAbstractComponent {
 
     private boolean addNewlineToPre() {
         if(!heldComponents.isEmpty() && getLast() instanceof GPreformattedComponent preformatted)
-            if(!preformatted.isInline()) {
+            if(preformatted.isBlock()) {
                 appendText("\n");
                 return true;
             }

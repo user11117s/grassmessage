@@ -12,14 +12,12 @@ public abstract class GAbstractComponent implements GComponent, DepthTrackable {
     @Override
     public final void startTag(String qName, Attributes attrs) {
         enterTag(qName, attrs);
-        // depthTracker.enter();
     }
 
     protected abstract void enterTag(String qName, Attributes attrs);
 
     @Override
     public final void endTag(String qName) {
-        // depthTracker.exit();
         if(depthTracker.getDepth() >= rootDepth) exitTag(qName);
     }
 
@@ -60,9 +58,9 @@ public abstract class GAbstractComponent implements GComponent, DepthTrackable {
         return depthTracker;
     }
 
-    public GAbstractComponent initialize(DepthTracker depthTracker) {
+    public GAbstractComponent initialize(DepthTracker depthTracker, boolean enter) {
         this.depthTracker = depthTracker;
-        this.rootDepth = depthTracker.getDepth() + 1;
+        this.rootDepth = depthTracker.getDepth() + (enter ? 1 : 0);
         return this;
     }
 }
