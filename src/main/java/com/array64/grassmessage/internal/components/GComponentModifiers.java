@@ -2,7 +2,6 @@ package com.array64.grassmessage.internal.components;
 
 import com.array64.grassmessage.internal.misc.Evaluation;
 import net.kyori.adventure.key.Key;
-import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
