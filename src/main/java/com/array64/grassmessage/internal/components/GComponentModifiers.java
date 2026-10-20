@@ -13,8 +13,7 @@ public class GComponentModifiers {
         ITALIC          = (component, ctx) -> component.decorate(TextDecoration.ITALIC),
         UNDERLINED      = (component, ctx) -> component.decorate(TextDecoration.UNDERLINED),
         STRIKETHROUGH   = (component, ctx) -> component.decorate(TextDecoration.STRIKETHROUGH),
-        OBFUSCATED      = (component, ctx) -> component.decorate(TextDecoration.OBFUSCATED),
-        RESET           = (component, ctx) -> component.style(Style.empty());
+        OBFUSCATED      = (component, ctx) -> component.decorate(TextDecoration.OBFUSCATED);
 
     public static GComponentModifier color(TextColor color) {
         return (component, ctx) -> component.color(color);

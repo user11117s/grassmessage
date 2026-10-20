@@ -59,5 +59,10 @@ public interface MessageInstance {
         return addVar(name, value);
     }
 
+    /**
+     * Build the message instance.
+     *
+     * @return the built {@link Component}
+     */
     Component build();
 }

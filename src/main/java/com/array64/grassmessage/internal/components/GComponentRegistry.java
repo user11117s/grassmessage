@@ -78,7 +78,7 @@ public class GComponentRegistry {
         registerModifier(attrs -> GComponentModifiers.color(attrs.getValue("hex")), "color");
         registerModifier(attrs -> GComponentModifiers.insertion(attrs.getValue("text")), "insertion");
         registerModifier(attrs -> GComponentModifiers.font(attrs.getValue("font")), "font");
-        registerModifier(attrs -> GComponentModifiers.shadow(attrs.getValue("color")), "shadow");
+        registerModifier(attrs -> GComponentModifiers.shadow(attrs.getValue("hex")), "shadow");
 
         // Other leaf components
         register(attrs -> new GScoreComponent(), "score");

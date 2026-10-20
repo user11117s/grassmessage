@@ -10,10 +10,10 @@ import org.xml.sax.Attributes;
 import java.util.Map;
 
 public class GScoreComponent extends GAbstractComponent {
-    private String target = "", objective = "";
+    private String name = "", objective = "";
     private String defaultValue;
     private final PropertyHolder propertyHolder = new PropertyHolder(Map.of(
-        "target", TextHolder::new,
+        "name", TextHolder::new,
         "objective", TextHolder::new,
         "default", TextHolder::new
     ), getDepthTracker());
@@ -37,7 +37,7 @@ public class GScoreComponent extends GAbstractComponent {
     public void onEnd() {
         propertyHolder.get().forEach(propertyMeta -> {
             switch(propertyMeta.propertyName()) {
-                case "target" -> target = propertyMeta.getValue();
+                case "name" -> name = propertyMeta.getValue();
                 case "objective" -> objective = propertyMeta.getValue();
                 case "default" -> defaultValue = propertyMeta.getValue();
             }
@@ -47,12 +47,12 @@ public class GScoreComponent extends GAbstractComponent {
     @SuppressWarnings("deprecation")
     @Override
     public Component instantiate(InstantiationContext ctx) {
-        String substitutedTarget = ctx.substituteVars(target),
+        String substitutedName = ctx.substituteVars(name),
             substitutedObjective = ctx.substituteVars(objective),
             substitutedDefaultValue = ctx.substituteVars(defaultValue);
 
         return substitutedDefaultValue == null ?
-            Component.score(substitutedTarget, substitutedObjective)
-            : Component.score(substitutedTarget, substitutedObjective, substitutedDefaultValue);
+            Component.score(substitutedName, substitutedObjective)
+            : Component.score(substitutedName, substitutedObjective, substitutedDefaultValue);
     }
 }

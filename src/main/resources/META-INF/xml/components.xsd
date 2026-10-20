@@ -169,7 +169,6 @@
     <xs:element name="strikethrough" type="compositeComponent"/>
     <xs:element name="st" type="compositeComponent"/>
 
-    <xs:element name="reset" type="compositeComponent"/>
     <xs:element name="obf" type="compositeComponent"/>
 
     <xs:element name="font">
@@ -226,7 +225,7 @@
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="compositeComponent">
-                    <xs:attribute name="color" use="required">
+                    <xs:attribute name="hex" use="required">
                         <xs:simpleType>
                             <xs:union memberTypes="hexColor8 varAttr"/>
                         </xs:simpleType>
@@ -319,7 +318,7 @@
         </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="target" type="xs:string"/>
+                <xs:element name="name" type="xs:string"/>
                 <xs:element name="objective" type="xs:string"/>
                 <xs:element name="default" type="xs:string" minOccurs="0"/>
             </xs:sequence>
@@ -338,7 +337,7 @@
     <xs:element name="glue" type="empty">
         <xs:annotation><xs:documentation>
             [<a href="$DOCS/Elements.md#glue">Find more here</a>]
-            Removes the space between two components (or text) if you insert this element between them.
+            Removes the space between two tags (or text) if you insert this element between them.
         </xs:documentation></xs:annotation>
     </xs:element>
 
@@ -434,7 +433,6 @@
                 <xs:element ref="underlined"/>
                 <xs:element ref="st"/>
                 <xs:element ref="strikethrough"/>
-                <xs:element ref="reset"/>
                 <xs:element ref="obf"/>
 
                 <xs:element ref="font"/>

@@ -34,6 +34,6 @@ public class CallbackClickPayload implements ClickPayload {
 
     public int getUses(InstantiationContext ctx) {
         int usesInt = Evaluation.evalInt(uses, ctx);
-        return usesInt < 0 ? -1 : usesInt;
+        return usesInt < 0 ? ClickCallback.UNLIMITED_USES : usesInt;
     }
 }

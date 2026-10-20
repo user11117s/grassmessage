@@ -55,6 +55,9 @@
     </xs:complexType>
 
     <xs:element name="gradient">
+        <xs:annotation><xs:documentation>
+            Register a gradient into grassmessage, usable by <code>&lt;gradref&gt;</code>.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="start" type="flexHexColor"/>
@@ -87,6 +90,9 @@
     </xs:simpleType>
 
     <xs:element name="style">
+        <xs:annotation><xs:documentation>
+            Register a style into grassmessage, usable by <code>&lt;styleref&gt;</code>.
+        </xs:documentation></xs:annotation>
         <xs:complexType>
             <xs:attribute name="name" type="xs:string" use="required"/>
             <xs:attribute name="color">
@@ -94,7 +100,7 @@
                     <xs:union memberTypes="namedColor hexColor"/>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="shadowColor" type="hexColor8"/>
+            <xs:attribute name="shadow_color" type="hexColor8"/>
             <xs:attribute name="font" type="xs:string"/>
             <xs:attribute name="bold" type="xs:boolean" default="false"/>
             <xs:attribute name="italic" type="xs:boolean" default="false"/>

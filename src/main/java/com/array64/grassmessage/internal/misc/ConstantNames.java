@@ -17,8 +17,7 @@ public class ConstantNames {
         mod(GComponentModifiers.ITALIC, "italic", "i"),
         mod(GComponentModifiers.UNDERLINED, "underlined", "u"),
         mod(GComponentModifiers.STRIKETHROUGH, "strikethrough", "st"),
-        mod(GComponentModifiers.OBFUSCATED, "obfuscated", "obf"),
-        mod(GComponentModifiers.RESET, "reset")
+        mod(GComponentModifiers.OBFUSCATED, "obfuscated", "obf")
     };
     public static final ColorMapping[] CHAT_COLORS = {
         color(BLACK, "black"),
