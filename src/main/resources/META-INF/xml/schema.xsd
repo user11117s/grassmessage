@@ -56,6 +56,7 @@
 
     <xs:element name="gradient">
         <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#gradient">Find more here</a>]
             Register a gradient into grassmessage, usable by <code>&lt;gradref&gt;</code>.
         </xs:documentation></xs:annotation>
         <xs:complexType>
@@ -91,6 +92,7 @@
 
     <xs:element name="style">
         <xs:annotation><xs:documentation>
+            [<a href="$DOCS/Elements.md#style">Find more here</a>]
             Register a style into grassmessage, usable by <code>&lt;styleref&gt;</code>.
         </xs:documentation></xs:annotation>
         <xs:complexType>
