@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 // Converts a string "expression" like "Hello, $(name)!" and converts it into a string like "Hello, Tom!"
 // based on variables passed into a message
 public class VariableSubstitutor {
-    private static final Pattern VAR_PATTERN = Pattern.compile("\\$\\(([^)]+)\\)");
+    private static final Pattern VAR_PATTERN = Pattern.compile("\\$\\([a-zA-Z0-9_-]+\\)");
     private final InstantiationContext ctx;
 
     public VariableSubstitutor(InstantiationContext ctx) {

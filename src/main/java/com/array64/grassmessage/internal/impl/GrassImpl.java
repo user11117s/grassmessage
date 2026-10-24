@@ -10,7 +10,6 @@ import com.array64.grassmessage.internal.xml.XmlParserAdapter;
 import com.array64.grassmessage.internal.xml.parsers.FileParser;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
@@ -72,7 +71,7 @@ public class GrassImpl implements Grass {
     }
 
     @Override
-    public MessageInstance createMessageInstance(String messageName) {
+    public MessageInstance instance(String messageName) {
         Message message = Objects.requireNonNull(fileData.getMessage(messageName), "Message " + messageName + " does not exist.");
         return new MessageInstanceImpl(message);
     }

@@ -4,6 +4,8 @@ import com.array64.grassmessage.internal.components.GComponent;
 import com.array64.grassmessage.internal.components.GComponentRegistry;
 import com.array64.grassmessage.internal.components.InstantiationContext;
 import com.array64.grassmessage.internal.components.GAbstractComponent;
+import com.array64.grassmessage.internal.xml.DepthTrackable;
+import com.array64.grassmessage.internal.xml.DepthTracker;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
@@ -52,14 +54,22 @@ public class GPreformattedComponent extends GAbstractComponent {
     public void onEnd() {
         format();
 
-        component = registry.createRootLevelCompositeComponent();
+        component = registry.createCompositeComponent();
+        getDepthTracker().enter();
         events.forEach(event -> {
             switch(event.type) {
-                case ENTER -> component.startTag(event.value, event.attrs);
-                case EXIT -> component.endTag(event.value);
+                case ENTER -> {
+                    component.startTag(event.value, event.attrs);
+                    getDepthTracker().enter();
+                }
+                case EXIT -> {
+                    getDepthTracker().exit();
+                    component.endTag(event.value);
+                }
                 case PARSE_TEXT -> component.parseText(event.value);
             }
         });
+        getDepthTracker().exit();
         component.onEnd();
 
         registry.removePreformat();

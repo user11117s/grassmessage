@@ -77,7 +77,7 @@ public class FileParser implements XmlParser {
                 }
             }
         }
-        String shadowColor = attrs.getValue("shadowColor");
+        String shadowColor = attrs.getValue("shadow_color");
         if(shadowColor != null)
             styleBuilder.shadowColor(ShadowColor.fromHexString(shadowColor));
 
@@ -90,8 +90,10 @@ public class FileParser implements XmlParser {
 
     private void textDec(Attributes attrs, String attr, TextDecoration decoration, Style.Builder styleBuilder) {
         String attrValue = attrs.getValue(attr);
-        if("true".equals(attrValue) || "1".equals(attrValue)) // We're using the equals method of the literal to handle null cases
-            styleBuilder.decorate(decoration);
+        if("true".equals(attrValue) || "1".equals(attrValue))
+            styleBuilder.decoration(decoration, TextDecoration.State.TRUE);
+        if("false".equals(attrValue) || "0".equals(attrValue))
+            styleBuilder.decoration(decoration, TextDecoration.State.FALSE);
     }
 
     @Override

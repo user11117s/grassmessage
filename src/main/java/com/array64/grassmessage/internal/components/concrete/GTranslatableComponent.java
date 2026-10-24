@@ -65,8 +65,7 @@ public class GTranslatableComponent extends GAbstractComponent {
         var translatable = Component.translatable(ctx.substituteVars(key));
         translatable = translatable.arguments(with.stream().map(component -> {
             Component parentComponent = Component.empty();
-            component.instantiateInParent(parentComponent, ctx);
-            return parentComponent;
+            return component.instantiateInParent(parentComponent, ctx);
         }).toList());
 
         if(fallback != null) translatable = translatable.fallback(ctx.substituteVars(fallback));

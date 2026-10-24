@@ -31,7 +31,7 @@ public class GComponentRegistry {
     public void register(GComponentFactory.Abstract factory, String... qNames) {
         // Allows me to initialize parts of AbstractComponent here. Probably not the best design though,
         // since it's not obvious which overload is used.
-        register((GComponentFactory) (attrs -> factory.getAbstractComponent(attrs).initialize(depthTracker, true)), qNames);
+        register((GComponentFactory) (attrs -> factory.getAbstractComponent(attrs).initialize(depthTracker)), qNames);
     }
 
     public GComponent get(String qName, Attributes attrs) {
@@ -82,12 +82,12 @@ public class GComponentRegistry {
 
         // Other leaf components
         register(attrs -> new GScoreComponent(), "score");
-        register(attrs -> new GSelectorComponent(), "selector");
+        register(attrs -> new GSelectorComponent(this), "selector");
         register(attrs -> new GKeybindComponent(), "keybind");
         register(attrs -> new GGradientComponent(attrs.getValue("ref")), "gradref");
         register(attrs -> new GStyleComponent(attrs.getValue("ref"), this), "styleref");
 
-        register(attrs -> new GAdventureComponent(attrs.getValue("name")), "adventure");
+        register(attrs -> new GAdventureComponent(attrs.getValue("src")), "adventure");
         register(attrs -> new GEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
         register(attrs -> new GTranslatableComponent(this), "translatable");
         register(attrs -> new GHoverComponent(this), "hover");
@@ -108,14 +108,7 @@ public class GComponentRegistry {
 
     public GCompositeComponent createCompositeComponent() {
         var compositeComponent = new GCompositeComponent(this);
-        compositeComponent.initialize(depthTracker, true);
-        compositeComponent.onStart();
-        return compositeComponent;
-    }
-
-    public GCompositeComponent createRootLevelCompositeComponent() {
-        var compositeComponent = new GCompositeComponent(this);
-        compositeComponent.initialize(depthTracker, false);
+        compositeComponent.initialize(depthTracker);
         compositeComponent.onStart();
         return compositeComponent;
     }

@@ -58,9 +58,9 @@ public abstract class GAbstractComponent implements GComponent, DepthTrackable {
         return depthTracker;
     }
 
-    public GAbstractComponent initialize(DepthTracker depthTracker, boolean enter) {
+    public GAbstractComponent initialize(DepthTracker depthTracker) {
         this.depthTracker = depthTracker;
-        this.rootDepth = depthTracker.getDepth() + (enter ? 1 : 0);
+        this.rootDepth = depthTracker.getDepth() + 1;
         return this;
     }
 }

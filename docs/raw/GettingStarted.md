@@ -42,6 +42,7 @@ Add this to your `pom.xml`:
 ```
 
 Now you have declared a dependency on grassmessage!
+You will also need to _shade_ this dependency so it is embedded in your built JAR.
 
 ### Autocomplete
 
@@ -83,7 +84,7 @@ catch(IOException e) {
     // handle I/O exception here
 }
 
-Component hello = grass.createMessageInstance("hello").build();
+Component hello = grass.instance("hello").build();
 ```
 
 If you try to display `hello` using the Adventure library, you should now see a greeting displayed on your screen!

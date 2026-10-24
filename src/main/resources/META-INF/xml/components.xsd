@@ -9,7 +9,7 @@
 
     <xs:simpleType name="hexColor8">
         <xs:restriction base="xs:string">
-            <xs:pattern value="#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}"/>
+            <xs:pattern value="#[0-9a-fA-F]{8}"/>
         </xs:restriction>
     </xs:simpleType>
     
@@ -28,7 +28,7 @@
     
     <xs:simpleType name="varAttr">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\$\([^$()]*\)"/>
+            <xs:pattern value="\$\([a-zA-Z0-9_-]+\)"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -305,11 +305,17 @@
             Adds a keybind component.
         </xs:documentation></xs:annotation>
     </xs:element>
-    <xs:element name="selector" type="xs:string">
+    <xs:element name="selector">
         <xs:annotation><xs:documentation>
             [<a href="$DOCS/Elements.md#selector">Find more here</a>]
             Adds a selector component.
         </xs:documentation></xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pattern" type="xs:string"/>
+                <xs:element name="separator" type="compositeComponent" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
     </xs:element>
     <xs:element name="score">
         <xs:annotation><xs:documentation>

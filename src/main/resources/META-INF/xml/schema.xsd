@@ -104,11 +104,11 @@
             </xs:attribute>
             <xs:attribute name="shadow_color" type="hexColor8"/>
             <xs:attribute name="font" type="xs:string"/>
-            <xs:attribute name="bold" type="xs:boolean" default="false"/>
-            <xs:attribute name="italic" type="xs:boolean" default="false"/>
-            <xs:attribute name="underlined" type="xs:boolean" default="false"/>
-            <xs:attribute name="strikethrough" type="xs:boolean" default="false"/>
-            <xs:attribute name="obfuscated" type="xs:boolean" default="false"/>
+            <xs:attribute name="bold" type="xs:boolean"/>
+            <xs:attribute name="italic" type="xs:boolean"/>
+            <xs:attribute name="underlined" type="xs:boolean"/>
+            <xs:attribute name="strikethrough" type="xs:boolean"/>
+            <xs:attribute name="obfuscated" type="xs:boolean"/>
         </xs:complexType>
     </xs:element>
 

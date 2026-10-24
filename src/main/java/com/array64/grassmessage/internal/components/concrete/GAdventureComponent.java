@@ -7,10 +7,10 @@ import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
 public class GAdventureComponent extends GAbstractComponent {
-    private final String name;
+    private final String src;
 
-    public GAdventureComponent(String name) {
-        this.name = name;
+    public GAdventureComponent(String src) {
+        this.src = src;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class GAdventureComponent extends GAbstractComponent {
 
     @Override
     public Component instantiate(InstantiationContext ctx) {
-        return Evaluation.evalAdventureComponent(name, ctx);
+        return Evaluation.evalAdventureComponent(src, ctx);
     }
 
     @Override

@@ -12,11 +12,16 @@ import java.util.Map;
 public class GScoreComponent extends GAbstractComponent {
     private String name = "", objective = "";
     private String defaultValue;
-    private final PropertyHolder propertyHolder = new PropertyHolder(Map.of(
-        "name", TextHolder::new,
-        "objective", TextHolder::new,
-        "default", TextHolder::new
-    ), getDepthTracker());
+    private PropertyHolder propertyHolder;
+
+    @Override
+    public void onStart() {
+        propertyHolder = new PropertyHolder(Map.of(
+            "name", TextHolder::new,
+            "objective", TextHolder::new,
+            "default", TextHolder::new
+        ), getDepthTracker());
+    }
 
     @Override
     protected void enterTag(String qName, Attributes attrs) {
@@ -49,7 +54,7 @@ public class GScoreComponent extends GAbstractComponent {
     public Component instantiate(InstantiationContext ctx) {
         String substitutedName = ctx.substituteVars(name),
             substitutedObjective = ctx.substituteVars(objective),
-            substitutedDefaultValue = ctx.substituteVars(defaultValue);
+            substitutedDefaultValue = defaultValue == null ? null : ctx.substituteVars(defaultValue);
 
         return substitutedDefaultValue == null ?
             Component.score(substitutedName, substitutedObjective)
