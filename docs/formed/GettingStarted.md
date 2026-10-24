@@ -12,8 +12,8 @@ repositories {
 
 dependencies {
     // ...
-    compileOnly("com.github.user11117s:grassmessage:1.0.0-alpha.1:api")
-    runtimeOnly("com.github.user11117s:grassmessage:1.0.0-alpha.1")
+    compileOnly("com.github.user11117s:grassmessage:1.0.0-alpha.2:api")
+    runtimeOnly("com.github.user11117s:grassmessage:1.0.0-alpha.2")
 }
 ```
 
@@ -36,18 +36,19 @@ Add this to your `pom.xml`:
     <dependency>
         <groupId>com.github.user11117s</groupId>
         <artifactId>grassmessage</artifactId>
-        <version>1.0.0-alpha.1</version>
+        <version>1.0.0-alpha.2</version>
     </dependency>
 </dependencies>
 ```
 
 Now you have declared a dependency on grassmessage!
+You will also need to _shade_ this dependency so it is embedded in your built JAR.
 
 ### Autocomplete
 
 This step is required for XML autocomplete to work. Run this command to download the required files to your `src/main/resources` folder:
 ```shell
-curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@v1.0.0-alpha.1/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;
+curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@v1.0.0-alpha.2/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;
 ```
 
 After running the command:
@@ -83,7 +84,7 @@ catch(IOException e) {
     // handle I/O exception here
 }
 
-Component hello = grass.createMessageInstance("hello").build();
+Component hello = grass.instance("hello").build();
 ```
 
 If you try to display `hello` using the Adventure library, you should now see a greeting displayed on your screen!

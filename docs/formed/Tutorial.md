@@ -31,7 +31,7 @@ Variables are referenced in message files as `$(<variable name>)`.
 Try replacing `Hello, World!` in your `messages.xml` with `Hello, $(name)!`, then modify your Java code:
 
 ```java
-Component hello = grass.createMessageInstance("hello")
+Component hello = grass.instance("hello")
     .addString("name", "Mark")
     .build();
 ```
@@ -43,7 +43,7 @@ You should now see:
 You can add as many variables as you need for your messages by chaining methods like this:
 
 ```java
-Component msg = grass.createMessageInstance("msg")
+Component msg = grass.instance("msg")
     .addString("name", "Mark")
     .addInt("page_no", 4)
     .addUUID("player_uuid", UUID.randomUUID())
