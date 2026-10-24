@@ -231,7 +231,7 @@ key cannot be found
 <i>Hold <keybind>key.sprint</keybind> to sprint!</i>
 ```
 
-- **Result**: <p>!["Hold Ctrl to sprint"](../images/ElementKeybind.png)</p>
+- **Result**: <p>!["Hold Ctrl to sprint"]()</p>
 
 ### `<selector>`
 
