@@ -7,6 +7,8 @@ import com.array64.grassmessage.internal.components.GAbstractComponent;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
+import java.util.Objects;
+
 public class GStyleComponent extends GAbstractComponent {
     private GComponent content;
     private final String ref;
@@ -41,6 +43,6 @@ public class GStyleComponent extends GAbstractComponent {
     protected Component instantiate(InstantiationContext ctx) {
         Component parent = Component.empty();
         parent = content.instantiateInParent(parent, ctx);
-        return parent.style(ctx.getStyle(ref));
+        return parent.style(Objects.requireNonNull(ctx.getStyle(ref), "Style " + ref + " could not be found."));
     }
 }

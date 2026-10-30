@@ -88,7 +88,7 @@ public class GComponentRegistry {
         register(attrs -> new GStyleComponent(attrs.getValue("ref"), this), "styleref");
 
         register(attrs -> new GAdventureComponent(attrs.getValue("src")), "adventure");
-        register(attrs -> new GEmbeddedMessage(attrs.getValue("ref")), "embed_msg");
+        register(attrs -> new GEmbeddedMessage(attrs.getValue("ref"), attrs.getValue("varmap")), "embed_msg");
         register(attrs -> new GTranslatableComponent(this), "translatable");
         register(attrs -> new GHoverComponent(this), "hover");
         register(attrs -> new GPreformattedComponent(

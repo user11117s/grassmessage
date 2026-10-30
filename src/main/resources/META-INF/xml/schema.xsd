@@ -42,7 +42,6 @@
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="message"/>
             </xs:sequence>
-            <xs:attributeGroup ref="xml:specialAttrs"/>
         </xs:complexType>
     </xs:element>
 
@@ -117,7 +116,6 @@
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="gradient"/>
             </xs:sequence>
-            <xs:attributeGroup ref="xml:specialAttrs"/>
         </xs:complexType>
     </xs:element>
 
@@ -126,7 +124,6 @@
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="style"/>
             </xs:sequence>
-            <xs:attributeGroup ref="xml:specialAttrs"/>
         </xs:complexType>
     </xs:element>
 
@@ -138,8 +135,16 @@
                 <xs:element ref="messages"/>
                 <xs:element ref="gradients"/>
                 <xs:element ref="styles"/>
-                <xs:element ref="xi:include"/>
+                <xs:element name="includes">
+                    <xs:complexType>
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                            <xs:element ref="xi:include"/>
+                            <xs:element ref="grass"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
             </xs:choice>
+            <xs:attributeGroup ref="xml:specialAttrs"/>
         </xs:complexType>
 
         <xs:key name="msgNames">
@@ -154,17 +159,5 @@
             <xs:selector xpath="gm:styles/gm:style"/>
             <xs:field xpath="@name"/>
         </xs:key>
-        <xs:keyref name="msgInstances" refer="gm:msgNames">
-            <xs:selector xpath=".//gm:embed_msg"/>
-            <xs:field xpath="@ref"/>
-        </xs:keyref>
-        <xs:keyref name="gradInstances" refer="gm:gradientNames">
-            <xs:selector xpath=".//gm:gradref"/>
-            <xs:field xpath="@ref"/>
-        </xs:keyref>
-        <xs:keyref name="styleInstances" refer="gm:styleNames">
-            <xs:selector xpath=".//gm:styleref"/>
-            <xs:field xpath="@ref"/>
-        </xs:keyref>
     </xs:element>
 </xs:schema>

@@ -6,6 +6,8 @@ import com.array64.grassmessage.internal.data.GradientData;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
+import java.util.Objects;
+
 public class GGradientComponent extends GAbstractComponent {
     private String text = "";
     private final String ref;
@@ -37,7 +39,7 @@ public class GGradientComponent extends GAbstractComponent {
 
     private Component instantiateTextInParent(Component parent, String text, InstantiationContext ctx) {
         int length = text.length();
-        GradientData gradient = ctx.getGradient(ref);
+        GradientData gradient = Objects.requireNonNull(ctx.getGradient(ref), "Gradient " + ref + " could not be found.");
         Component[] atomParent = new Component[] {parent};
 
         gradient.evaluate(length, (color, i) -> {

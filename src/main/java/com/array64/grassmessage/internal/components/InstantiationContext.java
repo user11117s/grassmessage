@@ -4,6 +4,7 @@ import com.array64.grassmessage.internal.data.FileData;
 import com.array64.grassmessage.internal.data.GradientData;
 import net.kyori.adventure.text.format.Style;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
@@ -31,11 +32,7 @@ public class InstantiationContext {
         return fileData.getStyle(ref);
     }
 
-    public String getVar(String name) {
-        return getVarRaw(name).toString();
-    }
-
-    public Object getVarRaw(String name) {
+    public Object getVar(String name) {
         return Objects.requireNonNull(vars.get(name), "Variable of name " + name + " was not provided.");
     }
 
@@ -43,5 +40,13 @@ public class InstantiationContext {
     // by using the vars map. In this example, it might look like Map.of("name", "Tom").
     public String substituteVars(String expr) {
         return variableSubstitutor.substituteVars(expr);
+    }
+
+    public FileData getFileData() {
+        return fileData;
+    }
+
+    public Map<String, Object> getVars() {
+        return Collections.unmodifiableMap(vars);
     }
 }

@@ -27,7 +27,7 @@ public class Evaluation {
     @SuppressWarnings("unchecked")
     private static <T> T getValueOrMsg(String varName, InstantiationContext ctx, String articleType) {
         try {
-            return (T) ctx.getVarRaw(varName);
+            return (T) ctx.getVar(varName);
         }
         catch(ClassCastException e) {
             throw new IllegalArgumentException(

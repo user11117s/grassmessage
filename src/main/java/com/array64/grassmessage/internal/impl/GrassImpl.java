@@ -72,7 +72,7 @@ public class GrassImpl implements Grass {
 
     @Override
     public MessageInstance instance(String messageName) {
-        Message message = Objects.requireNonNull(fileData.getMessage(messageName), "Message " + messageName + " does not exist.");
+        Message message = Objects.requireNonNull(fileData.getMessage(messageName), "Message " + messageName + " could not be found.");
         return new MessageInstanceImpl(message);
     }
 }

@@ -186,29 +186,35 @@ For example, you can have an `english_messages.xml` and `french_mesages.xml` fil
 `english_messages.xml`:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<messages xmlns="urn:grassmessage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:grassmessage urn:grassmessage:schema:v1">
-    <message name="en_welcome">
-        <b>Welcome to my mod!</b>
-    </message>
-</messages>
+<grass xmlns="urn:grassmessage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:grassmessage urn:grassmessage:schema:v1">
+    <messages>
+        <message name="en_welcome">
+            <b>Welcome to my mod!</b>
+        </message>
+    </messages>
+</grass>
 ```
 
 `french_messages.xml`:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<messages xmlns="urn:grassmessage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:grassmessage urn:grassmessage:schema:v1">
-    <message name="fr_welcome">
-        <b>Bienvenue dans mon mod !</b>
-    </message>
-</messages>
+<grass xmlns="urn:grassmessage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:grassmessage urn:grassmessage:schema:v1">
+    <messages>
+        <message name="fr_welcome">
+            <b>Bienvenue dans mon mod !</b>
+        </message>
+    </messages>
+</grass>
 ```
 
 `messages.xml`:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <grass xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="urn:grassmessage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:grassmessage urn:grassmessage:schema:v1">
-    <xi:include href="english_messages.xml"/>
-    <xi:include href="french_messages.xml"/>
+    <includes>
+        <xi:include href="english_messages.xml"/>
+        <xi:include href="french_messages.xml"/>
+    </includes>
 </grass>
 ```
 
