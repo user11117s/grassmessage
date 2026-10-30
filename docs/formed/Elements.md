@@ -4,13 +4,13 @@ This file is a complete breakdown of every element grassmessage provides.
 
 ## Legend
 
-This legend covers labels that you might see in the [Elements](#element-list) section.
+This legend covers labels that you might see in the [Element List](#element-list).
 
 ### Class labels
 
-- **_l_ (literal):** Input must be supplied directly; variable references are not allowed here. (e.g. `500`, `minecraft:diamond_sword`, ``)
+- **_l_ (literal):** Input must be supplied directly; variable references are not allowed here. (e.g. `500`, `minecraft:diamond_sword`, `true`)
 - **_v_ (variable):** Input must be a variable reference (e.g. `$(open_menu)`, `$(click_dur)`, `$(enchants)`)
-- **_f_ (flexible):** Input can be either supplied directly or a variable reference (e.g. `2`, `$(intro_page)`, `#FF0000`, `$(bg_color)`)
+- **_f_ (flexible):** Input can be either supplied directly or as a variable reference (e.g. `2`, `$(intro_page)`, `#FF0000`, `$(bg_color)`)
 - **_m_ (mixed):** Variable references can be combined with direct input (e.g. `Hello, $(player_name)!`, `{transaction_name: "$(txn_name)"}`).
 
 ### Type labels
@@ -31,6 +31,17 @@ This legend covers labels that you might see in the [Elements](#element-list) se
 - **_col_**: an RGB text color, specified through the `#RRGGBB` format
 - **_shadcol_**: an ARGB shadow color, specified through the `#RRGGBBAA` format
 - **_adv_**: an adventure component
+
+### _varmap_ type
+- Maps variables in an [embedded](#embed_msg) inner message to variables in an outer message, represented through a sequence
+of `*;` or `dst_var = src_var;` statements (whitespace does not matter for formatting).
+- The `*;` statement tells grassmessage to copy _all_ variables in the outer message into the inner message.
+- The `dst_var = src_var;` statement tells grassmessage to copy the value of `src_var` in the outer message into the
+variable `dst_var` in the inner message.
+- **Examples**:
+  - `*;` (copy all variables; default behavior)
+  - `player_name=player1;` (set inner message's `player_name` to outer message's `player1`)
+  - `*; p1 = p2; p2 = p1;` (inner message variables are same as outer message variables except `p1` and `p2` are swapped)
 
 If an element/attribute in the [Element List](#element-list) below
 does not have a class label and type label, its expected input is explained in its section.
@@ -239,7 +250,7 @@ key cannot be found
 
 
 - **Subelements (in order)**:
-  - `<pattern>` ([_m_](#class-labels), [_str_](#type-labels)): the player name
+  - `<pattern>` ([_m_](#class-labels), [_str_](#type-labels)): the selector pattern (e.g. `@p`, `@e[distance=10]`)
   - `<separator>` ([_opt_](#quantity-labels)): a rich text component separating the entities selected
 
 
@@ -338,6 +349,8 @@ key cannot be found
 
 - **Attributes**:
   - `ref` ([_l_](#class-labels), [_str_](#type-labels)): the `name`  of the `<message>` to embed
+  - `varmap` ([_l_](#class-labels), [_varmap_](#_varmap_-type), [_opt_](#quantity-labels)): a mapping between variables
+in the outer message and variables in the inner message. See type label [_varmap_](#_varmap_-type) for more; default is `*;`
 
 
 - **Example**:
