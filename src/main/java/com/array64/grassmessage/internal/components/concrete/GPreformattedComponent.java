@@ -4,8 +4,6 @@ import com.array64.grassmessage.internal.components.GComponent;
 import com.array64.grassmessage.internal.components.GComponentRegistry;
 import com.array64.grassmessage.internal.components.InstantiationContext;
 import com.array64.grassmessage.internal.components.GAbstractComponent;
-import com.array64.grassmessage.internal.xml.DepthTrackable;
-import com.array64.grassmessage.internal.xml.DepthTracker;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 

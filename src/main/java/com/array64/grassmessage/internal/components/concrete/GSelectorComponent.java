@@ -9,8 +9,6 @@ import com.array64.grassmessage.internal.xml.properties.TextHolder;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class GSelectorComponent extends GAbstractComponent {
