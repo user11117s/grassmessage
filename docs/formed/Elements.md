@@ -45,14 +45,6 @@ does not have a quantity label, it is expected to be used exactly once.
 
 ## Element List
 
-### Text decorations
-
-- `<b>`, `<bold>`: **bold text**
-- `<i>`, `<italic>`: _italic text_
-- `<u>`, `<underlined>`: <u>underlined text</u>
-- `<st>`, `<strikethrough>`: ~~strikethrough text~~
-- `<obf>`: obfuscated (magic) text
-
 ### Named colors
 
 The tags
@@ -63,6 +55,30 @@ The tags
 correspond to the 16 named Minecraft chat colors.
 Wrap them around your text to give them one of those colors.
 
+
+- **Example**:
+```xml
+<green>I'm green now!</green>
+```
+
+- **Result**: <p>![Green text](../images/ElementNamedColors.png)</p>
+
+### Text decorations
+
+- `<b>`, `<bold>`: **bold text**
+- `<i>`, `<italic>`: _italic text_
+- `<u>`, `<underlined>`: <u>underlined text</u>
+- `<st>`, `<strikethrough>`: ~~strikethrough text~~
+- `<obf>`: obfuscated (magic) text
+
+
+- **Example**:
+```xml
+<aqua>I <i>really</i> want to <b>emphasize</b> this.</aqua>
+```
+
+- **Result**: <p>![Green text](../images/ElementTextDecorations.png)</p>
+
 ### `<font>`
 
 - **Description**: Applies a font to the content within.
@@ -72,9 +88,14 @@ Wrap them around your text to give them one of those colors.
   - `font` ([_m_](#class-labels), [_str_](#type-labels)): a key representing the font to be used (e.g. `minecraft:uniform`)
 
 
+- **Example**:
 ```xml
-<font font="minecraft:uniform"><red>1 2 3 4 5</red></font>
+<font font="minecraft:uniform">
+  <red>1 2 3 4 5</red>
+</font>
 ```
+
+- **Result**: <p>!["1 2 3 4 5" in a uniform font](../images/ElementFont.png)</p>
 
 ### `<insertion>`
 
@@ -85,6 +106,16 @@ This means that Shift-clicking the text will insert some other text into the pla
 - **Attributes**:
   - `text` ([_m_](#class-labels), [_str_](#type-labels)): the text that will be inserted into the chat bar
 
+
+- **Example**:
+```xml
+<insertion text="Hi!">
+  <aqua>Shift-click on me to say hi!</aqua>
+</insertion>
+```
+
+- **Result**: <p>![Text that enters "Hi!" on Shift-click](../images/ElementInsertion.gif)</p>
+
 ### `<color>`
 
 - **Description**: Applies a text color to the content within.
@@ -92,6 +123,16 @@ This means that Shift-clicking the text will insert some other text into the pla
 
 - **Attributes**:
   - `hex` ([_f_](#class-labels), [_col_](#type-labels)): the text color as a hex string
+
+
+- **Example**:
+```xml
+<color hex="#456789">
+  I am a bit red, a bit more green and a bit more blue!
+</color>
+```
+
+- **Result**: <p>![Text in custom color](../images/ElementColor.png)</p>
  
 ### `<shadow>`
 
@@ -101,9 +142,19 @@ This means that Shift-clicking the text will insert some other text into the pla
 - **Attributes**:
   - `hex` ([_f_](#class-labels), [_shadcol_](#type-labels)): the shadow color as a hex string
 
+
+- **Example**:
+```xml
+<shadow hex="#FFFFFFFF">
+  <black>The tables have turned!</black>
+</shadow>
+```
+
+- **Result**: <p>![Black text with a white shadow](../images/ElementShadow.png)</p>
+
 ### `<gradref>`
 
-- **Description**: Applies a gradient declared in <code>&lt;gradients&gt;</code> to the content within.
+- **Description**: Applies a gradient declared in [&lt;gradient&gt;](#gradient) to the content within.
 
 
 - **Attributes**:
@@ -112,13 +163,35 @@ This means that Shift-clicking the text will insert some other text into the pla
 
 - **Content** ([_m_](#class-labels), [_str_](#type-labels)): the text to be made a gradient (cannot be rich text)
 
+
+- **Example**:
+```xml
+<!-- gradient "grayscale" declared to go from #000000 to #FFFFFF -->
+<gradref ref="grayscale">
+  BLACK------AND------WHITE
+</gradref>
+```
+
+- **Result**: <p>![Black text turning white](../images/ElementGradref.png)</p>
+
 ### `<styleref>`
 
-- **Description**: Applies a style declared in <code>&lt;styles&gt;</code> to the content within.
+- **Description**: Applies a style declared in [&lt;style&gt;](#style) to the content within.
 
 
 - **Attributes**:
   - `ref` ([_l_](#class-labels), [_str_](#type-labels)): the name of the style
+
+
+- **Example**:
+```xml
+<!-- style "excessive_decoration" declared with bold="true", italic="true", underlined="true", strikethrough="true" -->
+<styleref ref="excessive_decoration">
+  I am very lively!
+</styleref>
+```
+
+- **Result**: <p>![Extremely decorated text](../images/ElementStyleref.png)</p>
 
 ### `<translatable>`
 
@@ -131,6 +204,20 @@ This means that Shift-clicking the text will insert some other text into the pla
   - `<fallback>` ([_m_](#class-labels), [_str_](#type-labels), [_opt_](#quantity-labels)): a fallback entry in case the entry for the translation
 key cannot be found
 
+
+- **Example**:
+```xml
+<translatable>
+  <key>commands.give.success.single</key>
+  <with><yellow>59</yellow></with>
+  <with><gold>Oak Planks</gold></with>
+  <with><aqua>Array64</aqua></with>
+  <fallback>%1$s x %2$s -> %3$s</fallback>
+</translatable>
+```
+
+- **Result**: <p>!["Gave 59 Oak Planks to Array64"](../images/ElementTranslatable.png)</p>
+
 ### `<keybind>` ([_m_](#class-labels), [_str_](#type-labels))
 
 - **Description**: Adds a keybind component.
@@ -138,12 +225,35 @@ key cannot be found
 
 - **Content**: the keybind identifier (e.g. `key.jump`, `key.sneak`)
 
-### `<selector>` ([_m_](#class-labels), [_str_](#type-labels))
+
+- **Example**:
+```xml
+<i>Hold <keybind>key.sprint</keybind> to sprint!</i>
+```
+
+- **Result**: <p>!["Hold Ctrl to sprint"]()</p>
+
+### `<selector>`
 
 - **Description**: Adds a selector component.
 
 
-- **Content**: the selector (e.g. `@p`, `@e[distance=10]`)
+- **Subelements (in order)**:
+  - `<pattern>` ([_m_](#class-labels), [_str_](#type-labels)): the player name
+  - `<separator>` ([_opt_](#quantity-labels)): a rich text component separating the entities selected
+
+
+- **Example**:
+```xml
+<i>Players: <selector>
+  <pattern>@a</pattern>
+</selector></i>
+```
+
+- **Result**: <p>!["Players: Array64"](../images/ElementSelector.png)</p>
+
+
+- _Warning: Unresolved component. [See below.](#unresolved-components)_
 
 ### `<score>`
 
@@ -156,13 +266,50 @@ key cannot be found
   - `<default>` ([_m_](#class-labels), [_str_](#type-labels), [_opt_](#quantity-labels)): the default value
     if the score is unavailable (expired in 1.16.5)
 
+
+- **Example**:
+```xml
+<i>You have died <score>
+  <name>Array64</name>
+  <objective>deathCount</objective>
+</score> times!</i>
+```
+
+- **Result**: <p>!["You have died 4 times!"](../images/ElementScore.png)</p>
+
+
+- _Warning: Unresolved component. [See below.](#unresolved-components)_
+
 ### `<ln/>`
 
 - **Description**: Adds a new line.
 
+
+- **Example**:
+```xml
+<gold>69</gold> <ln/>
+<white>+</white><gold>3</gold> <ln/>
+<white>--</white> <ln/>
+<aqua>72</aqua>
+```
+
+- **Result**: <p>![An addition with digits aligned](../images/ElementLine.png)</p>
+
 ### `<glue/>`
 
 - **Description**: Removes the space between two tags (or text) if you insert this element between them.
+
+
+- **Example**:
+```xml
+<b>B</b> <glue/>
+<i>I</i> <glue/>
+<u>U</u> <glue/>
+<st>S</st> <glue/>
+<obf>O</obf>
+```
+
+- **Result**: <p>!["BIUSO" in different decorations](../images/ElementGlue.png)</p>
 
 ### `<nbsp/>`
 
@@ -172,6 +319,18 @@ key cannot be found
 - **Attributes**:
   - `spaces` ([_l_](#class-labels), [_int_](#type-labels), [_opt_](#quantity-labels)): the number of spaces to insert; default is `1`
 
+
+- **Example**:
+```xml
+<gold>[</gold>
+<nbsp spaces="10"/>
+<yellow>LOADING</yellow>
+<nbsp spaces="10"/>
+<gold>]</gold>
+```
+
+- **Result**: <p>!["[          LOADING          ]"](../images/ElementNbsp.png)</p>
+
 ### `<embed_msg/>`
 
 - **Description**: Embeds a different message referenced by name.
@@ -180,6 +339,21 @@ key cannot be found
 - **Attributes**:
   - `ref` ([_l_](#class-labels), [_str_](#type-labels)): the `name`  of the `<message>` to embed
 
+
+- **Example**:
+```xml
+<!--
+<message name="line">
+    <gray>----------------</gray>
+</message>
+-->
+<embed_msg ref="line"/><ln/>
+<i>Diamonds found: <aqua>62</aqua></i>
+<ln/><embed_msg ref="line"/>
+```
+
+- **Result**: <p>!["Diamonds found: 62" surrounded with a horizontal line](../images/ElementEmbedMsg.png)</p>
+
 ### `<adventure/>`
 
 - **Description**: Embeds a `net.kyori.adventure.text.Component` provided through a variable source.
@@ -187,6 +361,18 @@ key cannot be found
 
 - **Attributes**:
   - `src` ([_v_](#class-labels), [_adv_](#type-labels)): the variable reference to the Adventure component
+
+
+- **Example**:
+```xml
+<adventure src="$(welcome)"/>
+<yellow>Enjoy your stay!</yellow>
+<!-- grass.message("welcome")
+    .addAdventureComponent("welcome", Component.text("Welcome!"))
+    .build() -->
+```
+
+- **Result**: <p>!["Welcome! Enjoy your stay!"](../images/ElementAdventure.png)</p>
 
 ### `<pre>`
 
@@ -202,6 +388,19 @@ default is `true`
   - `inline` ([_l_](#class-labels), [_bool_](#type-labels), [_opt_](#quantity-labels)): whether to append a newline to the content within
 if the `</pre>` tag is followed by other content; default is `false`
 
+
+- **Example**:
+```xml
+<pre>
+  <gold>[</gold>        <yellow>LOADING</yellow>        <gold>]</gold>
+  <i><gray>25%...</gray>
+  <gray>50%...</gray>
+  <gray>75%...</gray></i>
+</pre>
+```
+
+- **Result**: <p>![Preformatted text](../images/ElementPre.png)</p>
+
 ### `<sprite/>`
 
 - **Description**: Adds a sprite referenced by path and atlas.
@@ -211,6 +410,14 @@ if the `</pre>` tag is followed by other content; default is `false`
   - `atlas` ([_m_](#class-labels), [_str_](#type-labels), [_opt_](#quantity-labels)): the atlas of textures (e.g. `minecraft:blocks`, `minecraft:items`);
 default is `minecraft:blocks`
   - `path` ([_m_](#class-labels), [_str_](#type-labels)): the path to the texture (e.g. `block/cobblestone`, `custom:item/longsword`)
+
+
+- **Example**:
+```xml
+<red>Cost: 50</red> <sprite atlas="minecraft:items" path="item/gold_ingot"/>
+```
+
+- **Result**: <p>!["Cost: 50" with a gold ingot icon](../images/ElementSprite.png)</p>
 
 ### `<head>`
 
@@ -226,6 +433,14 @@ default is `minecraft:blocks`
 
 - **Attributes**:
   - `outer_layer` ([_l_](#class-labels), [_bool_](#type-labels), [_opt_](#quantity-labels)): whether to include the outer (hat) layer of the skin; default is `false`
+
+
+- **Example**:
+```xml
+<head><name>Array64</name></head> <green>Array64 is my IGN!</green>
+```
+
+- **Result**: <p>!["Array64 is my IGN!" with my head shown](../images/ElementHead.png)</p>
 
 ### `<click>`
 
@@ -264,6 +479,17 @@ the callback can be used for this click event (`-1` for unlimited); default is `
 the callback can be used for this click event (e.g. a duration of `2s` means a click callback will expire 2 seconds after the
 text is sent); default is `12h`
 
+
+- **Example**:
+```xml
+<click>
+  <content>Take some wood!</content>
+  <run_command>/give @s minecraft:oak_planks 64</run_command>
+</click>
+```
+
+- **Result**: <p>![A clickable piece of text that gives wood](../images/ElementClick.gif)</p>
+
 ### `<hover>`
 
 - **Description**: Applies a hover effect to the content within.
@@ -295,9 +521,23 @@ text is sent); default is `12h`
             - `key` ([_m_](#class-labels), [_str_](#type-labels)): the key
             - `src` ([_v_](#class-labels), [_data_](#type-labels)): the variable reference to the value
 
+
+- **Example**:
+```xml
+<b><hover>
+  <content><aqua>Array64</aqua></content>
+  <show_text>
+    Kills: <green>1</green><ln/>
+    Assists: <green>2</green>
+  </show_text>
+</hover> has died!</b>
+```
+
+- **Result**: <p>![Hovered information on "Array64"](../images/ElementHover.gif)</p>
+
 ### `<gradient>`
 
-- **Description**: Register a gradient into grassmessage, usable by `<gradref>`.
+- **Description**: Register a gradient into grassmessage, usable by [&lt;gradref&gt;](#gradref).
 
 
 - **Subelements (in order)**:
@@ -312,9 +552,21 @@ text is sent); default is `12h`
 - **Attributes**:
   - `name` ([_l_](#class-labels), [_str_](#type-labels)): the name of the gradient
 
+
+- **Example**:
+```xml
+<gradient name="underwater">
+  <start>#40E0C0</start>
+  <middle position="0.7">#40C0E0</middle>
+  <end>#4040E0</end>
+</gradient>
+```
+
+- **Result**: <p>![Underwater text](../images/ElementGradient.png)</p>
+
 ### `<style/>`
 
-- **Description**: Register a style into grassmessage, usable by `<styleref>`.
+- **Description**: Register a style into grassmessage, usable by [&lt;styleref&gt;](#styleref).
 
 
 - **Attributes**:
@@ -327,3 +579,34 @@ text is sent); default is `12h`
   - `underlined` ([_l_](#class-labels), [_bool_](#type-labels), [_opt_](#quantity-labels)): underlined?
   - `strikethrough` ([_l_](#class-labels), [_bool_](#type-labels), [_opt_](#quantity-labels)): strikethrough?
   - `obfuscated` ([_l_](#class-labels), [_bool_](#type-labels), [_opt_](#quantity-labels)): obfuscated?
+
+
+- **Example**:
+```xml
+<style name="horror" color="#808080" shadow_color="#FF0000FF" bold="true" obfuscated="true" font="minecraft:uniform"/>
+```
+
+- **Result**: <p>![Horror text](../images/ElementStyle.png)</p>
+
+## Unresolved components
+
+Some components need extra information to properly render,
+such as scores and players. Without that information, these components fail to display properly.
+For example, on Paper, doing
+```java
+sender.sendMessage(grass.instance("all_players").build());
+```
+with
+```xml
+<message name="all_players">
+  <selector>
+    <pattern>@a</pattern>
+  </selector>
+</message>
+```
+will just display `@a`. To solve this, you will need to **resolve** your component. You will need to consult
+your platform's documentation to learn how to do this. For example, on Paper, you would do
+```java
+Component message = grass.instance("all_players").build();
+sender.sendMessage(PaperComponents.resolveWithContext(message, sender, null));
+```
