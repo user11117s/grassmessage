@@ -10,6 +10,7 @@ import com.array64.grassmessage.internal.xml.DepthTracker;
 import com.array64.grassmessage.internal.xml.properties.PropertyHolder;
 import com.array64.grassmessage.internal.xml.properties.TextHolder;
 import com.array64.grassmessage.internal.xml.properties.XmlPropertyMeta;
+import net.kyori.adventure.nbt.api.BinaryTagHolder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickCallback;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -44,7 +45,8 @@ public class GClickComponent extends GAbstractComponent {
             "callback", TextHolder::new,
             "custom", () -> new PropertyHolder(Map.of(
                 "id", TextHolder::new,
-                "payload", TextHolder::new
+                "spayload", TextHolder::new,
+                "vpayload", TextHolder::new
             ), depthTracker)
         ), depthTracker);
     }

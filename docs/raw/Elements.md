@@ -242,7 +242,7 @@ key cannot be found
 <i>Hold <keybind>key.sprint</keybind> to sprint!</i>
 ```
 
-- **Result**: <p>!["Hold Ctrl to sprint"]()</p>
+- **Result**: <p>!["Hold Ctrl to sprint"](../images/ElementKeybind.png)</p>
 
 ### `<selector>`
 
@@ -380,7 +380,7 @@ in the outer message and variables in the inner message. See type label [_varmap
 ```xml
 <adventure src="$(welcome)"/>
 <yellow>Enjoy your stay!</yellow>
-<!-- grass.message("welcome")
+<!-- grass.instance("welcome")
     .addAdventureComponent("welcome", Component.text("Welcome!"))
     .build() -->
 ```
