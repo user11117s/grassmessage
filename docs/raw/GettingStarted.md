@@ -48,16 +48,6 @@ Add this to your `pom.xml`:
         <scope>runtime</scope>
     </dependency>
 </dependencies>
-
-<dependencies>
-    <!-- ... -->
-    
-    <dependency>
-        <groupId>com.github.user11117s</groupId>
-        <artifactId>grassmessage</artifactId>
-        <version>$VER</version>
-    </dependency>
-</dependencies>
 ```
 
 Now you have declared a dependency on grassmessage!
