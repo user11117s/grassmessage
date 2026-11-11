@@ -23,7 +23,7 @@ Add this to your `pom.xml`:
 ```xml
 <repositories>
     <!-- ... -->
-    
+
     <repository>
         <id>jitpack.io</id>
         <url>https://jitpack.io</url>
@@ -32,11 +32,20 @@ Add this to your `pom.xml`:
 
 <dependencies>
     <!-- ... -->
-    
+
     <dependency>
         <groupId>com.github.user11117s</groupId>
         <artifactId>grassmessage</artifactId>
-        <version>$VER</version>
+        <version>1.0.0</version>
+        <classifier>api</classifier>
+        <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>com.github.user11117s</groupId>
+        <artifactId>grassmessage</artifactId>
+        <version>1.0.0</version>
+        <scope>runtime</scope>
     </dependency>
 </dependencies>
 ```
