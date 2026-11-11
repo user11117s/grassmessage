@@ -33,8 +33,8 @@ public class ItemHoveredContent implements HoveredContent {
         if(sdata.isEmpty() && vdata.isEmpty()) return HoverEvent.showItem(showItem);
 
         Map<Key, DataComponentValue> dataComponentMap = new HashMap<>();
-        sdata.forEach((k, v) -> dataComponentMap.put(Key.key(k), BinaryTagHolder.binaryTagHolder(ctx.substituteVars(v))));
-        vdata.forEach((k, v) -> dataComponentMap.put(Key.key(k), Evaluation.evalData(v, ctx)));
+        sdata.forEach((k, v) -> dataComponentMap.put(Key.key(ctx.substituteVars(k)), BinaryTagHolder.binaryTagHolder(ctx.substituteVars(v))));
+        vdata.forEach((k, v) -> dataComponentMap.put(Key.key(ctx.substituteVars(k)), Evaluation.evalData(v, ctx)));
 
         return HoverEvent.showItem(showItem.dataComponents(dataComponentMap));
     }

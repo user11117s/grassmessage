@@ -74,6 +74,7 @@ public class GCompositeComponent extends GAbstractComponent {
             // set glue to true if a whitespace tag is present (e.g. glue, nbsp, ln)
             if(whitespace.isPresent()) {
                 glue = Glue.TRUE;
+                if(!registry.inPreformat() && !qName.equals("ln")) addNewlineToPre();
                 appendText(whitespace.get());
             } else {
                 // Try to add a newline if the last tag was <pre>.

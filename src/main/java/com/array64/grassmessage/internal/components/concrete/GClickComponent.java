@@ -10,7 +10,6 @@ import com.array64.grassmessage.internal.xml.DepthTracker;
 import com.array64.grassmessage.internal.xml.properties.PropertyHolder;
 import com.array64.grassmessage.internal.xml.properties.TextHolder;
 import com.array64.grassmessage.internal.xml.properties.XmlPropertyMeta;
-import net.kyori.adventure.nbt.api.BinaryTagHolder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickCallback;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -39,6 +38,7 @@ public class GClickComponent extends GAbstractComponent {
             "run_command", TextHolder::new,
             "suggest_command", TextHolder::new,
             "open_url", TextHolder::new,
+            "open_file", TextHolder::new,
             "change_page", TextHolder::new,
             "copy_to_clipboard", TextHolder::new,
             "show_dialog", TextHolder::new,
