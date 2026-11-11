@@ -63,6 +63,7 @@ public interface MessageInstance {
      * Build the message instance.
      *
      * @return the built {@link Component}
+     * @since 1.0.0
      */
     Component build();
 }

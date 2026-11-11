@@ -11,6 +11,7 @@ public interface Grass {
      * Use {@link #parse()} to load the messages.
      *
      * @param messagesFile A {@link java.net.URL} that links to the messages file
+     * @since 1.0.0
      * */
     static Grass create(URL messagesFile) {
         return new GrassImpl(messagesFile);
@@ -22,6 +23,7 @@ public interface Grass {
      *
      * @param messagesFile a {@link java.net.URL} that links to the messages file
      * @param schemaFile a {@link java.net.URL} that links to the schemas file
+     * @since 1.0.0
      * */
     static Grass create(URL messagesFile, URL schemaFile) {
         return new GrassImpl(messagesFile, schemaFile);
@@ -29,6 +31,7 @@ public interface Grass {
 
     /**
      * Parses the messages file.
+     * @since 1.0.0
      * */
     void parse() throws IOException;
 
@@ -37,6 +40,7 @@ public interface Grass {
      *
      * @param messageName the message name
      * @return a {@link MessageInstance} which you can configure with variables before calling {@link MessageInstance#build()} on
+     * @since 1.0.0
      */
     MessageInstance instance(String messageName);
 }
