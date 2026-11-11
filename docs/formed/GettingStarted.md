@@ -12,8 +12,8 @@ repositories {
 
 dependencies {
     // ...
-    compileOnly("com.github.user11117s:grassmessage:1.0.0-alpha.2:api")
-    runtimeOnly("com.github.user11117s:grassmessage:1.0.0-alpha.2")
+    compileOnly("com.github.user11117s:grassmessage:1.0.0:api")
+    runtimeOnly("com.github.user11117s:grassmessage:1.0.0")
 }
 ```
 
@@ -36,7 +36,7 @@ Add this to your `pom.xml`:
     <dependency>
         <groupId>com.github.user11117s</groupId>
         <artifactId>grassmessage</artifactId>
-        <version>1.0.0-alpha.2</version>
+        <version>1.0.0</version>
     </dependency>
 </dependencies>
 ```
@@ -48,7 +48,7 @@ You will also need to _shade_ this dependency so it is embedded in your built JA
 
 This step is required for XML autocomplete to work. Run this command to download the required files to your `src/main/resources` folder:
 ```shell
-curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@v1.0.0-alpha.2/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;
+curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@v1.0.0/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;
 ```
 
 After running the command:
