@@ -242,7 +242,7 @@ key cannot be found
 <i>Hold <keybind>key.sprint</keybind> to sprint!</i>
 ```
 
-- **Result**: <p>!["Hold Ctrl to sprint"]()</p>
+- **Result**: <p>!["Hold Ctrl to sprint"](../images/ElementKeybind.png)</p>
 
 ### `<selector>`
 
@@ -349,8 +349,8 @@ key cannot be found
 
 - **Attributes**:
   - `ref` ([_l_](#class-labels), [_str_](#type-labels)): the `name`  of the `<message>` to embed
-  - `varmap` ([_l_](#class-labels), [_varmap_](#_varmap_-type), [_opt_](#quantity-labels)): a mapping between variables
-in the outer message and variables in the inner message. See type label [_varmap_](#_varmap_-type) for more; default is `*;`
+  - `varmap` ([_l_](#class-labels), [_varmap_](#varmap-type), [_opt_](#quantity-labels)): a mapping between variables
+in the outer message and variables in the inner message. See type label [_varmap_](#varmap-type) for more; default is `*;`
 
 
 - **Example**:
@@ -380,7 +380,7 @@ in the outer message and variables in the inner message. See type label [_varmap
 ```xml
 <adventure src="$(welcome)"/>
 <yellow>Enjoy your stay!</yellow>
-<!-- grass.message("welcome")
+<!-- grass.instance("welcome")
     .addAdventureComponent("welcome", Component.text("Welcome!"))
     .build() -->
 ```
