@@ -24,6 +24,15 @@ Add this to your `pom.xml`:
 <repositories>
     <!-- ... -->
 
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <!-- ... -->
+
     <dependency>
         <groupId>com.github.user11117s</groupId>
         <artifactId>grassmessage</artifactId>
@@ -38,7 +47,7 @@ Add this to your `pom.xml`:
         <version>1.0.0</version>
         <scope>runtime</scope>
     </dependency>
-</repositories>
+</dependencies>
 
 <dependencies>
     <!-- ... -->
