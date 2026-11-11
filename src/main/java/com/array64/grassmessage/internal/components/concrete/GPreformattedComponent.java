@@ -6,6 +6,7 @@ import com.array64.grassmessage.internal.components.InstantiationContext;
 import com.array64.grassmessage.internal.components.GAbstractComponent;
 import net.kyori.adventure.text.Component;
 import org.xml.sax.Attributes;
+import org.xml.sax.helpers.AttributesImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class GPreformattedComponent extends GAbstractComponent {
     @Override
     protected void enterTag(String qName, Attributes attrs) {
         processTag();
-        events.add(new Event(Event.Type.ENTER, qName, attrs));
+        events.add(new Event(Event.Type.ENTER, qName, new AttributesImpl(attrs)));
     }
 
     @Override
