@@ -12,8 +12,8 @@ repositories {
 
 dependencies {
     // ...
-    compileOnly("com.github.user11117s:grassmessage:1.0.0:api")
-    runtimeOnly("com.github.user11117s:grassmessage:1.0.0")
+    compileOnly("com.github.user11117s:grassmessage:1.0.1:api")
+    runtimeOnly("com.github.user11117s:grassmessage:1.0.1")
 }
 ```
 
@@ -57,7 +57,7 @@ You will also need to _shade_ this dependency so it is embedded in your built JA
 
 This step is required for XML autocomplete to work. Run this command to download the required files to your `src/main/resources` folder:
 ```shell
-curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@v1.0.0/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;
+curl https://cdn.jsdelivr.net/gh/user11117s/grassmessage@v1.0.1/src/main/resources/xml.tar.gz -o t.tgz; tar -xzf t.tgz; rm t.tgz;
 ```
 
 After running the command:
